@@ -2,7 +2,9 @@
 
 Scaffolding Vue 3 webapp
 
-With NPM:
+## Coming soon
+
+<!-- With NPM:
 
 ```bash
 $ npm create vue-webapp
@@ -26,6 +28,6 @@ With Bun:
 $ bunx create-vue-webapp
 ```
 
-Then follow the prompts!
+Then follow the prompts! -->
 
 Full documentation available at [https://github.com/vuesence/vue-webapp](https://github.com/vuesence/vue-webapp)
