@@ -1,0 +1,26 @@
+{
+  "name": "create-vue-webapp",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Scaffolding Vue 3 webapp",
+  "license": "MIT",
+  "homepage": "https://github.com/vuesence/vue-webapp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vuesence/vue-webapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vuesence/vue-webapp/issues"
+  },
+  "keywords": [
+    "vue",
+    "vite",
+    "website",
+    "webapp",
+    "template",
+    "scaffold"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
