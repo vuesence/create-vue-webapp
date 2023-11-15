@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import minimist from "minimist";
 import prompts from "prompts";
 import { write, emptyDir, setProjectRootDir } from "./fs-utils.js";
-import * as options from "./option-utils.js";
+import * as optionUtils from "./options/index.js";
 import * as promptsUtils from "./prompt-utils.js";
 
 // Avoids autoconversion to number of the project name by defining that the args
@@ -21,10 +21,10 @@ async function init() {
 	const getProjectName = () =>
 		targetDir === "." ? path.basename(path.resolve()) : targetDir;
 
-	let result;
+	let options;
 
 	try {
-		result = await prompts(
+		options = await prompts(
 			[
 				promptsUtils.projectName,
 				promptsUtils.pwa,
@@ -46,7 +46,7 @@ async function init() {
 		return;
 	}
 
-	console.log(result);
+	console.log(options);
 	console.log();
 
 	const {
@@ -57,7 +57,7 @@ async function init() {
 		pwa,
 		baseIcon,
 		githubActionsWorkflow,
-	} = result;
+	} = options;
 
 	const destDir = path.join(cwd, targetDir);
 	setProjectRootDir(destDir);
@@ -65,7 +65,7 @@ async function init() {
 	console.log(`\nScaffolding project in ${destDir}...`);
 	// create target directory
 	if (overwrite) {
-		emptyDir(destDir);
+		// emptyDir(destDir);
 	} else if (!fs.existsSync(destDir)) {
 		fs.mkdirSync(destDir, { recursive: true });
 	}
@@ -89,16 +89,17 @@ async function init() {
 	}
 
 	// ["navigationDrawer", "footer"].forEach((component) => {
-	// 	if (!result[component].startsWith("Simple")) {
-	// 		setWebappComponent(component, result[component]);
+	// 	if (!options[component].startsWith("Simple")) {
+	// 		setWebappComponent(component, options[component]);
 	// 	}
 	// });
-	options.setFooter(footer);
-	options.setNavigationDrawer(navigationDrawer);
-	options.setGithubActionsWorkflow(githubActionsWorkflow);
-	options.setBaseIcon(baseIcon);
-	options.setPwa(pwa);
-	options.setTitle(getProjectName());
+	optionUtils.setFooter(footer);
+	optionUtils.setNavigationDrawer(navigationDrawer);
+	optionUtils.setGithubActionsWorkflow(githubActionsWorkflow);
+	optionUtils.setBaseIcon(baseIcon);
+	optionUtils.setPwa(pwa);
+	optionUtils.setTitle(getProjectName());
+	optionUtils.setOptionList(options);
 
 	console.log();
 }
