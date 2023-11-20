@@ -1,7 +1,7 @@
 {
   "name": "create-vue-webapp",
   "type": "module",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Scaffolding Vue 3 webapp",
   "license": "MIT",
   "homepage": "https://github.com/vuesence/vue-webapp",

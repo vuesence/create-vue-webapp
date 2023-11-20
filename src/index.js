@@ -74,8 +74,8 @@ async function init() {
 
 	const templateDir = path.resolve(
 		fileURLToPath(import.meta.url),
-		"../../../vue-webapp"
-		// "../../src/template"
+		// "../../../vue-webapp"
+		"../../src/template"
 	);
 
 	// modify package.json
