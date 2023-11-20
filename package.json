@@ -4,7 +4,7 @@
   "version": "0.3.4",
   "description": "Scaffolding Vue 3 webapp",
   "license": "MIT",
-  "homepage": "https://github.com/vuesence/vue-webapp",
+  "homepage": "https://vue-faq.org/en/vue-webapp/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vuesence/vue-webapp.git"
