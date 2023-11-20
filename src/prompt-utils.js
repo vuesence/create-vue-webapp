@@ -54,6 +54,16 @@ export const navigationDrawer = {
 	],
 };
 
+export const header = {
+	type: "select",
+	name: "header",
+	message: reset("Select webapp header"),
+	choices: [
+		{ title: lightBlue("SimpleHeader"), value: "SimpleHeader" },
+		{ title: lightGreen("SlidingHeader"), value: "SlidingHeader" },
+	],
+};
+
 export const footer = {
 	type: "select",
 	name: "footer",

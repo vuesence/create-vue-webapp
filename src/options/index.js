@@ -1,8 +1,8 @@
 import { replaceTextInFile, deleteDirOrFile } from "../fs-utils.js";
 import { setBaseIcon } from "./base-icon.js";
 import { setPwa } from "./pwa.js";
+import { setHeader } from "./header.js";
 
-function setHeader(header) { }
 function setFooter(footer) {
 	if (footer && !footer.startsWith("Simple")) {
 		replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
@@ -53,8 +53,8 @@ function setOptionList(options) {
 	optionArrayStr = `[${optionArrayStr.join(",")}]`;
 	replaceTextInFile(
 		"src/views/HomeView.vue",
-		"// options placeholder",
-		`options = ${optionArrayStr};`
+		"options: IOption[] = [];",
+		`options: IOption[] = ${optionArrayStr};`
 	);
 }
 

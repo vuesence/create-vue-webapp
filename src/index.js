@@ -30,6 +30,7 @@ async function init() {
 				promptsUtils.pwa,
 				promptsUtils.githubActionsWorkflow,
 				promptsUtils.navigationDrawer,
+				promptsUtils.header,
 				promptsUtils.footer,
 				promptsUtils.baseIcon,
 				promptsUtils.packageNameCheck,
@@ -53,6 +54,7 @@ async function init() {
 		packageName,
 		overwrite,
 		navigationDrawer,
+		header,
 		footer,
 		pwa,
 		baseIcon,
@@ -93,6 +95,7 @@ async function init() {
 	// 		setWebappComponent(component, options[component]);
 	// 	}
 	// });
+	optionUtils.setHeader(header);
 	optionUtils.setFooter(footer);
 	optionUtils.setNavigationDrawer(navigationDrawer);
 	optionUtils.setGithubActionsWorkflow(githubActionsWorkflow);
