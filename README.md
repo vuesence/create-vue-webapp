@@ -29,7 +29,7 @@ $ pnpm dev
 
 Result in a browser ([https://vuesence.github.io/vue-webapp](https://vuesence.github.io/vue-webapp/)):
 
-![](webapp-start.png)
+![](https://github.com/vuesence/vue-webapp/raw/main/.github/webapp-start.png)
 
 
 ## Reasons 
