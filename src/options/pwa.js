@@ -1,7 +1,7 @@
 import { replaceTextInFile, deleteDirOrFile } from "../fs-utils.js";
 
 export function setPwa(pwa) {
-    console.log("pwa", pwa);
+    // console.log("pwa", pwa);
     if (!pwa) {
         deleteDirOrFile("public/manifest.json");
         deleteDirOrFile("public/service-worker.js");

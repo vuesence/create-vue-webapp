@@ -74,7 +74,7 @@ function replaceTextInFile(filePath, searchValue, replaceValue) {
 		const data = fs.readFileSync(filePath, "utf8");
 		const updatedData = data.replace(searchValue, replaceValue);
 		fs.writeFileSync(filePath, updatedData, "utf8");
-		console.log("Text replaced successfully for '" + replaceValue + "'!");
+		// console.log("Text replaced successfully for '" + replaceValue + "'!");
 	} catch (err) {
 		console.error(err);
 	}

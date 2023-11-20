@@ -45,7 +45,7 @@ function setOptionList(options) {
 		"githubActionsWorkflow": "Github Actions Workflow",
 	};
 	for (let name in options) {
-		console.log(name);
+		// console.log(name);
 		if (options[name] !== false && !["overwrite"].includes(name)) {
 			optionArrayStr.push(`{name: "${titles[name]}", value: "${options[name]}"}`);
 		}

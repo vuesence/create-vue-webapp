@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import require$$0 from 'readline';
 import require$$2 from 'events';
 
-function getDefaultExportFromCjs(x) {
+function getDefaultExportFromCjs (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
@@ -277,7 +277,7 @@ var prompts$3 = {};
 var kleur;
 var hasRequiredKleur;
 
-function requireKleur() {
+function requireKleur () {
 	if (hasRequiredKleur) return kleur;
 	hasRequiredKleur = 1;
 
@@ -320,7 +320,7 @@ function requireKleur() {
 	};
 
 	function run(arr, str) {
-		let i = 0, tmp, beg = '', end = '';
+		let i=0, tmp, beg='', end='';
 		for (; i < arr.length; i++) {
 			tmp = arr[i];
 			beg += tmp.open;
@@ -375,10 +375,10 @@ function requireKleur() {
 		};
 		return function (txt) {
 			if (this !== void 0 && this.has !== void 0) {
-				this.has.includes(open) || (this.has.push(open), this.keys.push(blk));
-				return txt === void 0 ? this : $.enabled ? run(this.keys, txt + '') : txt + '';
+				this.has.includes(open) || (this.has.push(open),this.keys.push(blk));
+				return txt === void 0 ? this : $.enabled ? run(this.keys, txt+'') : txt+'';
 			}
-			return txt === void 0 ? chain([open], [blk]) : $.enabled ? run([blk], txt + '') : txt + '';
+			return txt === void 0 ? chain([open], [blk]) : $.enabled ? run([blk], txt+'') : txt+'';
 		};
 	}
 
@@ -389,45 +389,45 @@ function requireKleur() {
 var action$1;
 var hasRequiredAction$1;
 
-function requireAction$1() {
+function requireAction$1 () {
 	if (hasRequiredAction$1) return action$1;
 	hasRequiredAction$1 = 1;
 
 	action$1 = (key, isSelect) => {
-		if (key.meta && key.name !== 'escape') return;
+	  if (key.meta && key.name !== 'escape') return;
 
-		if (key.ctrl) {
-			if (key.name === 'a') return 'first';
-			if (key.name === 'c') return 'abort';
-			if (key.name === 'd') return 'abort';
-			if (key.name === 'e') return 'last';
-			if (key.name === 'g') return 'reset';
-		}
+	  if (key.ctrl) {
+	    if (key.name === 'a') return 'first';
+	    if (key.name === 'c') return 'abort';
+	    if (key.name === 'd') return 'abort';
+	    if (key.name === 'e') return 'last';
+	    if (key.name === 'g') return 'reset';
+	  }
 
-		if (isSelect) {
-			if (key.name === 'j') return 'down';
-			if (key.name === 'k') return 'up';
-		}
+	  if (isSelect) {
+	    if (key.name === 'j') return 'down';
+	    if (key.name === 'k') return 'up';
+	  }
 
-		if (key.name === 'return') return 'submit';
-		if (key.name === 'enter') return 'submit'; // ctrl + J
+	  if (key.name === 'return') return 'submit';
+	  if (key.name === 'enter') return 'submit'; // ctrl + J
 
-		if (key.name === 'backspace') return 'delete';
-		if (key.name === 'delete') return 'deleteForward';
-		if (key.name === 'abort') return 'abort';
-		if (key.name === 'escape') return 'exit';
-		if (key.name === 'tab') return 'next';
-		if (key.name === 'pagedown') return 'nextPage';
-		if (key.name === 'pageup') return 'prevPage'; // TODO create home() in prompt types (e.g. TextPrompt)
+	  if (key.name === 'backspace') return 'delete';
+	  if (key.name === 'delete') return 'deleteForward';
+	  if (key.name === 'abort') return 'abort';
+	  if (key.name === 'escape') return 'exit';
+	  if (key.name === 'tab') return 'next';
+	  if (key.name === 'pagedown') return 'nextPage';
+	  if (key.name === 'pageup') return 'prevPage'; // TODO create home() in prompt types (e.g. TextPrompt)
 
-		if (key.name === 'home') return 'home'; // TODO create end() in prompt types (e.g. TextPrompt)
+	  if (key.name === 'home') return 'home'; // TODO create end() in prompt types (e.g. TextPrompt)
 
-		if (key.name === 'end') return 'end';
-		if (key.name === 'up') return 'up';
-		if (key.name === 'down') return 'down';
-		if (key.name === 'right') return 'right';
-		if (key.name === 'left') return 'left';
-		return false;
+	  if (key.name === 'end') return 'end';
+	  if (key.name === 'up') return 'up';
+	  if (key.name === 'down') return 'down';
+	  if (key.name === 'right') return 'right';
+	  if (key.name === 'left') return 'left';
+	  return false;
 	};
 	return action$1;
 }
@@ -435,14 +435,14 @@ function requireAction$1() {
 var strip$1;
 var hasRequiredStrip$1;
 
-function requireStrip$1() {
+function requireStrip$1 () {
 	if (hasRequiredStrip$1) return strip$1;
 	hasRequiredStrip$1 = 1;
 
 	strip$1 = str => {
-		const pattern = ['[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)', '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))'].join('|');
-		const RGX = new RegExp(pattern, 'g');
-		return typeof str === 'string' ? str.replace(RGX, '') : str;
+	  const pattern = ['[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)', '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))'].join('|');
+	  const RGX = new RegExp(pattern, 'g');
+	  return typeof str === 'string' ? str.replace(RGX, '') : str;
 	};
 	return strip$1;
 }
@@ -450,7 +450,7 @@ function requireStrip$1() {
 var src;
 var hasRequiredSrc;
 
-function requireSrc() {
+function requireSrc () {
 	if (hasRequiredSrc) return src;
 	hasRequiredSrc = 1;
 
@@ -459,54 +459,54 @@ function requireSrc() {
 	const beep = '\u0007';
 
 	const cursor = {
-		to(x, y) {
-			if (!y) return `${CSI}${x + 1}G`;
-			return `${CSI}${y + 1};${x + 1}H`;
-		},
-		move(x, y) {
-			let ret = '';
+	  to(x, y) {
+	    if (!y) return `${CSI}${x + 1}G`;
+	    return `${CSI}${y + 1};${x + 1}H`;
+	  },
+	  move(x, y) {
+	    let ret = '';
 
-			if (x < 0) ret += `${CSI}${-x}D`;
-			else if (x > 0) ret += `${CSI}${x}C`;
+	    if (x < 0) ret += `${CSI}${-x}D`;
+	    else if (x > 0) ret += `${CSI}${x}C`;
 
-			if (y < 0) ret += `${CSI}${-y}A`;
-			else if (y > 0) ret += `${CSI}${y}B`;
+	    if (y < 0) ret += `${CSI}${-y}A`;
+	    else if (y > 0) ret += `${CSI}${y}B`;
 
-			return ret;
-		},
-		up: (count = 1) => `${CSI}${count}A`,
-		down: (count = 1) => `${CSI}${count}B`,
-		forward: (count = 1) => `${CSI}${count}C`,
-		backward: (count = 1) => `${CSI}${count}D`,
-		nextLine: (count = 1) => `${CSI}E`.repeat(count),
-		prevLine: (count = 1) => `${CSI}F`.repeat(count),
-		left: `${CSI}G`,
-		hide: `${CSI}?25l`,
-		show: `${CSI}?25h`,
-		save: `${ESC}7`,
-		restore: `${ESC}8`
+	    return ret;
+	  },
+	  up: (count = 1) => `${CSI}${count}A`,
+	  down: (count = 1) => `${CSI}${count}B`,
+	  forward: (count = 1) => `${CSI}${count}C`,
+	  backward: (count = 1) => `${CSI}${count}D`,
+	  nextLine: (count = 1) => `${CSI}E`.repeat(count),
+	  prevLine: (count = 1) => `${CSI}F`.repeat(count),
+	  left: `${CSI}G`,
+	  hide: `${CSI}?25l`,
+	  show: `${CSI}?25h`,
+	  save: `${ESC}7`,
+	  restore: `${ESC}8`
 	};
 
 	const scroll = {
-		up: (count = 1) => `${CSI}S`.repeat(count),
-		down: (count = 1) => `${CSI}T`.repeat(count)
+	  up: (count = 1) => `${CSI}S`.repeat(count),
+	  down: (count = 1) => `${CSI}T`.repeat(count)
 	};
 
 	const erase = {
-		screen: `${CSI}2J`,
-		up: (count = 1) => `${CSI}1J`.repeat(count),
-		down: (count = 1) => `${CSI}J`.repeat(count),
-		line: `${CSI}2K`,
-		lineEnd: `${CSI}K`,
-		lineStart: `${CSI}1K`,
-		lines(count) {
-			let clear = '';
-			for (let i = 0; i < count; i++)
-				clear += this.line + (i < count - 1 ? cursor.up() : '');
-			if (count)
-				clear += cursor.left;
-			return clear;
-		}
+	  screen: `${CSI}2J`,
+	  up: (count = 1) => `${CSI}1J`.repeat(count),
+	  down: (count = 1) => `${CSI}J`.repeat(count),
+	  line: `${CSI}2K`,
+	  lineEnd: `${CSI}K`,
+	  lineStart: `${CSI}1K`,
+	  lines(count) {
+	    let clear = '';
+	    for (let i = 0; i < count; i++)
+	      clear += this.line + (i < count - 1 ? cursor.up() : '');
+	    if (count)
+	      clear += cursor.left;
+	    return clear;
+	  }
 	};
 
 	src = { cursor, scroll, erase, beep };
@@ -516,11 +516,11 @@ function requireSrc() {
 var clear$1;
 var hasRequiredClear$1;
 
-function requireClear$1() {
+function requireClear$1 () {
 	if (hasRequiredClear$1) return clear$1;
 	hasRequiredClear$1 = 1;
 
-	function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() { }; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -529,8 +529,8 @@ function requireClear$1() {
 	const strip = requireStrip$1();
 
 	const _require = requireSrc(),
-		erase = _require.erase,
-		cursor = _require.cursor;
+	      erase = _require.erase,
+	      cursor = _require.cursor;
 
 	const width = str => [...strip(str)].length;
 	/**
@@ -540,25 +540,25 @@ function requireClear$1() {
 
 
 	clear$1 = function (prompt, perLine) {
-		if (!perLine) return erase.line + cursor.to(0);
-		let rows = 0;
-		const lines = prompt.split(/\r?\n/);
+	  if (!perLine) return erase.line + cursor.to(0);
+	  let rows = 0;
+	  const lines = prompt.split(/\r?\n/);
 
-		var _iterator = _createForOfIteratorHelper(lines),
-			_step;
+	  var _iterator = _createForOfIteratorHelper(lines),
+	      _step;
 
-		try {
-			for (_iterator.s(); !(_step = _iterator.n()).done;) {
-				let line = _step.value;
-				rows += 1 + Math.floor(Math.max(width(line) - 1, 0) / perLine);
-			}
-		} catch (err) {
-			_iterator.e(err);
-		} finally {
-			_iterator.f();
-		}
+	  try {
+	    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+	      let line = _step.value;
+	      rows += 1 + Math.floor(Math.max(width(line) - 1, 0) / perLine);
+	    }
+	  } catch (err) {
+	    _iterator.e(err);
+	  } finally {
+	    _iterator.f();
+	  }
 
-		return erase.lines(rows);
+	  return erase.lines(rows);
 	};
 	return clear$1;
 }
@@ -566,37 +566,37 @@ function requireClear$1() {
 var figures_1$1;
 var hasRequiredFigures$1;
 
-function requireFigures$1() {
+function requireFigures$1 () {
 	if (hasRequiredFigures$1) return figures_1$1;
 	hasRequiredFigures$1 = 1;
 
 	const main = {
-		arrowUp: '↑',
-		arrowDown: '↓',
-		arrowLeft: '←',
-		arrowRight: '→',
-		radioOn: '◉',
-		radioOff: '◯',
-		tick: '✔',
-		cross: '✖',
-		ellipsis: '…',
-		pointerSmall: '›',
-		line: '─',
-		pointer: '❯'
+	  arrowUp: '↑',
+	  arrowDown: '↓',
+	  arrowLeft: '←',
+	  arrowRight: '→',
+	  radioOn: '◉',
+	  radioOff: '◯',
+	  tick: '✔',
+	  cross: '✖',
+	  ellipsis: '…',
+	  pointerSmall: '›',
+	  line: '─',
+	  pointer: '❯'
 	};
 	const win = {
-		arrowUp: main.arrowUp,
-		arrowDown: main.arrowDown,
-		arrowLeft: main.arrowLeft,
-		arrowRight: main.arrowRight,
-		radioOn: '(*)',
-		radioOff: '( )',
-		tick: '√',
-		cross: '×',
-		ellipsis: '...',
-		pointerSmall: '»',
-		line: '─',
-		pointer: '>'
+	  arrowUp: main.arrowUp,
+	  arrowDown: main.arrowDown,
+	  arrowLeft: main.arrowLeft,
+	  arrowRight: main.arrowRight,
+	  radioOn: '(*)',
+	  radioOff: '( )',
+	  tick: '√',
+	  cross: '×',
+	  ellipsis: '...',
+	  pointerSmall: '»',
+	  line: '─',
+	  pointer: '>'
 	};
 	const figures = process.platform === 'win32' ? win : main;
 	figures_1$1 = figures;
@@ -606,7 +606,7 @@ function requireFigures$1() {
 var style$1;
 var hasRequiredStyle$1;
 
-function requireStyle$1() {
+function requireStyle$1 () {
 	if (hasRequiredStyle$1) return style$1;
 	hasRequiredStyle$1 = 1;
 
@@ -616,32 +616,32 @@ function requireStyle$1() {
 
 
 	const styles = Object.freeze({
-		password: {
-			scale: 1,
-			render: input => '*'.repeat(input.length)
-		},
-		emoji: {
-			scale: 2,
-			render: input => '😃'.repeat(input.length)
-		},
-		invisible: {
-			scale: 0,
-			render: input => ''
-		},
-		default: {
-			scale: 1,
-			render: input => `${input}`
-		}
+	  password: {
+	    scale: 1,
+	    render: input => '*'.repeat(input.length)
+	  },
+	  emoji: {
+	    scale: 2,
+	    render: input => '😃'.repeat(input.length)
+	  },
+	  invisible: {
+	    scale: 0,
+	    render: input => ''
+	  },
+	  default: {
+	    scale: 1,
+	    render: input => `${input}`
+	  }
 	});
 
 	const render = type => styles[type] || styles.default; // icon to signalize a prompt.
 
 
 	const symbols = Object.freeze({
-		aborted: c.red(figures.cross),
-		done: c.green(figures.tick),
-		exited: c.yellow(figures.cross),
-		default: c.cyan('?')
+	  aborted: c.red(figures.cross),
+	  done: c.green(figures.tick),
+	  exited: c.yellow(figures.cross),
+	  default: c.cyan('?')
 	});
 
 	const symbol = (done, aborted, exited) => aborted ? symbols.aborted : exited ? symbols.exited : done ? symbols.done : symbols.default; // between the question and the user's input.
@@ -652,12 +652,12 @@ function requireStyle$1() {
 	const item = (expandable, expanded) => c.gray(expandable ? expanded ? figures.pointerSmall : '+' : figures.line);
 
 	style$1 = {
-		styles,
-		render,
-		symbols,
-		symbol,
-		delimiter,
-		item
+	  styles,
+	  render,
+	  symbols,
+	  symbol,
+	  delimiter,
+	  item
 	};
 	return style$1;
 }
@@ -665,7 +665,7 @@ function requireStyle$1() {
 var lines$1;
 var hasRequiredLines$1;
 
-function requireLines$1() {
+function requireLines$1 () {
 	if (hasRequiredLines$1) return lines$1;
 	hasRequiredLines$1 = 1;
 
@@ -677,9 +677,9 @@ function requireLines$1() {
 
 
 	lines$1 = function (msg, perLine) {
-		let lines = String(strip(msg) || '').split(/\r?\n/);
-		if (!perLine) return lines.length;
-		return lines.map(l => Math.ceil(l.length / perLine)).reduce((a, b) => a + b);
+	  let lines = String(strip(msg) || '').split(/\r?\n/);
+	  if (!perLine) return lines.length;
+	  return lines.map(l => Math.ceil(l.length / perLine)).reduce((a, b) => a + b);
 	};
 	return lines$1;
 }
@@ -687,7 +687,7 @@ function requireLines$1() {
 var wrap$1;
 var hasRequiredWrap$1;
 
-function requireWrap$1() {
+function requireWrap$1 () {
 	if (hasRequiredWrap$1) return wrap$1;
 	hasRequiredWrap$1 = 1;
 	/**
@@ -698,12 +698,12 @@ function requireWrap$1() {
 	 */
 
 	wrap$1 = (msg, opts = {}) => {
-		const tab = Number.isSafeInteger(parseInt(opts.margin)) ? new Array(parseInt(opts.margin)).fill(' ').join('') : opts.margin || '';
-		const width = opts.width;
-		return (msg || '').split(/\r?\n/g).map(line => line.split(/\s+/g).reduce((arr, w) => {
-			if (w.length + tab.length >= width || arr[arr.length - 1].length + w.length + 1 < width) arr[arr.length - 1] += ` ${w}`; else arr.push(`${tab}${w}`);
-			return arr;
-		}, [tab]).join('\n')).join('\n');
+	  const tab = Number.isSafeInteger(parseInt(opts.margin)) ? new Array(parseInt(opts.margin)).fill(' ').join('') : opts.margin || '';
+	  const width = opts.width;
+	  return (msg || '').split(/\r?\n/g).map(line => line.split(/\s+/g).reduce((arr, w) => {
+	    if (w.length + tab.length >= width || arr[arr.length - 1].length + w.length + 1 < width) arr[arr.length - 1] += ` ${w}`;else arr.push(`${tab}${w}`);
+	    return arr;
+	  }, [tab]).join('\n')).join('\n');
 	};
 	return wrap$1;
 }
@@ -711,7 +711,7 @@ function requireWrap$1() {
 var entriesToDisplay$1;
 var hasRequiredEntriesToDisplay$1;
 
-function requireEntriesToDisplay$1() {
+function requireEntriesToDisplay$1 () {
 	if (hasRequiredEntriesToDisplay$1) return entriesToDisplay$1;
 	hasRequiredEntriesToDisplay$1 = 1;
 	/**
@@ -725,14 +725,14 @@ function requireEntriesToDisplay$1() {
 	 */
 
 	entriesToDisplay$1 = (cursor, total, maxVisible) => {
-		maxVisible = maxVisible || total;
-		let startIndex = Math.min(total - maxVisible, cursor - Math.floor(maxVisible / 2));
-		if (startIndex < 0) startIndex = 0;
-		let endIndex = Math.min(startIndex + maxVisible, total);
-		return {
-			startIndex,
-			endIndex
-		};
+	  maxVisible = maxVisible || total;
+	  let startIndex = Math.min(total - maxVisible, cursor - Math.floor(maxVisible / 2));
+	  if (startIndex < 0) startIndex = 0;
+	  let endIndex = Math.min(startIndex + maxVisible, total);
+	  return {
+	    startIndex,
+	    endIndex
+	  };
 	};
 	return entriesToDisplay$1;
 }
@@ -740,19 +740,19 @@ function requireEntriesToDisplay$1() {
 var util$1;
 var hasRequiredUtil$1;
 
-function requireUtil$1() {
+function requireUtil$1 () {
 	if (hasRequiredUtil$1) return util$1;
 	hasRequiredUtil$1 = 1;
 
 	util$1 = {
-		action: requireAction$1(),
-		clear: requireClear$1(),
-		style: requireStyle$1(),
-		strip: requireStrip$1(),
-		figures: requireFigures$1(),
-		lines: requireLines$1(),
-		wrap: requireWrap$1(),
-		entriesToDisplay: requireEntriesToDisplay$1()
+	  action: requireAction$1(),
+	  clear: requireClear$1(),
+	  style: requireStyle$1(),
+	  strip: requireStrip$1(),
+	  figures: requireFigures$1(),
+	  lines: requireLines$1(),
+	  wrap: requireWrap$1(),
+	  entriesToDisplay: requireEntriesToDisplay$1()
 	};
 	return util$1;
 }
@@ -760,20 +760,20 @@ function requireUtil$1() {
 var prompt$1;
 var hasRequiredPrompt$1;
 
-function requirePrompt$1() {
+function requirePrompt$1 () {
 	if (hasRequiredPrompt$1) return prompt$1;
 	hasRequiredPrompt$1 = 1;
 
 	const readline = require$$0;
 
 	const _require = requireUtil$1(),
-		action = _require.action;
+	      action = _require.action;
 
 	const EventEmitter = require$$2;
 
 	const _require2 = requireSrc(),
-		beep = _require2.beep,
-		cursor = _require2.cursor;
+	      beep = _require2.beep,
+	      cursor = _require2.cursor;
 
 	const color = requireKleur();
 	/**
@@ -784,62 +784,62 @@ function requirePrompt$1() {
 
 
 	class Prompt extends EventEmitter {
-		constructor(opts = {}) {
-			super();
-			this.firstRender = true;
-			this.in = opts.stdin || process.stdin;
-			this.out = opts.stdout || process.stdout;
+	  constructor(opts = {}) {
+	    super();
+	    this.firstRender = true;
+	    this.in = opts.stdin || process.stdin;
+	    this.out = opts.stdout || process.stdout;
 
-			this.onRender = (opts.onRender || (() => void 0)).bind(this);
+	    this.onRender = (opts.onRender || (() => void 0)).bind(this);
 
-			const rl = readline.createInterface({
-				input: this.in,
-				escapeCodeTimeout: 50
-			});
-			readline.emitKeypressEvents(this.in, rl);
-			if (this.in.isTTY) this.in.setRawMode(true);
-			const isSelect = ['SelectPrompt', 'MultiselectPrompt'].indexOf(this.constructor.name) > -1;
+	    const rl = readline.createInterface({
+	      input: this.in,
+	      escapeCodeTimeout: 50
+	    });
+	    readline.emitKeypressEvents(this.in, rl);
+	    if (this.in.isTTY) this.in.setRawMode(true);
+	    const isSelect = ['SelectPrompt', 'MultiselectPrompt'].indexOf(this.constructor.name) > -1;
 
-			const keypress = (str, key) => {
-				let a = action(key, isSelect);
+	    const keypress = (str, key) => {
+	      let a = action(key, isSelect);
 
-				if (a === false) {
-					this._ && this._(str, key);
-				} else if (typeof this[a] === 'function') {
-					this[a](key);
-				} else {
-					this.bell();
-				}
-			};
+	      if (a === false) {
+	        this._ && this._(str, key);
+	      } else if (typeof this[a] === 'function') {
+	        this[a](key);
+	      } else {
+	        this.bell();
+	      }
+	    };
 
-			this.close = () => {
-				this.out.write(cursor.show);
-				this.in.removeListener('keypress', keypress);
-				if (this.in.isTTY) this.in.setRawMode(false);
-				rl.close();
-				this.emit(this.aborted ? 'abort' : this.exited ? 'exit' : 'submit', this.value);
-				this.closed = true;
-			};
+	    this.close = () => {
+	      this.out.write(cursor.show);
+	      this.in.removeListener('keypress', keypress);
+	      if (this.in.isTTY) this.in.setRawMode(false);
+	      rl.close();
+	      this.emit(this.aborted ? 'abort' : this.exited ? 'exit' : 'submit', this.value);
+	      this.closed = true;
+	    };
 
-			this.in.on('keypress', keypress);
-		}
+	    this.in.on('keypress', keypress);
+	  }
 
-		fire() {
-			this.emit('state', {
-				value: this.value,
-				aborted: !!this.aborted,
-				exited: !!this.exited
-			});
-		}
+	  fire() {
+	    this.emit('state', {
+	      value: this.value,
+	      aborted: !!this.aborted,
+	      exited: !!this.exited
+	    });
+	  }
 
-		bell() {
-			this.out.write(beep);
-		}
+	  bell() {
+	    this.out.write(beep);
+	  }
 
-		render() {
-			this.onRender(color);
-			if (this.firstRender) this.firstRender = false;
-		}
+	  render() {
+	    this.onRender(color);
+	    if (this.firstRender) this.firstRender = false;
+	  }
 
 	}
 
@@ -850,7 +850,7 @@ function requirePrompt$1() {
 var text$1;
 var hasRequiredText$1;
 
-function requireText$1() {
+function requireText$1 () {
 	if (hasRequiredText$1) return text$1;
 	hasRequiredText$1 = 1;
 
@@ -863,14 +863,14 @@ function requireText$1() {
 	const Prompt = requirePrompt$1();
 
 	const _require = requireSrc(),
-		erase = _require.erase,
-		cursor = _require.cursor;
+	      erase = _require.erase,
+	      cursor = _require.cursor;
 
 	const _require2 = requireUtil$1(),
-		style = _require2.style,
-		clear = _require2.clear,
-		lines = _require2.lines,
-		figures = _require2.figures;
+	      style = _require2.style,
+	      clear = _require2.clear,
+	      lines = _require2.lines,
+	      figures = _require2.figures;
 	/**
 	 * TextPrompt Base Element
 	 * @param {Object} opts Options
@@ -885,214 +885,214 @@ function requireText$1() {
 
 
 	class TextPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.transform = style.render(opts.style);
-			this.scale = this.transform.scale;
-			this.msg = opts.message;
-			this.initial = opts.initial || ``;
+	  constructor(opts = {}) {
+	    super(opts);
+	    this.transform = style.render(opts.style);
+	    this.scale = this.transform.scale;
+	    this.msg = opts.message;
+	    this.initial = opts.initial || ``;
 
-			this.validator = opts.validate || (() => true);
+	    this.validator = opts.validate || (() => true);
 
-			this.value = ``;
-			this.errorMsg = opts.error || `Please Enter A Valid Value`;
-			this.cursor = Number(!!this.initial);
-			this.cursorOffset = 0;
-			this.clear = clear(``, this.out.columns);
-			this.render();
-		}
+	    this.value = ``;
+	    this.errorMsg = opts.error || `Please Enter A Valid Value`;
+	    this.cursor = Number(!!this.initial);
+	    this.cursorOffset = 0;
+	    this.clear = clear(``, this.out.columns);
+	    this.render();
+	  }
 
-		set value(v) {
-			if (!v && this.initial) {
-				this.placeholder = true;
-				this.rendered = color.gray(this.transform.render(this.initial));
-			} else {
-				this.placeholder = false;
-				this.rendered = this.transform.render(v);
-			}
+	  set value(v) {
+	    if (!v && this.initial) {
+	      this.placeholder = true;
+	      this.rendered = color.gray(this.transform.render(this.initial));
+	    } else {
+	      this.placeholder = false;
+	      this.rendered = this.transform.render(v);
+	    }
 
-			this._value = v;
-			this.fire();
-		}
+	    this._value = v;
+	    this.fire();
+	  }
 
-		get value() {
-			return this._value;
-		}
+	  get value() {
+	    return this._value;
+	  }
 
-		reset() {
-			this.value = ``;
-			this.cursor = Number(!!this.initial);
-			this.cursorOffset = 0;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.value = ``;
+	    this.cursor = Number(!!this.initial);
+	    this.cursorOffset = 0;
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.value = this.value || this.initial;
-			this.done = this.aborted = true;
-			this.error = false;
-			this.red = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.value = this.value || this.initial;
+	    this.done = this.aborted = true;
+	    this.error = false;
+	    this.red = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		validate() {
-			var _this = this;
+	  validate() {
+	    var _this = this;
 
-			return _asyncToGenerator(function* () {
-				let valid = yield _this.validator(_this.value);
+	    return _asyncToGenerator(function* () {
+	      let valid = yield _this.validator(_this.value);
 
-				if (typeof valid === `string`) {
-					_this.errorMsg = valid;
-					valid = false;
-				}
+	      if (typeof valid === `string`) {
+	        _this.errorMsg = valid;
+	        valid = false;
+	      }
 
-				_this.error = !valid;
-			})();
-		}
+	      _this.error = !valid;
+	    })();
+	  }
 
-		submit() {
-			var _this2 = this;
+	  submit() {
+	    var _this2 = this;
 
-			return _asyncToGenerator(function* () {
-				_this2.value = _this2.value || _this2.initial;
-				_this2.cursorOffset = 0;
-				_this2.cursor = _this2.rendered.length;
-				yield _this2.validate();
+	    return _asyncToGenerator(function* () {
+	      _this2.value = _this2.value || _this2.initial;
+	      _this2.cursorOffset = 0;
+	      _this2.cursor = _this2.rendered.length;
+	      yield _this2.validate();
 
-				if (_this2.error) {
-					_this2.red = true;
+	      if (_this2.error) {
+	        _this2.red = true;
 
-					_this2.fire();
+	        _this2.fire();
 
-					_this2.render();
+	        _this2.render();
 
-					return;
-				}
+	        return;
+	      }
 
-				_this2.done = true;
-				_this2.aborted = false;
+	      _this2.done = true;
+	      _this2.aborted = false;
 
-				_this2.fire();
+	      _this2.fire();
 
-				_this2.render();
+	      _this2.render();
 
-				_this2.out.write('\n');
+	      _this2.out.write('\n');
 
-				_this2.close();
-			})();
-		}
+	      _this2.close();
+	    })();
+	  }
 
-		next() {
-			if (!this.placeholder) return this.bell();
-			this.value = this.initial;
-			this.cursor = this.rendered.length;
-			this.fire();
-			this.render();
-		}
+	  next() {
+	    if (!this.placeholder) return this.bell();
+	    this.value = this.initial;
+	    this.cursor = this.rendered.length;
+	    this.fire();
+	    this.render();
+	  }
 
-		moveCursor(n) {
-			if (this.placeholder) return;
-			this.cursor = this.cursor + n;
-			this.cursorOffset += n;
-		}
+	  moveCursor(n) {
+	    if (this.placeholder) return;
+	    this.cursor = this.cursor + n;
+	    this.cursorOffset += n;
+	  }
 
-		_(c, key) {
-			let s1 = this.value.slice(0, this.cursor);
-			let s2 = this.value.slice(this.cursor);
-			this.value = `${s1}${c}${s2}`;
-			this.red = false;
-			this.cursor = this.placeholder ? 0 : s1.length + 1;
-			this.render();
-		}
+	  _(c, key) {
+	    let s1 = this.value.slice(0, this.cursor);
+	    let s2 = this.value.slice(this.cursor);
+	    this.value = `${s1}${c}${s2}`;
+	    this.red = false;
+	    this.cursor = this.placeholder ? 0 : s1.length + 1;
+	    this.render();
+	  }
 
-		delete() {
-			if (this.isCursorAtStart()) return this.bell();
-			let s1 = this.value.slice(0, this.cursor - 1);
-			let s2 = this.value.slice(this.cursor);
-			this.value = `${s1}${s2}`;
-			this.red = false;
+	  delete() {
+	    if (this.isCursorAtStart()) return this.bell();
+	    let s1 = this.value.slice(0, this.cursor - 1);
+	    let s2 = this.value.slice(this.cursor);
+	    this.value = `${s1}${s2}`;
+	    this.red = false;
 
-			if (this.isCursorAtStart()) {
-				this.cursorOffset = 0;
-			} else {
-				this.cursorOffset++;
-				this.moveCursor(-1);
-			}
+	    if (this.isCursorAtStart()) {
+	      this.cursorOffset = 0;
+	    } else {
+	      this.cursorOffset++;
+	      this.moveCursor(-1);
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		deleteForward() {
-			if (this.cursor * this.scale >= this.rendered.length || this.placeholder) return this.bell();
-			let s1 = this.value.slice(0, this.cursor);
-			let s2 = this.value.slice(this.cursor + 1);
-			this.value = `${s1}${s2}`;
-			this.red = false;
+	  deleteForward() {
+	    if (this.cursor * this.scale >= this.rendered.length || this.placeholder) return this.bell();
+	    let s1 = this.value.slice(0, this.cursor);
+	    let s2 = this.value.slice(this.cursor + 1);
+	    this.value = `${s1}${s2}`;
+	    this.red = false;
 
-			if (this.isCursorAtEnd()) {
-				this.cursorOffset = 0;
-			} else {
-				this.cursorOffset++;
-			}
+	    if (this.isCursorAtEnd()) {
+	      this.cursorOffset = 0;
+	    } else {
+	      this.cursorOffset++;
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		first() {
-			this.cursor = 0;
-			this.render();
-		}
+	  first() {
+	    this.cursor = 0;
+	    this.render();
+	  }
 
-		last() {
-			this.cursor = this.value.length;
-			this.render();
-		}
+	  last() {
+	    this.cursor = this.value.length;
+	    this.render();
+	  }
 
-		left() {
-			if (this.cursor <= 0 || this.placeholder) return this.bell();
-			this.moveCursor(-1);
-			this.render();
-		}
+	  left() {
+	    if (this.cursor <= 0 || this.placeholder) return this.bell();
+	    this.moveCursor(-1);
+	    this.render();
+	  }
 
-		right() {
-			if (this.cursor * this.scale >= this.rendered.length || this.placeholder) return this.bell();
-			this.moveCursor(1);
-			this.render();
-		}
+	  right() {
+	    if (this.cursor * this.scale >= this.rendered.length || this.placeholder) return this.bell();
+	    this.moveCursor(1);
+	    this.render();
+	  }
 
-		isCursorAtStart() {
-			return this.cursor === 0 || this.placeholder && this.cursor === 1;
-		}
+	  isCursorAtStart() {
+	    return this.cursor === 0 || this.placeholder && this.cursor === 1;
+	  }
 
-		isCursorAtEnd() {
-			return this.cursor === this.rendered.length || this.placeholder && this.cursor === this.rendered.length + 1;
-		}
+	  isCursorAtEnd() {
+	    return this.cursor === this.rendered.length || this.placeholder && this.cursor === this.rendered.length + 1;
+	  }
 
-		render() {
-			if (this.closed) return;
+	  render() {
+	    if (this.closed) return;
 
-			if (!this.firstRender) {
-				if (this.outputError) this.out.write(cursor.down(lines(this.outputError, this.out.columns) - 1) + clear(this.outputError, this.out.columns));
-				this.out.write(clear(this.outputText, this.out.columns));
-			}
+	    if (!this.firstRender) {
+	      if (this.outputError) this.out.write(cursor.down(lines(this.outputError, this.out.columns) - 1) + clear(this.outputError, this.out.columns));
+	      this.out.write(clear(this.outputText, this.out.columns));
+	    }
 
-			super.render();
-			this.outputError = '';
-			this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), this.red ? color.red(this.rendered) : this.rendered].join(` `);
+	    super.render();
+	    this.outputError = '';
+	    this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), this.red ? color.red(this.rendered) : this.rendered].join(` `);
 
-			if (this.error) {
-				this.outputError += this.errorMsg.split(`\n`).reduce((a, l, i) => a + `\n${i ? ' ' : figures.pointerSmall} ${color.red().italic(l)}`, ``);
-			}
+	    if (this.error) {
+	      this.outputError += this.errorMsg.split(`\n`).reduce((a, l, i) => a + `\n${i ? ' ' : figures.pointerSmall} ${color.red().italic(l)}`, ``);
+	    }
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore + cursor.move(this.cursorOffset, 0));
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore + cursor.move(this.cursorOffset, 0));
+	  }
 
 	}
 
@@ -1103,7 +1103,7 @@ function requireText$1() {
 var select$1;
 var hasRequiredSelect$1;
 
-function requireSelect$1() {
+function requireSelect$1 () {
 	if (hasRequiredSelect$1) return select$1;
 	hasRequiredSelect$1 = 1;
 
@@ -1112,14 +1112,14 @@ function requireSelect$1() {
 	const Prompt = requirePrompt$1();
 
 	const _require = requireUtil$1(),
-		style = _require.style,
-		clear = _require.clear,
-		figures = _require.figures,
-		wrap = _require.wrap,
-		entriesToDisplay = _require.entriesToDisplay;
+	      style = _require.style,
+	      clear = _require.clear,
+	      figures = _require.figures,
+	      wrap = _require.wrap,
+	      entriesToDisplay = _require.entriesToDisplay;
 
 	const _require2 = requireSrc(),
-		cursor = _require2.cursor;
+	      cursor = _require2.cursor;
 	/**
 	 * SelectPrompt Base Element
 	 * @param {Object} opts Options
@@ -1134,163 +1134,163 @@ function requireSelect$1() {
 
 
 	class SelectPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.hint = opts.hint || '- Use arrow-keys. Return to submit.';
-			this.warn = opts.warn || '- This option is disabled';
-			this.cursor = opts.initial || 0;
-			this.choices = opts.choices.map((ch, idx) => {
-				if (typeof ch === 'string') ch = {
-					title: ch,
-					value: idx
-				};
-				return {
-					title: ch && (ch.title || ch.value || ch),
-					value: ch && (ch.value === undefined ? idx : ch.value),
-					description: ch && ch.description,
-					selected: ch && ch.selected,
-					disabled: ch && ch.disabled
-				};
-			});
-			this.optionsPerPage = opts.optionsPerPage || 10;
-			this.value = (this.choices[this.cursor] || {}).value;
-			this.clear = clear('', this.out.columns);
-			this.render();
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.hint = opts.hint || '- Use arrow-keys. Return to submit.';
+	    this.warn = opts.warn || '- This option is disabled';
+	    this.cursor = opts.initial || 0;
+	    this.choices = opts.choices.map((ch, idx) => {
+	      if (typeof ch === 'string') ch = {
+	        title: ch,
+	        value: idx
+	      };
+	      return {
+	        title: ch && (ch.title || ch.value || ch),
+	        value: ch && (ch.value === undefined ? idx : ch.value),
+	        description: ch && ch.description,
+	        selected: ch && ch.selected,
+	        disabled: ch && ch.disabled
+	      };
+	    });
+	    this.optionsPerPage = opts.optionsPerPage || 10;
+	    this.value = (this.choices[this.cursor] || {}).value;
+	    this.clear = clear('', this.out.columns);
+	    this.render();
+	  }
 
-		moveCursor(n) {
-			this.cursor = n;
-			this.value = this.choices[n].value;
-			this.fire();
-		}
+	  moveCursor(n) {
+	    this.cursor = n;
+	    this.value = this.choices[n].value;
+	    this.fire();
+	  }
 
-		reset() {
-			this.moveCursor(0);
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.moveCursor(0);
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			if (!this.selection.disabled) {
-				this.done = true;
-				this.aborted = false;
-				this.fire();
-				this.render();
-				this.out.write('\n');
-				this.close();
-			} else this.bell();
-		}
+	  submit() {
+	    if (!this.selection.disabled) {
+	      this.done = true;
+	      this.aborted = false;
+	      this.fire();
+	      this.render();
+	      this.out.write('\n');
+	      this.close();
+	    } else this.bell();
+	  }
 
-		first() {
-			this.moveCursor(0);
-			this.render();
-		}
+	  first() {
+	    this.moveCursor(0);
+	    this.render();
+	  }
 
-		last() {
-			this.moveCursor(this.choices.length - 1);
-			this.render();
-		}
+	  last() {
+	    this.moveCursor(this.choices.length - 1);
+	    this.render();
+	  }
 
-		up() {
-			if (this.cursor === 0) {
-				this.moveCursor(this.choices.length - 1);
-			} else {
-				this.moveCursor(this.cursor - 1);
-			}
+	  up() {
+	    if (this.cursor === 0) {
+	      this.moveCursor(this.choices.length - 1);
+	    } else {
+	      this.moveCursor(this.cursor - 1);
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		down() {
-			if (this.cursor === this.choices.length - 1) {
-				this.moveCursor(0);
-			} else {
-				this.moveCursor(this.cursor + 1);
-			}
+	  down() {
+	    if (this.cursor === this.choices.length - 1) {
+	      this.moveCursor(0);
+	    } else {
+	      this.moveCursor(this.cursor + 1);
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		next() {
-			this.moveCursor((this.cursor + 1) % this.choices.length);
-			this.render();
-		}
+	  next() {
+	    this.moveCursor((this.cursor + 1) % this.choices.length);
+	    this.render();
+	  }
 
-		_(c, key) {
-			if (c === ' ') return this.submit();
-		}
+	  _(c, key) {
+	    if (c === ' ') return this.submit();
+	  }
 
-		get selection() {
-			return this.choices[this.cursor];
-		}
+	  get selection() {
+	    return this.choices[this.cursor];
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide); else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
 
-			let _entriesToDisplay = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage),
-				startIndex = _entriesToDisplay.startIndex,
-				endIndex = _entriesToDisplay.endIndex; // Print prompt
+	    let _entriesToDisplay = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage),
+	        startIndex = _entriesToDisplay.startIndex,
+	        endIndex = _entriesToDisplay.endIndex; // Print prompt
 
 
-			this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.done ? this.selection.title : this.selection.disabled ? color.yellow(this.warn) : color.gray(this.hint)].join(' '); // Print choices
+	    this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.done ? this.selection.title : this.selection.disabled ? color.yellow(this.warn) : color.gray(this.hint)].join(' '); // Print choices
 
-			if (!this.done) {
-				this.outputText += '\n';
+	    if (!this.done) {
+	      this.outputText += '\n';
 
-				for (let i = startIndex; i < endIndex; i++) {
-					let title,
-						prefix,
-						desc = '',
-						v = this.choices[i]; // Determine whether to display "more choices" indicators
+	      for (let i = startIndex; i < endIndex; i++) {
+	        let title,
+	            prefix,
+	            desc = '',
+	            v = this.choices[i]; // Determine whether to display "more choices" indicators
 
-					if (i === startIndex && startIndex > 0) {
-						prefix = figures.arrowUp;
-					} else if (i === endIndex - 1 && endIndex < this.choices.length) {
-						prefix = figures.arrowDown;
-					} else {
-						prefix = ' ';
-					}
+	        if (i === startIndex && startIndex > 0) {
+	          prefix = figures.arrowUp;
+	        } else if (i === endIndex - 1 && endIndex < this.choices.length) {
+	          prefix = figures.arrowDown;
+	        } else {
+	          prefix = ' ';
+	        }
 
-					if (v.disabled) {
-						title = this.cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-						prefix = (this.cursor === i ? color.bold().gray(figures.pointer) + ' ' : '  ') + prefix;
-					} else {
-						title = this.cursor === i ? color.cyan().underline(v.title) : v.title;
-						prefix = (this.cursor === i ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
+	        if (v.disabled) {
+	          title = this.cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+	          prefix = (this.cursor === i ? color.bold().gray(figures.pointer) + ' ' : '  ') + prefix;
+	        } else {
+	          title = this.cursor === i ? color.cyan().underline(v.title) : v.title;
+	          prefix = (this.cursor === i ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
 
-						if (v.description && this.cursor === i) {
-							desc = ` - ${v.description}`;
+	          if (v.description && this.cursor === i) {
+	            desc = ` - ${v.description}`;
 
-							if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-								desc = '\n' + wrap(v.description, {
-									margin: 3,
-									width: this.out.columns
-								});
-							}
-						}
-					}
+	            if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
+	              desc = '\n' + wrap(v.description, {
+	                margin: 3,
+	                width: this.out.columns
+	              });
+	            }
+	          }
+	        }
 
-					this.outputText += `${prefix} ${title}${color.gray(desc)}\n`;
-				}
-			}
+	        this.outputText += `${prefix} ${title}${color.gray(desc)}\n`;
+	      }
+	    }
 
-			this.out.write(this.outputText);
-		}
+	    this.out.write(this.outputText);
+	  }
 
 	}
 
@@ -1301,7 +1301,7 @@ function requireSelect$1() {
 var toggle$1;
 var hasRequiredToggle$1;
 
-function requireToggle$1() {
+function requireToggle$1 () {
 	if (hasRequiredToggle$1) return toggle$1;
 	hasRequiredToggle$1 = 1;
 
@@ -1310,12 +1310,12 @@ function requireToggle$1() {
 	const Prompt = requirePrompt$1();
 
 	const _require = requireUtil$1(),
-		style = _require.style,
-		clear = _require.clear;
+	      style = _require.style,
+	      clear = _require.clear;
 
 	const _require2 = requireSrc(),
-		cursor = _require2.cursor,
-		erase = _require2.erase;
+	      cursor = _require2.cursor,
+	      erase = _require2.erase;
 	/**
 	 * TogglePrompt Base Element
 	 * @param {Object} opts Options
@@ -1329,100 +1329,100 @@ function requireToggle$1() {
 
 
 	class TogglePrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.value = !!opts.initial;
-			this.active = opts.active || 'on';
-			this.inactive = opts.inactive || 'off';
-			this.initialValue = this.value;
-			this.render();
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.value = !!opts.initial;
+	    this.active = opts.active || 'on';
+	    this.inactive = opts.inactive || 'off';
+	    this.initialValue = this.value;
+	    this.render();
+	  }
 
-		reset() {
-			this.value = this.initialValue;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.value = this.initialValue;
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			this.done = true;
-			this.aborted = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  submit() {
+	    this.done = true;
+	    this.aborted = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		deactivate() {
-			if (this.value === false) return this.bell();
-			this.value = false;
-			this.render();
-		}
+	  deactivate() {
+	    if (this.value === false) return this.bell();
+	    this.value = false;
+	    this.render();
+	  }
 
-		activate() {
-			if (this.value === true) return this.bell();
-			this.value = true;
-			this.render();
-		}
+	  activate() {
+	    if (this.value === true) return this.bell();
+	    this.value = true;
+	    this.render();
+	  }
 
-		delete() {
-			this.deactivate();
-		}
+	  delete() {
+	    this.deactivate();
+	  }
 
-		left() {
-			this.deactivate();
-		}
+	  left() {
+	    this.deactivate();
+	  }
 
-		right() {
-			this.activate();
-		}
+	  right() {
+	    this.activate();
+	  }
 
-		down() {
-			this.deactivate();
-		}
+	  down() {
+	    this.deactivate();
+	  }
 
-		up() {
-			this.activate();
-		}
+	  up() {
+	    this.activate();
+	  }
 
-		next() {
-			this.value = !this.value;
-			this.fire();
-			this.render();
-		}
+	  next() {
+	    this.value = !this.value;
+	    this.fire();
+	    this.render();
+	  }
 
-		_(c, key) {
-			if (c === ' ') {
-				this.value = !this.value;
-			} else if (c === '1') {
-				this.value = true;
-			} else if (c === '0') {
-				this.value = false;
-			} else return this.bell();
+	  _(c, key) {
+	    if (c === ' ') {
+	      this.value = !this.value;
+	    } else if (c === '1') {
+	      this.value = true;
+	    } else if (c === '0') {
+	      this.value = false;
+	    } else return this.bell();
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide); else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
-			this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), this.value ? this.inactive : color.cyan().underline(this.inactive), color.gray('/'), this.value ? color.cyan().underline(this.active) : this.active].join(' ');
-			this.out.write(erase.line + cursor.to(0) + this.outputText);
-		}
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
+	    this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), this.value ? this.inactive : color.cyan().underline(this.inactive), color.gray('/'), this.value ? color.cyan().underline(this.active) : this.active].join(' ');
+	    this.out.write(erase.line + cursor.to(0) + this.outputText);
+	  }
 
 	}
 
@@ -1433,43 +1433,43 @@ function requireToggle$1() {
 var datepart$1;
 var hasRequiredDatepart$1;
 
-function requireDatepart$1() {
+function requireDatepart$1 () {
 	if (hasRequiredDatepart$1) return datepart$1;
 	hasRequiredDatepart$1 = 1;
 
 	class DatePart {
-		constructor({
-			token,
-			date,
-			parts,
-			locales
-		}) {
-			this.token = token;
-			this.date = date || new Date();
-			this.parts = parts || [this];
-			this.locales = locales || {};
-		}
+	  constructor({
+	    token,
+	    date,
+	    parts,
+	    locales
+	  }) {
+	    this.token = token;
+	    this.date = date || new Date();
+	    this.parts = parts || [this];
+	    this.locales = locales || {};
+	  }
 
-		up() { }
+	  up() {}
 
-		down() { }
+	  down() {}
 
-		next() {
-			const currentIdx = this.parts.indexOf(this);
-			return this.parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
-		}
+	  next() {
+	    const currentIdx = this.parts.indexOf(this);
+	    return this.parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
+	  }
 
-		setTo(val) { }
+	  setTo(val) {}
 
-		prev() {
-			let parts = [].concat(this.parts).reverse();
-			const currentIdx = parts.indexOf(this);
-			return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
-		}
+	  prev() {
+	    let parts = [].concat(this.parts).reverse();
+	    const currentIdx = parts.indexOf(this);
+	    return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
+	  }
 
-		toString() {
-			return String(this.date);
-		}
+	  toString() {
+	    return String(this.date);
+	  }
 
 	}
 
@@ -1480,29 +1480,29 @@ function requireDatepart$1() {
 var meridiem$1;
 var hasRequiredMeridiem$1;
 
-function requireMeridiem$1() {
+function requireMeridiem$1 () {
 	if (hasRequiredMeridiem$1) return meridiem$1;
 	hasRequiredMeridiem$1 = 1;
 
 	const DatePart = requireDatepart$1();
 
 	class Meridiem extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setHours((this.date.getHours() + 12) % 24);
-		}
+	  up() {
+	    this.date.setHours((this.date.getHours() + 12) % 24);
+	  }
 
-		down() {
-			this.up();
-		}
+	  down() {
+	    this.up();
+	  }
 
-		toString() {
-			let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
-			return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
-		}
+	  toString() {
+	    let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
+	    return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
+	  }
 
 	}
 
@@ -1513,39 +1513,39 @@ function requireMeridiem$1() {
 var day$1;
 var hasRequiredDay$1;
 
-function requireDay$1() {
+function requireDay$1 () {
 	if (hasRequiredDay$1) return day$1;
 	hasRequiredDay$1 = 1;
 
 	const DatePart = requireDatepart$1();
 
 	const pos = n => {
-		n = n % 10;
-		return n === 1 ? 'st' : n === 2 ? 'nd' : n === 3 ? 'rd' : 'th';
+	  n = n % 10;
+	  return n === 1 ? 'st' : n === 2 ? 'nd' : n === 3 ? 'rd' : 'th';
 	};
 
 	class Day extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setDate(this.date.getDate() + 1);
-		}
+	  up() {
+	    this.date.setDate(this.date.getDate() + 1);
+	  }
 
-		down() {
-			this.date.setDate(this.date.getDate() - 1);
-		}
+	  down() {
+	    this.date.setDate(this.date.getDate() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setDate(parseInt(val.substr(-2)));
-		}
+	  setTo(val) {
+	    this.date.setDate(parseInt(val.substr(-2)));
+	  }
 
-		toString() {
-			let date = this.date.getDate();
-			let day = this.date.getDay();
-			return this.token === 'DD' ? String(date).padStart(2, '0') : this.token === 'Do' ? date + pos(date) : this.token === 'd' ? day + 1 : this.token === 'ddd' ? this.locales.weekdaysShort[day] : this.token === 'dddd' ? this.locales.weekdays[day] : date;
-		}
+	  toString() {
+	    let date = this.date.getDate();
+	    let day = this.date.getDay();
+	    return this.token === 'DD' ? String(date).padStart(2, '0') : this.token === 'Do' ? date + pos(date) : this.token === 'd' ? day + 1 : this.token === 'ddd' ? this.locales.weekdaysShort[day] : this.token === 'dddd' ? this.locales.weekdays[day] : date;
+	  }
 
 	}
 
@@ -1556,34 +1556,34 @@ function requireDay$1() {
 var hours$1;
 var hasRequiredHours$1;
 
-function requireHours$1() {
+function requireHours$1 () {
 	if (hasRequiredHours$1) return hours$1;
 	hasRequiredHours$1 = 1;
 
 	const DatePart = requireDatepart$1();
 
 	class Hours extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setHours(this.date.getHours() + 1);
-		}
+	  up() {
+	    this.date.setHours(this.date.getHours() + 1);
+	  }
 
-		down() {
-			this.date.setHours(this.date.getHours() - 1);
-		}
+	  down() {
+	    this.date.setHours(this.date.getHours() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setHours(parseInt(val.substr(-2)));
-		}
+	  setTo(val) {
+	    this.date.setHours(parseInt(val.substr(-2)));
+	  }
 
-		toString() {
-			let hours = this.date.getHours();
-			if (/h/.test(this.token)) hours = hours % 12 || 12;
-			return this.token.length > 1 ? String(hours).padStart(2, '0') : hours;
-		}
+	  toString() {
+	    let hours = this.date.getHours();
+	    if (/h/.test(this.token)) hours = hours % 12 || 12;
+	    return this.token.length > 1 ? String(hours).padStart(2, '0') : hours;
+	  }
 
 	}
 
@@ -1594,32 +1594,32 @@ function requireHours$1() {
 var milliseconds$1;
 var hasRequiredMilliseconds$1;
 
-function requireMilliseconds$1() {
+function requireMilliseconds$1 () {
 	if (hasRequiredMilliseconds$1) return milliseconds$1;
 	hasRequiredMilliseconds$1 = 1;
 
 	const DatePart = requireDatepart$1();
 
 	class Milliseconds extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setMilliseconds(this.date.getMilliseconds() + 1);
-		}
+	  up() {
+	    this.date.setMilliseconds(this.date.getMilliseconds() + 1);
+	  }
 
-		down() {
-			this.date.setMilliseconds(this.date.getMilliseconds() - 1);
-		}
+	  down() {
+	    this.date.setMilliseconds(this.date.getMilliseconds() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setMilliseconds(parseInt(val.substr(-this.token.length)));
-		}
+	  setTo(val) {
+	    this.date.setMilliseconds(parseInt(val.substr(-this.token.length)));
+	  }
 
-		toString() {
-			return String(this.date.getMilliseconds()).padStart(4, '0').substr(0, this.token.length);
-		}
+	  toString() {
+	    return String(this.date.getMilliseconds()).padStart(4, '0').substr(0, this.token.length);
+	  }
 
 	}
 
@@ -1630,33 +1630,33 @@ function requireMilliseconds$1() {
 var minutes$1;
 var hasRequiredMinutes$1;
 
-function requireMinutes$1() {
+function requireMinutes$1 () {
 	if (hasRequiredMinutes$1) return minutes$1;
 	hasRequiredMinutes$1 = 1;
 
 	const DatePart = requireDatepart$1();
 
 	class Minutes extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setMinutes(this.date.getMinutes() + 1);
-		}
+	  up() {
+	    this.date.setMinutes(this.date.getMinutes() + 1);
+	  }
 
-		down() {
-			this.date.setMinutes(this.date.getMinutes() - 1);
-		}
+	  down() {
+	    this.date.setMinutes(this.date.getMinutes() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setMinutes(parseInt(val.substr(-2)));
-		}
+	  setTo(val) {
+	    this.date.setMinutes(parseInt(val.substr(-2)));
+	  }
 
-		toString() {
-			let m = this.date.getMinutes();
-			return this.token.length > 1 ? String(m).padStart(2, '0') : m;
-		}
+	  toString() {
+	    let m = this.date.getMinutes();
+	    return this.token.length > 1 ? String(m).padStart(2, '0') : m;
+	  }
 
 	}
 
@@ -1667,35 +1667,35 @@ function requireMinutes$1() {
 var month$1;
 var hasRequiredMonth$1;
 
-function requireMonth$1() {
+function requireMonth$1 () {
 	if (hasRequiredMonth$1) return month$1;
 	hasRequiredMonth$1 = 1;
 
 	const DatePart = requireDatepart$1();
 
 	class Month extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setMonth(this.date.getMonth() + 1);
-		}
+	  up() {
+	    this.date.setMonth(this.date.getMonth() + 1);
+	  }
 
-		down() {
-			this.date.setMonth(this.date.getMonth() - 1);
-		}
+	  down() {
+	    this.date.setMonth(this.date.getMonth() - 1);
+	  }
 
-		setTo(val) {
-			val = parseInt(val.substr(-2)) - 1;
-			this.date.setMonth(val < 0 ? 0 : val);
-		}
+	  setTo(val) {
+	    val = parseInt(val.substr(-2)) - 1;
+	    this.date.setMonth(val < 0 ? 0 : val);
+	  }
 
-		toString() {
-			let month = this.date.getMonth();
-			let tl = this.token.length;
-			return tl === 2 ? String(month + 1).padStart(2, '0') : tl === 3 ? this.locales.monthsShort[month] : tl === 4 ? this.locales.months[month] : String(month + 1);
-		}
+	  toString() {
+	    let month = this.date.getMonth();
+	    let tl = this.token.length;
+	    return tl === 2 ? String(month + 1).padStart(2, '0') : tl === 3 ? this.locales.monthsShort[month] : tl === 4 ? this.locales.months[month] : String(month + 1);
+	  }
 
 	}
 
@@ -1706,33 +1706,33 @@ function requireMonth$1() {
 var seconds$1;
 var hasRequiredSeconds$1;
 
-function requireSeconds$1() {
+function requireSeconds$1 () {
 	if (hasRequiredSeconds$1) return seconds$1;
 	hasRequiredSeconds$1 = 1;
 
 	const DatePart = requireDatepart$1();
 
 	class Seconds extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setSeconds(this.date.getSeconds() + 1);
-		}
+	  up() {
+	    this.date.setSeconds(this.date.getSeconds() + 1);
+	  }
 
-		down() {
-			this.date.setSeconds(this.date.getSeconds() - 1);
-		}
+	  down() {
+	    this.date.setSeconds(this.date.getSeconds() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setSeconds(parseInt(val.substr(-2)));
-		}
+	  setTo(val) {
+	    this.date.setSeconds(parseInt(val.substr(-2)));
+	  }
 
-		toString() {
-			let s = this.date.getSeconds();
-			return this.token.length > 1 ? String(s).padStart(2, '0') : s;
-		}
+	  toString() {
+	    let s = this.date.getSeconds();
+	    return this.token.length > 1 ? String(s).padStart(2, '0') : s;
+	  }
 
 	}
 
@@ -1743,33 +1743,33 @@ function requireSeconds$1() {
 var year$1;
 var hasRequiredYear$1;
 
-function requireYear$1() {
+function requireYear$1 () {
 	if (hasRequiredYear$1) return year$1;
 	hasRequiredYear$1 = 1;
 
 	const DatePart = requireDatepart$1();
 
 	class Year extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setFullYear(this.date.getFullYear() + 1);
-		}
+	  up() {
+	    this.date.setFullYear(this.date.getFullYear() + 1);
+	  }
 
-		down() {
-			this.date.setFullYear(this.date.getFullYear() - 1);
-		}
+	  down() {
+	    this.date.setFullYear(this.date.getFullYear() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setFullYear(val.substr(-4));
-		}
+	  setTo(val) {
+	    this.date.setFullYear(val.substr(-4));
+	  }
 
-		toString() {
-			let year = String(this.date.getFullYear()).padStart(4, '0');
-			return this.token.length === 2 ? year.substr(-2) : year;
-		}
+	  toString() {
+	    let year = String(this.date.getFullYear()).padStart(4, '0');
+	    return this.token.length === 2 ? year.substr(-2) : year;
+	  }
 
 	}
 
@@ -1780,20 +1780,20 @@ function requireYear$1() {
 var dateparts$1;
 var hasRequiredDateparts$1;
 
-function requireDateparts$1() {
+function requireDateparts$1 () {
 	if (hasRequiredDateparts$1) return dateparts$1;
 	hasRequiredDateparts$1 = 1;
 
 	dateparts$1 = {
-		DatePart: requireDatepart$1(),
-		Meridiem: requireMeridiem$1(),
-		Day: requireDay$1(),
-		Hours: requireHours$1(),
-		Milliseconds: requireMilliseconds$1(),
-		Minutes: requireMinutes$1(),
-		Month: requireMonth$1(),
-		Seconds: requireSeconds$1(),
-		Year: requireYear$1()
+	  DatePart: requireDatepart$1(),
+	  Meridiem: requireMeridiem$1(),
+	  Day: requireDay$1(),
+	  Hours: requireHours$1(),
+	  Milliseconds: requireMilliseconds$1(),
+	  Minutes: requireMinutes$1(),
+	  Month: requireMonth$1(),
+	  Seconds: requireSeconds$1(),
+	  Year: requireYear$1()
 	};
 	return dateparts$1;
 }
@@ -1801,7 +1801,7 @@ function requireDateparts$1() {
 var date$1;
 var hasRequiredDate$1;
 
-function requireDate$1() {
+function requireDate$1 () {
 	if (hasRequiredDate$1) return date$1;
 	hasRequiredDate$1 = 1;
 
@@ -1814,52 +1814,52 @@ function requireDate$1() {
 	const Prompt = requirePrompt$1();
 
 	const _require = requireUtil$1(),
-		style = _require.style,
-		clear = _require.clear,
-		figures = _require.figures;
+	      style = _require.style,
+	      clear = _require.clear,
+	      figures = _require.figures;
 
 	const _require2 = requireSrc(),
-		erase = _require2.erase,
-		cursor = _require2.cursor;
+	      erase = _require2.erase,
+	      cursor = _require2.cursor;
 
 	const _require3 = requireDateparts$1(),
-		DatePart = _require3.DatePart,
-		Meridiem = _require3.Meridiem,
-		Day = _require3.Day,
-		Hours = _require3.Hours,
-		Milliseconds = _require3.Milliseconds,
-		Minutes = _require3.Minutes,
-		Month = _require3.Month,
-		Seconds = _require3.Seconds,
-		Year = _require3.Year;
+	      DatePart = _require3.DatePart,
+	      Meridiem = _require3.Meridiem,
+	      Day = _require3.Day,
+	      Hours = _require3.Hours,
+	      Milliseconds = _require3.Milliseconds,
+	      Minutes = _require3.Minutes,
+	      Month = _require3.Month,
+	      Seconds = _require3.Seconds,
+	      Year = _require3.Year;
 
 	const regex = /\\(.)|"((?:\\["\\]|[^"])+)"|(D[Do]?|d{3,4}|d)|(M{1,4})|(YY(?:YY)?)|([aA])|([Hh]{1,2})|(m{1,2})|(s{1,2})|(S{1,4})|./g;
 	const regexGroups = {
-		1: ({
-			token
-		}) => token.replace(/\\(.)/g, '$1'),
-		2: opts => new Day(opts),
-		// Day // TODO
-		3: opts => new Month(opts),
-		// Month
-		4: opts => new Year(opts),
-		// Year
-		5: opts => new Meridiem(opts),
-		// AM/PM // TODO (special)
-		6: opts => new Hours(opts),
-		// Hours
-		7: opts => new Minutes(opts),
-		// Minutes
-		8: opts => new Seconds(opts),
-		// Seconds
-		9: opts => new Milliseconds(opts) // Fractional seconds
+	  1: ({
+	    token
+	  }) => token.replace(/\\(.)/g, '$1'),
+	  2: opts => new Day(opts),
+	  // Day // TODO
+	  3: opts => new Month(opts),
+	  // Month
+	  4: opts => new Year(opts),
+	  // Year
+	  5: opts => new Meridiem(opts),
+	  // AM/PM // TODO (special)
+	  6: opts => new Hours(opts),
+	  // Hours
+	  7: opts => new Minutes(opts),
+	  // Minutes
+	  8: opts => new Seconds(opts),
+	  // Seconds
+	  9: opts => new Milliseconds(opts) // Fractional seconds
 
 	};
 	const dfltLocales = {
-		months: 'January,February,March,April,May,June,July,August,September,October,November,December'.split(','),
-		monthsShort: 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'.split(','),
-		weekdays: 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday'.split(','),
-		weekdaysShort: 'Sun,Mon,Tue,Wed,Thu,Fri,Sat'.split(',')
+	  months: 'January,February,March,April,May,June,July,August,September,October,November,December'.split(','),
+	  monthsShort: 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'.split(','),
+	  weekdays: 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday'.split(','),
+	  weekdaysShort: 'Sun,Mon,Tue,Wed,Thu,Fri,Sat'.split(',')
 	};
 	/**
 	 * DatePrompt Base Element
@@ -1875,180 +1875,180 @@ function requireDate$1() {
 	 */
 
 	class DatePrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.cursor = 0;
-			this.typed = '';
-			this.locales = Object.assign(dfltLocales, opts.locales);
-			this._date = opts.initial || new Date();
-			this.errorMsg = opts.error || 'Please Enter A Valid Value';
+	  constructor(opts = {}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.cursor = 0;
+	    this.typed = '';
+	    this.locales = Object.assign(dfltLocales, opts.locales);
+	    this._date = opts.initial || new Date();
+	    this.errorMsg = opts.error || 'Please Enter A Valid Value';
 
-			this.validator = opts.validate || (() => true);
+	    this.validator = opts.validate || (() => true);
 
-			this.mask = opts.mask || 'YYYY-MM-DD HH:mm:ss';
-			this.clear = clear('', this.out.columns);
-			this.render();
-		}
+	    this.mask = opts.mask || 'YYYY-MM-DD HH:mm:ss';
+	    this.clear = clear('', this.out.columns);
+	    this.render();
+	  }
 
-		get value() {
-			return this.date;
-		}
+	  get value() {
+	    return this.date;
+	  }
 
-		get date() {
-			return this._date;
-		}
+	  get date() {
+	    return this._date;
+	  }
 
-		set date(date) {
-			if (date) this._date.setTime(date.getTime());
-		}
+	  set date(date) {
+	    if (date) this._date.setTime(date.getTime());
+	  }
 
-		set mask(mask) {
-			let result;
-			this.parts = [];
+	  set mask(mask) {
+	    let result;
+	    this.parts = [];
 
-			while (result = regex.exec(mask)) {
-				let match = result.shift();
-				let idx = result.findIndex(gr => gr != null);
-				this.parts.push(idx in regexGroups ? regexGroups[idx]({
-					token: result[idx] || match,
-					date: this.date,
-					parts: this.parts,
-					locales: this.locales
-				}) : result[idx] || match);
-			}
+	    while (result = regex.exec(mask)) {
+	      let match = result.shift();
+	      let idx = result.findIndex(gr => gr != null);
+	      this.parts.push(idx in regexGroups ? regexGroups[idx]({
+	        token: result[idx] || match,
+	        date: this.date,
+	        parts: this.parts,
+	        locales: this.locales
+	      }) : result[idx] || match);
+	    }
 
-			let parts = this.parts.reduce((arr, i) => {
-				if (typeof i === 'string' && typeof arr[arr.length - 1] === 'string') arr[arr.length - 1] += i; else arr.push(i);
-				return arr;
-			}, []);
-			this.parts.splice(0);
-			this.parts.push(...parts);
-			this.reset();
-		}
+	    let parts = this.parts.reduce((arr, i) => {
+	      if (typeof i === 'string' && typeof arr[arr.length - 1] === 'string') arr[arr.length - 1] += i;else arr.push(i);
+	      return arr;
+	    }, []);
+	    this.parts.splice(0);
+	    this.parts.push(...parts);
+	    this.reset();
+	  }
 
-		moveCursor(n) {
-			this.typed = '';
-			this.cursor = n;
-			this.fire();
-		}
+	  moveCursor(n) {
+	    this.typed = '';
+	    this.cursor = n;
+	    this.fire();
+	  }
 
-		reset() {
-			this.moveCursor(this.parts.findIndex(p => p instanceof DatePart));
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.moveCursor(this.parts.findIndex(p => p instanceof DatePart));
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.error = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.error = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		validate() {
-			var _this = this;
+	  validate() {
+	    var _this = this;
 
-			return _asyncToGenerator(function* () {
-				let valid = yield _this.validator(_this.value);
+	    return _asyncToGenerator(function* () {
+	      let valid = yield _this.validator(_this.value);
 
-				if (typeof valid === 'string') {
-					_this.errorMsg = valid;
-					valid = false;
-				}
+	      if (typeof valid === 'string') {
+	        _this.errorMsg = valid;
+	        valid = false;
+	      }
 
-				_this.error = !valid;
-			})();
-		}
+	      _this.error = !valid;
+	    })();
+	  }
 
-		submit() {
-			var _this2 = this;
+	  submit() {
+	    var _this2 = this;
 
-			return _asyncToGenerator(function* () {
-				yield _this2.validate();
+	    return _asyncToGenerator(function* () {
+	      yield _this2.validate();
 
-				if (_this2.error) {
-					_this2.color = 'red';
+	      if (_this2.error) {
+	        _this2.color = 'red';
 
-					_this2.fire();
+	        _this2.fire();
 
-					_this2.render();
+	        _this2.render();
 
-					return;
-				}
+	        return;
+	      }
 
-				_this2.done = true;
-				_this2.aborted = false;
+	      _this2.done = true;
+	      _this2.aborted = false;
 
-				_this2.fire();
+	      _this2.fire();
 
-				_this2.render();
+	      _this2.render();
 
-				_this2.out.write('\n');
+	      _this2.out.write('\n');
 
-				_this2.close();
-			})();
-		}
+	      _this2.close();
+	    })();
+	  }
 
-		up() {
-			this.typed = '';
-			this.parts[this.cursor].up();
-			this.render();
-		}
+	  up() {
+	    this.typed = '';
+	    this.parts[this.cursor].up();
+	    this.render();
+	  }
 
-		down() {
-			this.typed = '';
-			this.parts[this.cursor].down();
-			this.render();
-		}
+	  down() {
+	    this.typed = '';
+	    this.parts[this.cursor].down();
+	    this.render();
+	  }
 
-		left() {
-			let prev = this.parts[this.cursor].prev();
-			if (prev == null) return this.bell();
-			this.moveCursor(this.parts.indexOf(prev));
-			this.render();
-		}
+	  left() {
+	    let prev = this.parts[this.cursor].prev();
+	    if (prev == null) return this.bell();
+	    this.moveCursor(this.parts.indexOf(prev));
+	    this.render();
+	  }
 
-		right() {
-			let next = this.parts[this.cursor].next();
-			if (next == null) return this.bell();
-			this.moveCursor(this.parts.indexOf(next));
-			this.render();
-		}
+	  right() {
+	    let next = this.parts[this.cursor].next();
+	    if (next == null) return this.bell();
+	    this.moveCursor(this.parts.indexOf(next));
+	    this.render();
+	  }
 
-		next() {
-			let next = this.parts[this.cursor].next();
-			this.moveCursor(next ? this.parts.indexOf(next) : this.parts.findIndex(part => part instanceof DatePart));
-			this.render();
-		}
+	  next() {
+	    let next = this.parts[this.cursor].next();
+	    this.moveCursor(next ? this.parts.indexOf(next) : this.parts.findIndex(part => part instanceof DatePart));
+	    this.render();
+	  }
 
-		_(c) {
-			if (/\d/.test(c)) {
-				this.typed += c;
-				this.parts[this.cursor].setTo(this.typed);
-				this.render();
-			}
-		}
+	  _(c) {
+	    if (/\d/.test(c)) {
+	      this.typed += c;
+	      this.parts[this.cursor].setTo(this.typed);
+	      this.render();
+	    }
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide); else this.out.write(clear(this.outputText, this.out.columns));
-			super.render(); // Print prompt
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render(); // Print prompt
 
-			this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), []).join('')].join(' '); // Print error
+	    this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), []).join('')].join(' '); // Print error
 
-			if (this.error) {
-				this.outputText += this.errorMsg.split('\n').reduce((a, l, i) => a + `\n${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
-			}
+	    if (this.error) {
+	      this.outputText += this.errorMsg.split('\n').reduce((a, l, i) => a + `\n${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
+	    }
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText);
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText);
+	  }
 
 	}
 
@@ -2059,7 +2059,7 @@ function requireDate$1() {
 var number$1;
 var hasRequiredNumber$1;
 
-function requireNumber$1() {
+function requireNumber$1 () {
 	if (hasRequiredNumber$1) return number$1;
 	hasRequiredNumber$1 = 1;
 
@@ -2072,22 +2072,22 @@ function requireNumber$1() {
 	const Prompt = requirePrompt$1();
 
 	const _require = requireSrc(),
-		cursor = _require.cursor,
-		erase = _require.erase;
+	      cursor = _require.cursor,
+	      erase = _require.erase;
 
 	const _require2 = requireUtil$1(),
-		style = _require2.style,
-		figures = _require2.figures,
-		clear = _require2.clear,
-		lines = _require2.lines;
+	      style = _require2.style,
+	      figures = _require2.figures,
+	      clear = _require2.clear,
+	      lines = _require2.lines;
 
 	const isNumber = /[0-9]/;
 
 	const isDef = any => any !== undefined;
 
 	const round = (number, precision) => {
-		let factor = Math.pow(10, precision);
-		return Math.round(number * factor) / factor;
+	  let factor = Math.pow(10, precision);
+	  return Math.round(number * factor) / factor;
 	};
 	/**
 	 * NumberPrompt Base Element
@@ -2108,205 +2108,205 @@ function requireNumber$1() {
 
 
 	class NumberPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.transform = style.render(opts.style);
-			this.msg = opts.message;
-			this.initial = isDef(opts.initial) ? opts.initial : '';
-			this.float = !!opts.float;
-			this.round = opts.round || 2;
-			this.inc = opts.increment || 1;
-			this.min = isDef(opts.min) ? opts.min : -Infinity;
-			this.max = isDef(opts.max) ? opts.max : Infinity;
-			this.errorMsg = opts.error || `Please Enter A Valid Value`;
+	  constructor(opts = {}) {
+	    super(opts);
+	    this.transform = style.render(opts.style);
+	    this.msg = opts.message;
+	    this.initial = isDef(opts.initial) ? opts.initial : '';
+	    this.float = !!opts.float;
+	    this.round = opts.round || 2;
+	    this.inc = opts.increment || 1;
+	    this.min = isDef(opts.min) ? opts.min : -Infinity;
+	    this.max = isDef(opts.max) ? opts.max : Infinity;
+	    this.errorMsg = opts.error || `Please Enter A Valid Value`;
 
-			this.validator = opts.validate || (() => true);
+	    this.validator = opts.validate || (() => true);
 
-			this.color = `cyan`;
-			this.value = ``;
-			this.typed = ``;
-			this.lastHit = 0;
-			this.render();
-		}
+	    this.color = `cyan`;
+	    this.value = ``;
+	    this.typed = ``;
+	    this.lastHit = 0;
+	    this.render();
+	  }
 
-		set value(v) {
-			if (!v && v !== 0) {
-				this.placeholder = true;
-				this.rendered = color.gray(this.transform.render(`${this.initial}`));
-				this._value = ``;
-			} else {
-				this.placeholder = false;
-				this.rendered = this.transform.render(`${round(v, this.round)}`);
-				this._value = round(v, this.round);
-			}
+	  set value(v) {
+	    if (!v && v !== 0) {
+	      this.placeholder = true;
+	      this.rendered = color.gray(this.transform.render(`${this.initial}`));
+	      this._value = ``;
+	    } else {
+	      this.placeholder = false;
+	      this.rendered = this.transform.render(`${round(v, this.round)}`);
+	      this._value = round(v, this.round);
+	    }
 
-			this.fire();
-		}
+	    this.fire();
+	  }
 
-		get value() {
-			return this._value;
-		}
+	  get value() {
+	    return this._value;
+	  }
 
-		parse(x) {
-			return this.float ? parseFloat(x) : parseInt(x);
-		}
+	  parse(x) {
+	    return this.float ? parseFloat(x) : parseInt(x);
+	  }
 
-		valid(c) {
-			return c === `-` || c === `.` && this.float || isNumber.test(c);
-		}
+	  valid(c) {
+	    return c === `-` || c === `.` && this.float || isNumber.test(c);
+	  }
 
-		reset() {
-			this.typed = ``;
-			this.value = ``;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.typed = ``;
+	    this.value = ``;
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			let x = this.value;
-			this.value = x !== `` ? x : this.initial;
-			this.done = this.aborted = true;
-			this.error = false;
-			this.fire();
-			this.render();
-			this.out.write(`\n`);
-			this.close();
-		}
+	  abort() {
+	    let x = this.value;
+	    this.value = x !== `` ? x : this.initial;
+	    this.done = this.aborted = true;
+	    this.error = false;
+	    this.fire();
+	    this.render();
+	    this.out.write(`\n`);
+	    this.close();
+	  }
 
-		validate() {
-			var _this = this;
+	  validate() {
+	    var _this = this;
 
-			return _asyncToGenerator(function* () {
-				let valid = yield _this.validator(_this.value);
+	    return _asyncToGenerator(function* () {
+	      let valid = yield _this.validator(_this.value);
 
-				if (typeof valid === `string`) {
-					_this.errorMsg = valid;
-					valid = false;
-				}
+	      if (typeof valid === `string`) {
+	        _this.errorMsg = valid;
+	        valid = false;
+	      }
 
-				_this.error = !valid;
-			})();
-		}
+	      _this.error = !valid;
+	    })();
+	  }
 
-		submit() {
-			var _this2 = this;
+	  submit() {
+	    var _this2 = this;
 
-			return _asyncToGenerator(function* () {
-				yield _this2.validate();
+	    return _asyncToGenerator(function* () {
+	      yield _this2.validate();
 
-				if (_this2.error) {
-					_this2.color = `red`;
+	      if (_this2.error) {
+	        _this2.color = `red`;
 
-					_this2.fire();
+	        _this2.fire();
 
-					_this2.render();
+	        _this2.render();
 
-					return;
-				}
+	        return;
+	      }
 
-				let x = _this2.value;
-				_this2.value = x !== `` ? x : _this2.initial;
-				_this2.done = true;
-				_this2.aborted = false;
-				_this2.error = false;
+	      let x = _this2.value;
+	      _this2.value = x !== `` ? x : _this2.initial;
+	      _this2.done = true;
+	      _this2.aborted = false;
+	      _this2.error = false;
 
-				_this2.fire();
+	      _this2.fire();
 
-				_this2.render();
+	      _this2.render();
 
-				_this2.out.write(`\n`);
+	      _this2.out.write(`\n`);
 
-				_this2.close();
-			})();
-		}
+	      _this2.close();
+	    })();
+	  }
 
-		up() {
-			this.typed = ``;
+	  up() {
+	    this.typed = ``;
 
-			if (this.value === '') {
-				this.value = this.min - this.inc;
-			}
+	    if (this.value === '') {
+	      this.value = this.min - this.inc;
+	    }
 
-			if (this.value >= this.max) return this.bell();
-			this.value += this.inc;
-			this.color = `cyan`;
-			this.fire();
-			this.render();
-		}
+	    if (this.value >= this.max) return this.bell();
+	    this.value += this.inc;
+	    this.color = `cyan`;
+	    this.fire();
+	    this.render();
+	  }
 
-		down() {
-			this.typed = ``;
+	  down() {
+	    this.typed = ``;
 
-			if (this.value === '') {
-				this.value = this.min + this.inc;
-			}
+	    if (this.value === '') {
+	      this.value = this.min + this.inc;
+	    }
 
-			if (this.value <= this.min) return this.bell();
-			this.value -= this.inc;
-			this.color = `cyan`;
-			this.fire();
-			this.render();
-		}
+	    if (this.value <= this.min) return this.bell();
+	    this.value -= this.inc;
+	    this.color = `cyan`;
+	    this.fire();
+	    this.render();
+	  }
 
-		delete() {
-			let val = this.value.toString();
-			if (val.length === 0) return this.bell();
-			this.value = this.parse(val = val.slice(0, -1)) || ``;
+	  delete() {
+	    let val = this.value.toString();
+	    if (val.length === 0) return this.bell();
+	    this.value = this.parse(val = val.slice(0, -1)) || ``;
 
-			if (this.value !== '' && this.value < this.min) {
-				this.value = this.min;
-			}
+	    if (this.value !== '' && this.value < this.min) {
+	      this.value = this.min;
+	    }
 
-			this.color = `cyan`;
-			this.fire();
-			this.render();
-		}
+	    this.color = `cyan`;
+	    this.fire();
+	    this.render();
+	  }
 
-		next() {
-			this.value = this.initial;
-			this.fire();
-			this.render();
-		}
+	  next() {
+	    this.value = this.initial;
+	    this.fire();
+	    this.render();
+	  }
 
-		_(c, key) {
-			if (!this.valid(c)) return this.bell();
-			const now = Date.now();
-			if (now - this.lastHit > 1000) this.typed = ``; // 1s elapsed
+	  _(c, key) {
+	    if (!this.valid(c)) return this.bell();
+	    const now = Date.now();
+	    if (now - this.lastHit > 1000) this.typed = ``; // 1s elapsed
 
-			this.typed += c;
-			this.lastHit = now;
-			this.color = `cyan`;
-			if (c === `.`) return this.fire();
-			this.value = Math.min(this.parse(this.typed), this.max);
-			if (this.value > this.max) this.value = this.max;
-			if (this.value < this.min) this.value = this.min;
-			this.fire();
-			this.render();
-		}
+	    this.typed += c;
+	    this.lastHit = now;
+	    this.color = `cyan`;
+	    if (c === `.`) return this.fire();
+	    this.value = Math.min(this.parse(this.typed), this.max);
+	    if (this.value > this.max) this.value = this.max;
+	    if (this.value < this.min) this.value = this.min;
+	    this.fire();
+	    this.render();
+	  }
 
-		render() {
-			if (this.closed) return;
+	  render() {
+	    if (this.closed) return;
 
-			if (!this.firstRender) {
-				if (this.outputError) this.out.write(cursor.down(lines(this.outputError, this.out.columns) - 1) + clear(this.outputError, this.out.columns));
-				this.out.write(clear(this.outputText, this.out.columns));
-			}
+	    if (!this.firstRender) {
+	      if (this.outputError) this.out.write(cursor.down(lines(this.outputError, this.out.columns) - 1) + clear(this.outputError, this.out.columns));
+	      this.out.write(clear(this.outputText, this.out.columns));
+	    }
 
-			super.render();
-			this.outputError = ''; // Print prompt
+	    super.render();
+	    this.outputError = ''; // Print prompt
 
-			this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), !this.done || !this.done && !this.placeholder ? color[this.color]().underline(this.rendered) : this.rendered].join(` `); // Print error
+	    this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), !this.done || !this.done && !this.placeholder ? color[this.color]().underline(this.rendered) : this.rendered].join(` `); // Print error
 
-			if (this.error) {
-				this.outputError += this.errorMsg.split(`\n`).reduce((a, l, i) => a + `\n${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
-			}
+	    if (this.error) {
+	      this.outputError += this.errorMsg.split(`\n`).reduce((a, l, i) => a + `\n${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
+	    }
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore);
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore);
+	  }
 
 	}
 
@@ -2317,23 +2317,23 @@ function requireNumber$1() {
 var multiselect$1;
 var hasRequiredMultiselect$1;
 
-function requireMultiselect$1() {
+function requireMultiselect$1 () {
 	if (hasRequiredMultiselect$1) return multiselect$1;
 	hasRequiredMultiselect$1 = 1;
 
 	const color = requireKleur();
 
 	const _require = requireSrc(),
-		cursor = _require.cursor;
+	      cursor = _require.cursor;
 
 	const Prompt = requirePrompt$1();
 
 	const _require2 = requireUtil$1(),
-		clear = _require2.clear,
-		figures = _require2.figures,
-		style = _require2.style,
-		wrap = _require2.wrap,
-		entriesToDisplay = _require2.entriesToDisplay;
+	      clear = _require2.clear,
+	      figures = _require2.figures,
+	      style = _require2.style,
+	      wrap = _require2.wrap,
+	      entriesToDisplay = _require2.entriesToDisplay;
 	/**
 	 * MultiselectPrompt Base Element
 	 * @param {Object} opts Options
@@ -2350,260 +2350,260 @@ function requireMultiselect$1() {
 
 
 	class MultiselectPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.cursor = opts.cursor || 0;
-			this.scrollIndex = opts.cursor || 0;
-			this.hint = opts.hint || '';
-			this.warn = opts.warn || '- This option is disabled -';
-			this.minSelected = opts.min;
-			this.showMinError = false;
-			this.maxChoices = opts.max;
-			this.instructions = opts.instructions;
-			this.optionsPerPage = opts.optionsPerPage || 10;
-			this.value = opts.choices.map((ch, idx) => {
-				if (typeof ch === 'string') ch = {
-					title: ch,
-					value: idx
-				};
-				return {
-					title: ch && (ch.title || ch.value || ch),
-					description: ch && ch.description,
-					value: ch && (ch.value === undefined ? idx : ch.value),
-					selected: ch && ch.selected,
-					disabled: ch && ch.disabled
-				};
-			});
-			this.clear = clear('', this.out.columns);
+	  constructor(opts = {}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.cursor = opts.cursor || 0;
+	    this.scrollIndex = opts.cursor || 0;
+	    this.hint = opts.hint || '';
+	    this.warn = opts.warn || '- This option is disabled -';
+	    this.minSelected = opts.min;
+	    this.showMinError = false;
+	    this.maxChoices = opts.max;
+	    this.instructions = opts.instructions;
+	    this.optionsPerPage = opts.optionsPerPage || 10;
+	    this.value = opts.choices.map((ch, idx) => {
+	      if (typeof ch === 'string') ch = {
+	        title: ch,
+	        value: idx
+	      };
+	      return {
+	        title: ch && (ch.title || ch.value || ch),
+	        description: ch && ch.description,
+	        value: ch && (ch.value === undefined ? idx : ch.value),
+	        selected: ch && ch.selected,
+	        disabled: ch && ch.disabled
+	      };
+	    });
+	    this.clear = clear('', this.out.columns);
 
-			if (!opts.overrideRender) {
-				this.render();
-			}
-		}
+	    if (!opts.overrideRender) {
+	      this.render();
+	    }
+	  }
 
-		reset() {
-			this.value.map(v => !v.selected);
-			this.cursor = 0;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.value.map(v => !v.selected);
+	    this.cursor = 0;
+	    this.fire();
+	    this.render();
+	  }
 
-		selected() {
-			return this.value.filter(v => v.selected);
-		}
+	  selected() {
+	    return this.value.filter(v => v.selected);
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			const selected = this.value.filter(e => e.selected);
+	  submit() {
+	    const selected = this.value.filter(e => e.selected);
 
-			if (this.minSelected && selected.length < this.minSelected) {
-				this.showMinError = true;
-				this.render();
-			} else {
-				this.done = true;
-				this.aborted = false;
-				this.fire();
-				this.render();
-				this.out.write('\n');
-				this.close();
-			}
-		}
+	    if (this.minSelected && selected.length < this.minSelected) {
+	      this.showMinError = true;
+	      this.render();
+	    } else {
+	      this.done = true;
+	      this.aborted = false;
+	      this.fire();
+	      this.render();
+	      this.out.write('\n');
+	      this.close();
+	    }
+	  }
 
-		first() {
-			this.cursor = 0;
-			this.render();
-		}
+	  first() {
+	    this.cursor = 0;
+	    this.render();
+	  }
 
-		last() {
-			this.cursor = this.value.length - 1;
-			this.render();
-		}
+	  last() {
+	    this.cursor = this.value.length - 1;
+	    this.render();
+	  }
 
-		next() {
-			this.cursor = (this.cursor + 1) % this.value.length;
-			this.render();
-		}
+	  next() {
+	    this.cursor = (this.cursor + 1) % this.value.length;
+	    this.render();
+	  }
 
-		up() {
-			if (this.cursor === 0) {
-				this.cursor = this.value.length - 1;
-			} else {
-				this.cursor--;
-			}
+	  up() {
+	    if (this.cursor === 0) {
+	      this.cursor = this.value.length - 1;
+	    } else {
+	      this.cursor--;
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		down() {
-			if (this.cursor === this.value.length - 1) {
-				this.cursor = 0;
-			} else {
-				this.cursor++;
-			}
+	  down() {
+	    if (this.cursor === this.value.length - 1) {
+	      this.cursor = 0;
+	    } else {
+	      this.cursor++;
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		left() {
-			this.value[this.cursor].selected = false;
-			this.render();
-		}
+	  left() {
+	    this.value[this.cursor].selected = false;
+	    this.render();
+	  }
 
-		right() {
-			if (this.value.filter(e => e.selected).length >= this.maxChoices) return this.bell();
-			this.value[this.cursor].selected = true;
-			this.render();
-		}
+	  right() {
+	    if (this.value.filter(e => e.selected).length >= this.maxChoices) return this.bell();
+	    this.value[this.cursor].selected = true;
+	    this.render();
+	  }
 
-		handleSpaceToggle() {
-			const v = this.value[this.cursor];
+	  handleSpaceToggle() {
+	    const v = this.value[this.cursor];
 
-			if (v.selected) {
-				v.selected = false;
-				this.render();
-			} else if (v.disabled || this.value.filter(e => e.selected).length >= this.maxChoices) {
-				return this.bell();
-			} else {
-				v.selected = true;
-				this.render();
-			}
-		}
+	    if (v.selected) {
+	      v.selected = false;
+	      this.render();
+	    } else if (v.disabled || this.value.filter(e => e.selected).length >= this.maxChoices) {
+	      return this.bell();
+	    } else {
+	      v.selected = true;
+	      this.render();
+	    }
+	  }
 
-		toggleAll() {
-			if (this.maxChoices !== undefined || this.value[this.cursor].disabled) {
-				return this.bell();
-			}
+	  toggleAll() {
+	    if (this.maxChoices !== undefined || this.value[this.cursor].disabled) {
+	      return this.bell();
+	    }
 
-			const newSelected = !this.value[this.cursor].selected;
-			this.value.filter(v => !v.disabled).forEach(v => v.selected = newSelected);
-			this.render();
-		}
+	    const newSelected = !this.value[this.cursor].selected;
+	    this.value.filter(v => !v.disabled).forEach(v => v.selected = newSelected);
+	    this.render();
+	  }
 
-		_(c, key) {
-			if (c === ' ') {
-				this.handleSpaceToggle();
-			} else if (c === 'a') {
-				this.toggleAll();
-			} else {
-				return this.bell();
-			}
-		}
+	  _(c, key) {
+	    if (c === ' ') {
+	      this.handleSpaceToggle();
+	    } else if (c === 'a') {
+	      this.toggleAll();
+	    } else {
+	      return this.bell();
+	    }
+	  }
 
-		renderInstructions() {
-			if (this.instructions === undefined || this.instructions) {
-				if (typeof this.instructions === 'string') {
-					return this.instructions;
-				}
+	  renderInstructions() {
+	    if (this.instructions === undefined || this.instructions) {
+	      if (typeof this.instructions === 'string') {
+	        return this.instructions;
+	      }
 
-				return '\nInstructions:\n' + `    ${figures.arrowUp}/${figures.arrowDown}: Highlight option\n` + `    ${figures.arrowLeft}/${figures.arrowRight}/[space]: Toggle selection\n` + (this.maxChoices === undefined ? `    a: Toggle all\n` : '') + `    enter/return: Complete answer`;
-			}
+	      return '\nInstructions:\n' + `    ${figures.arrowUp}/${figures.arrowDown}: Highlight option\n` + `    ${figures.arrowLeft}/${figures.arrowRight}/[space]: Toggle selection\n` + (this.maxChoices === undefined ? `    a: Toggle all\n` : '') + `    enter/return: Complete answer`;
+	    }
 
-			return '';
-		}
+	    return '';
+	  }
 
-		renderOption(cursor, v, i, arrowIndicator) {
-			const prefix = (v.selected ? color.green(figures.radioOn) : figures.radioOff) + ' ' + arrowIndicator + ' ';
-			let title, desc;
+	  renderOption(cursor, v, i, arrowIndicator) {
+	    const prefix = (v.selected ? color.green(figures.radioOn) : figures.radioOff) + ' ' + arrowIndicator + ' ';
+	    let title, desc;
 
-			if (v.disabled) {
-				title = cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-			} else {
-				title = cursor === i ? color.cyan().underline(v.title) : v.title;
+	    if (v.disabled) {
+	      title = cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+	    } else {
+	      title = cursor === i ? color.cyan().underline(v.title) : v.title;
 
-				if (cursor === i && v.description) {
-					desc = ` - ${v.description}`;
+	      if (cursor === i && v.description) {
+	        desc = ` - ${v.description}`;
 
-					if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-						desc = '\n' + wrap(v.description, {
-							margin: prefix.length,
-							width: this.out.columns
-						});
-					}
-				}
-			}
+	        if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
+	          desc = '\n' + wrap(v.description, {
+	            margin: prefix.length,
+	            width: this.out.columns
+	          });
+	        }
+	      }
+	    }
 
-			return prefix + title + color.gray(desc || '');
-		} // shared with autocompleteMultiselect
-
-
-		paginateOptions(options) {
-			if (options.length === 0) {
-				return color.red('No matches for this query.');
-			}
-
-			let _entriesToDisplay = entriesToDisplay(this.cursor, options.length, this.optionsPerPage),
-				startIndex = _entriesToDisplay.startIndex,
-				endIndex = _entriesToDisplay.endIndex;
-
-			let prefix,
-				styledOptions = [];
-
-			for (let i = startIndex; i < endIndex; i++) {
-				if (i === startIndex && startIndex > 0) {
-					prefix = figures.arrowUp;
-				} else if (i === endIndex - 1 && endIndex < options.length) {
-					prefix = figures.arrowDown;
-				} else {
-					prefix = ' ';
-				}
-
-				styledOptions.push(this.renderOption(this.cursor, options[i], i, prefix));
-			}
-
-			return '\n' + styledOptions.join('\n');
-		} // shared with autocomleteMultiselect
+	    return prefix + title + color.gray(desc || '');
+	  } // shared with autocompleteMultiselect
 
 
-		renderOptions(options) {
-			if (!this.done) {
-				return this.paginateOptions(options);
-			}
+	  paginateOptions(options) {
+	    if (options.length === 0) {
+	      return color.red('No matches for this query.');
+	    }
 
-			return '';
-		}
+	    let _entriesToDisplay = entriesToDisplay(this.cursor, options.length, this.optionsPerPage),
+	        startIndex = _entriesToDisplay.startIndex,
+	        endIndex = _entriesToDisplay.endIndex;
 
-		renderDoneOrInstructions() {
-			if (this.done) {
-				return this.value.filter(e => e.selected).map(v => v.title).join(', ');
-			}
+	    let prefix,
+	        styledOptions = [];
 
-			const output = [color.gray(this.hint), this.renderInstructions()];
+	    for (let i = startIndex; i < endIndex; i++) {
+	      if (i === startIndex && startIndex > 0) {
+	        prefix = figures.arrowUp;
+	      } else if (i === endIndex - 1 && endIndex < options.length) {
+	        prefix = figures.arrowDown;
+	      } else {
+	        prefix = ' ';
+	      }
 
-			if (this.value[this.cursor].disabled) {
-				output.push(color.yellow(this.warn));
-			}
+	      styledOptions.push(this.renderOption(this.cursor, options[i], i, prefix));
+	    }
 
-			return output.join(' ');
-		}
+	    return '\n' + styledOptions.join('\n');
+	  } // shared with autocomleteMultiselect
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			super.render(); // print prompt
 
-			let prompt = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.renderDoneOrInstructions()].join(' ');
+	  renderOptions(options) {
+	    if (!this.done) {
+	      return this.paginateOptions(options);
+	    }
 
-			if (this.showMinError) {
-				prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
-				this.showMinError = false;
-			}
+	    return '';
+	  }
 
-			prompt += this.renderOptions(this.value);
-			this.out.write(this.clear + prompt);
-			this.clear = clear(prompt, this.out.columns);
-		}
+	  renderDoneOrInstructions() {
+	    if (this.done) {
+	      return this.value.filter(e => e.selected).map(v => v.title).join(', ');
+	    }
+
+	    const output = [color.gray(this.hint), this.renderInstructions()];
+
+	    if (this.value[this.cursor].disabled) {
+	      output.push(color.yellow(this.warn));
+	    }
+
+	    return output.join(' ');
+	  }
+
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    super.render(); // print prompt
+
+	    let prompt = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.renderDoneOrInstructions()].join(' ');
+
+	    if (this.showMinError) {
+	      prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
+	      this.showMinError = false;
+	    }
+
+	    prompt += this.renderOptions(this.value);
+	    this.out.write(this.clear + prompt);
+	    this.clear = clear(prompt, this.out.columns);
+	  }
 
 	}
 
@@ -2614,7 +2614,7 @@ function requireMultiselect$1() {
 var autocomplete$1;
 var hasRequiredAutocomplete$1;
 
-function requireAutocomplete$1() {
+function requireAutocomplete$1 () {
 	if (hasRequiredAutocomplete$1) return autocomplete$1;
 	hasRequiredAutocomplete$1 = 1;
 
@@ -2627,23 +2627,23 @@ function requireAutocomplete$1() {
 	const Prompt = requirePrompt$1();
 
 	const _require = requireSrc(),
-		erase = _require.erase,
-		cursor = _require.cursor;
+	      erase = _require.erase,
+	      cursor = _require.cursor;
 
 	const _require2 = requireUtil$1(),
-		style = _require2.style,
-		clear = _require2.clear,
-		figures = _require2.figures,
-		wrap = _require2.wrap,
-		entriesToDisplay = _require2.entriesToDisplay;
+	      style = _require2.style,
+	      clear = _require2.clear,
+	      figures = _require2.figures,
+	      wrap = _require2.wrap,
+	      entriesToDisplay = _require2.entriesToDisplay;
 
 	const getVal = (arr, i) => arr[i] && (arr[i].value || arr[i].title || arr[i]);
 
 	const getTitle = (arr, i) => arr[i] && (arr[i].title || arr[i].value || arr[i]);
 
 	const getIndex = (arr, valOrTitle) => {
-		const index = arr.findIndex(el => el.value === valOrTitle || el.title === valOrTitle);
-		return index > -1 ? index : undefined;
+	  const index = arr.findIndex(el => el.value === valOrTitle || el.title === valOrTitle);
+	  return index > -1 ? index : undefined;
 	};
 	/**
 	 * TextPrompt Base Element
@@ -2664,239 +2664,239 @@ function requireAutocomplete$1() {
 
 
 	class AutocompletePrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.suggest = opts.suggest;
-			this.choices = opts.choices;
-			this.initial = typeof opts.initial === 'number' ? opts.initial : getIndex(opts.choices, opts.initial);
-			this.select = this.initial || opts.cursor || 0;
-			this.i18n = {
-				noMatches: opts.noMatches || 'no matches found'
-			};
-			this.fallback = opts.fallback || this.initial;
-			this.clearFirst = opts.clearFirst || false;
-			this.suggestions = [];
-			this.input = '';
-			this.limit = opts.limit || 10;
-			this.cursor = 0;
-			this.transform = style.render(opts.style);
-			this.scale = this.transform.scale;
-			this.render = this.render.bind(this);
-			this.complete = this.complete.bind(this);
-			this.clear = clear('', this.out.columns);
-			this.complete(this.render);
-			this.render();
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.suggest = opts.suggest;
+	    this.choices = opts.choices;
+	    this.initial = typeof opts.initial === 'number' ? opts.initial : getIndex(opts.choices, opts.initial);
+	    this.select = this.initial || opts.cursor || 0;
+	    this.i18n = {
+	      noMatches: opts.noMatches || 'no matches found'
+	    };
+	    this.fallback = opts.fallback || this.initial;
+	    this.clearFirst = opts.clearFirst || false;
+	    this.suggestions = [];
+	    this.input = '';
+	    this.limit = opts.limit || 10;
+	    this.cursor = 0;
+	    this.transform = style.render(opts.style);
+	    this.scale = this.transform.scale;
+	    this.render = this.render.bind(this);
+	    this.complete = this.complete.bind(this);
+	    this.clear = clear('', this.out.columns);
+	    this.complete(this.render);
+	    this.render();
+	  }
 
-		set fallback(fb) {
-			this._fb = Number.isSafeInteger(parseInt(fb)) ? parseInt(fb) : fb;
-		}
+	  set fallback(fb) {
+	    this._fb = Number.isSafeInteger(parseInt(fb)) ? parseInt(fb) : fb;
+	  }
 
-		get fallback() {
-			let choice;
-			if (typeof this._fb === 'number') choice = this.choices[this._fb]; else if (typeof this._fb === 'string') choice = {
-				title: this._fb
-			};
-			return choice || this._fb || {
-				title: this.i18n.noMatches
-			};
-		}
+	  get fallback() {
+	    let choice;
+	    if (typeof this._fb === 'number') choice = this.choices[this._fb];else if (typeof this._fb === 'string') choice = {
+	      title: this._fb
+	    };
+	    return choice || this._fb || {
+	      title: this.i18n.noMatches
+	    };
+	  }
 
-		moveSelect(i) {
-			this.select = i;
-			if (this.suggestions.length > 0) this.value = getVal(this.suggestions, i); else this.value = this.fallback.value;
-			this.fire();
-		}
+	  moveSelect(i) {
+	    this.select = i;
+	    if (this.suggestions.length > 0) this.value = getVal(this.suggestions, i);else this.value = this.fallback.value;
+	    this.fire();
+	  }
 
-		complete(cb) {
-			var _this = this;
+	  complete(cb) {
+	    var _this = this;
 
-			return _asyncToGenerator(function* () {
-				const p = _this.completing = _this.suggest(_this.input, _this.choices);
+	    return _asyncToGenerator(function* () {
+	      const p = _this.completing = _this.suggest(_this.input, _this.choices);
 
-				const suggestions = yield p;
-				if (_this.completing !== p) return;
-				_this.suggestions = suggestions.map((s, i, arr) => ({
-					title: getTitle(arr, i),
-					value: getVal(arr, i),
-					description: s.description
-				}));
-				_this.completing = false;
-				const l = Math.max(suggestions.length - 1, 0);
+	      const suggestions = yield p;
+	      if (_this.completing !== p) return;
+	      _this.suggestions = suggestions.map((s, i, arr) => ({
+	        title: getTitle(arr, i),
+	        value: getVal(arr, i),
+	        description: s.description
+	      }));
+	      _this.completing = false;
+	      const l = Math.max(suggestions.length - 1, 0);
 
-				_this.moveSelect(Math.min(l, _this.select));
+	      _this.moveSelect(Math.min(l, _this.select));
 
-				cb && cb();
-			})();
-		}
+	      cb && cb();
+	    })();
+	  }
 
-		reset() {
-			this.input = '';
-			this.complete(() => {
-				this.moveSelect(this.initial !== void 0 ? this.initial : 0);
-				this.render();
-			});
-			this.render();
-		}
+	  reset() {
+	    this.input = '';
+	    this.complete(() => {
+	      this.moveSelect(this.initial !== void 0 ? this.initial : 0);
+	      this.render();
+	    });
+	    this.render();
+	  }
 
-		exit() {
-			if (this.clearFirst && this.input.length > 0) {
-				this.reset();
-			} else {
-				this.done = this.exited = true;
-				this.aborted = false;
-				this.fire();
-				this.render();
-				this.out.write('\n');
-				this.close();
-			}
-		}
+	  exit() {
+	    if (this.clearFirst && this.input.length > 0) {
+	      this.reset();
+	    } else {
+	      this.done = this.exited = true;
+	      this.aborted = false;
+	      this.fire();
+	      this.render();
+	      this.out.write('\n');
+	      this.close();
+	    }
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.exited = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.exited = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			this.done = true;
-			this.aborted = this.exited = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  submit() {
+	    this.done = true;
+	    this.aborted = this.exited = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		_(c, key) {
-			let s1 = this.input.slice(0, this.cursor);
-			let s2 = this.input.slice(this.cursor);
-			this.input = `${s1}${c}${s2}`;
-			this.cursor = s1.length + 1;
-			this.complete(this.render);
-			this.render();
-		}
+	  _(c, key) {
+	    let s1 = this.input.slice(0, this.cursor);
+	    let s2 = this.input.slice(this.cursor);
+	    this.input = `${s1}${c}${s2}`;
+	    this.cursor = s1.length + 1;
+	    this.complete(this.render);
+	    this.render();
+	  }
 
-		delete() {
-			if (this.cursor === 0) return this.bell();
-			let s1 = this.input.slice(0, this.cursor - 1);
-			let s2 = this.input.slice(this.cursor);
-			this.input = `${s1}${s2}`;
-			this.complete(this.render);
-			this.cursor = this.cursor - 1;
-			this.render();
-		}
+	  delete() {
+	    if (this.cursor === 0) return this.bell();
+	    let s1 = this.input.slice(0, this.cursor - 1);
+	    let s2 = this.input.slice(this.cursor);
+	    this.input = `${s1}${s2}`;
+	    this.complete(this.render);
+	    this.cursor = this.cursor - 1;
+	    this.render();
+	  }
 
-		deleteForward() {
-			if (this.cursor * this.scale >= this.rendered.length) return this.bell();
-			let s1 = this.input.slice(0, this.cursor);
-			let s2 = this.input.slice(this.cursor + 1);
-			this.input = `${s1}${s2}`;
-			this.complete(this.render);
-			this.render();
-		}
+	  deleteForward() {
+	    if (this.cursor * this.scale >= this.rendered.length) return this.bell();
+	    let s1 = this.input.slice(0, this.cursor);
+	    let s2 = this.input.slice(this.cursor + 1);
+	    this.input = `${s1}${s2}`;
+	    this.complete(this.render);
+	    this.render();
+	  }
 
-		first() {
-			this.moveSelect(0);
-			this.render();
-		}
+	  first() {
+	    this.moveSelect(0);
+	    this.render();
+	  }
 
-		last() {
-			this.moveSelect(this.suggestions.length - 1);
-			this.render();
-		}
+	  last() {
+	    this.moveSelect(this.suggestions.length - 1);
+	    this.render();
+	  }
 
-		up() {
-			if (this.select === 0) {
-				this.moveSelect(this.suggestions.length - 1);
-			} else {
-				this.moveSelect(this.select - 1);
-			}
+	  up() {
+	    if (this.select === 0) {
+	      this.moveSelect(this.suggestions.length - 1);
+	    } else {
+	      this.moveSelect(this.select - 1);
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		down() {
-			if (this.select === this.suggestions.length - 1) {
-				this.moveSelect(0);
-			} else {
-				this.moveSelect(this.select + 1);
-			}
+	  down() {
+	    if (this.select === this.suggestions.length - 1) {
+	      this.moveSelect(0);
+	    } else {
+	      this.moveSelect(this.select + 1);
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		next() {
-			if (this.select === this.suggestions.length - 1) {
-				this.moveSelect(0);
-			} else this.moveSelect(this.select + 1);
+	  next() {
+	    if (this.select === this.suggestions.length - 1) {
+	      this.moveSelect(0);
+	    } else this.moveSelect(this.select + 1);
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		nextPage() {
-			this.moveSelect(Math.min(this.select + this.limit, this.suggestions.length - 1));
-			this.render();
-		}
+	  nextPage() {
+	    this.moveSelect(Math.min(this.select + this.limit, this.suggestions.length - 1));
+	    this.render();
+	  }
 
-		prevPage() {
-			this.moveSelect(Math.max(this.select - this.limit, 0));
-			this.render();
-		}
+	  prevPage() {
+	    this.moveSelect(Math.max(this.select - this.limit, 0));
+	    this.render();
+	  }
 
-		left() {
-			if (this.cursor <= 0) return this.bell();
-			this.cursor = this.cursor - 1;
-			this.render();
-		}
+	  left() {
+	    if (this.cursor <= 0) return this.bell();
+	    this.cursor = this.cursor - 1;
+	    this.render();
+	  }
 
-		right() {
-			if (this.cursor * this.scale >= this.rendered.length) return this.bell();
-			this.cursor = this.cursor + 1;
-			this.render();
-		}
+	  right() {
+	    if (this.cursor * this.scale >= this.rendered.length) return this.bell();
+	    this.cursor = this.cursor + 1;
+	    this.render();
+	  }
 
-		renderOption(v, hovered, isStart, isEnd) {
-			let desc;
-			let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : ' ';
-			let title = hovered ? color.cyan().underline(v.title) : v.title;
-			prefix = (hovered ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
+	  renderOption(v, hovered, isStart, isEnd) {
+	    let desc;
+	    let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : ' ';
+	    let title = hovered ? color.cyan().underline(v.title) : v.title;
+	    prefix = (hovered ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
 
-			if (v.description) {
-				desc = ` - ${v.description}`;
+	    if (v.description) {
+	      desc = ` - ${v.description}`;
 
-				if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
-					desc = '\n' + wrap(v.description, {
-						margin: 3,
-						width: this.out.columns
-					});
-				}
-			}
+	      if (prefix.length + title.length + desc.length >= this.out.columns || v.description.split(/\r?\n/).length > 1) {
+	        desc = '\n' + wrap(v.description, {
+	          margin: 3,
+	          width: this.out.columns
+	        });
+	      }
+	    }
 
-			return prefix + ' ' + title + color.gray(desc || '');
-		}
+	    return prefix + ' ' + title + color.gray(desc || '');
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide); else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
 
-			let _entriesToDisplay = entriesToDisplay(this.select, this.choices.length, this.limit),
-				startIndex = _entriesToDisplay.startIndex,
-				endIndex = _entriesToDisplay.endIndex;
+	    let _entriesToDisplay = entriesToDisplay(this.select, this.choices.length, this.limit),
+	        startIndex = _entriesToDisplay.startIndex,
+	        endIndex = _entriesToDisplay.endIndex;
 
-			this.outputText = [style.symbol(this.done, this.aborted, this.exited), color.bold(this.msg), style.delimiter(this.completing), this.done && this.suggestions[this.select] ? this.suggestions[this.select].title : this.rendered = this.transform.render(this.input)].join(' ');
+	    this.outputText = [style.symbol(this.done, this.aborted, this.exited), color.bold(this.msg), style.delimiter(this.completing), this.done && this.suggestions[this.select] ? this.suggestions[this.select].title : this.rendered = this.transform.render(this.input)].join(' ');
 
-			if (!this.done) {
-				const suggestions = this.suggestions.slice(startIndex, endIndex).map((item, i) => this.renderOption(item, this.select === i + startIndex, i === 0 && startIndex > 0, i + startIndex === endIndex - 1 && endIndex < this.choices.length)).join('\n');
-				this.outputText += `\n` + (suggestions || color.gray(this.fallback.title));
-			}
+	    if (!this.done) {
+	      const suggestions = this.suggestions.slice(startIndex, endIndex).map((item, i) => this.renderOption(item, this.select === i + startIndex, i === 0 && startIndex > 0, i + startIndex === endIndex - 1 && endIndex < this.choices.length)).join('\n');
+	      this.outputText += `\n` + (suggestions || color.gray(this.fallback.title));
+	    }
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText);
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText);
+	  }
 
 	}
 
@@ -2907,21 +2907,21 @@ function requireAutocomplete$1() {
 var autocompleteMultiselect$1;
 var hasRequiredAutocompleteMultiselect$1;
 
-function requireAutocompleteMultiselect$1() {
+function requireAutocompleteMultiselect$1 () {
 	if (hasRequiredAutocompleteMultiselect$1) return autocompleteMultiselect$1;
 	hasRequiredAutocompleteMultiselect$1 = 1;
 
 	const color = requireKleur();
 
 	const _require = requireSrc(),
-		cursor = _require.cursor;
+	      cursor = _require.cursor;
 
 	const MultiselectPrompt = requireMultiselect$1();
 
 	const _require2 = requireUtil$1(),
-		clear = _require2.clear,
-		style = _require2.style,
-		figures = _require2.figures;
+	      clear = _require2.clear,
+	      style = _require2.style,
+	      figures = _require2.figures;
 	/**
 	 * MultiselectPrompt Base Element
 	 * @param {Object} opts Options
@@ -2937,175 +2937,175 @@ function requireAutocompleteMultiselect$1() {
 
 
 	class AutocompleteMultiselectPrompt extends MultiselectPrompt {
-		constructor(opts = {}) {
-			opts.overrideRender = true;
-			super(opts);
-			this.inputValue = '';
-			this.clear = clear('', this.out.columns);
-			this.filteredOptions = this.value;
-			this.render();
-		}
+	  constructor(opts = {}) {
+	    opts.overrideRender = true;
+	    super(opts);
+	    this.inputValue = '';
+	    this.clear = clear('', this.out.columns);
+	    this.filteredOptions = this.value;
+	    this.render();
+	  }
 
-		last() {
-			this.cursor = this.filteredOptions.length - 1;
-			this.render();
-		}
+	  last() {
+	    this.cursor = this.filteredOptions.length - 1;
+	    this.render();
+	  }
 
-		next() {
-			this.cursor = (this.cursor + 1) % this.filteredOptions.length;
-			this.render();
-		}
+	  next() {
+	    this.cursor = (this.cursor + 1) % this.filteredOptions.length;
+	    this.render();
+	  }
 
-		up() {
-			if (this.cursor === 0) {
-				this.cursor = this.filteredOptions.length - 1;
-			} else {
-				this.cursor--;
-			}
+	  up() {
+	    if (this.cursor === 0) {
+	      this.cursor = this.filteredOptions.length - 1;
+	    } else {
+	      this.cursor--;
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		down() {
-			if (this.cursor === this.filteredOptions.length - 1) {
-				this.cursor = 0;
-			} else {
-				this.cursor++;
-			}
+	  down() {
+	    if (this.cursor === this.filteredOptions.length - 1) {
+	      this.cursor = 0;
+	    } else {
+	      this.cursor++;
+	    }
 
-			this.render();
-		}
+	    this.render();
+	  }
 
-		left() {
-			this.filteredOptions[this.cursor].selected = false;
-			this.render();
-		}
+	  left() {
+	    this.filteredOptions[this.cursor].selected = false;
+	    this.render();
+	  }
 
-		right() {
-			if (this.value.filter(e => e.selected).length >= this.maxChoices) return this.bell();
-			this.filteredOptions[this.cursor].selected = true;
-			this.render();
-		}
+	  right() {
+	    if (this.value.filter(e => e.selected).length >= this.maxChoices) return this.bell();
+	    this.filteredOptions[this.cursor].selected = true;
+	    this.render();
+	  }
 
-		delete() {
-			if (this.inputValue.length) {
-				this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
-				this.updateFilteredOptions();
-			}
-		}
+	  delete() {
+	    if (this.inputValue.length) {
+	      this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
+	      this.updateFilteredOptions();
+	    }
+	  }
 
-		updateFilteredOptions() {
-			const currentHighlight = this.filteredOptions[this.cursor];
-			this.filteredOptions = this.value.filter(v => {
-				if (this.inputValue) {
-					if (typeof v.title === 'string') {
-						if (v.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
-							return true;
-						}
-					}
+	  updateFilteredOptions() {
+	    const currentHighlight = this.filteredOptions[this.cursor];
+	    this.filteredOptions = this.value.filter(v => {
+	      if (this.inputValue) {
+	        if (typeof v.title === 'string') {
+	          if (v.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
+	            return true;
+	          }
+	        }
 
-					if (typeof v.value === 'string') {
-						if (v.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
-							return true;
-						}
-					}
+	        if (typeof v.value === 'string') {
+	          if (v.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
+	            return true;
+	          }
+	        }
 
-					return false;
-				}
+	        return false;
+	      }
 
-				return true;
-			});
-			const newHighlightIndex = this.filteredOptions.findIndex(v => v === currentHighlight);
-			this.cursor = newHighlightIndex < 0 ? 0 : newHighlightIndex;
-			this.render();
-		}
+	      return true;
+	    });
+	    const newHighlightIndex = this.filteredOptions.findIndex(v => v === currentHighlight);
+	    this.cursor = newHighlightIndex < 0 ? 0 : newHighlightIndex;
+	    this.render();
+	  }
 
-		handleSpaceToggle() {
-			const v = this.filteredOptions[this.cursor];
+	  handleSpaceToggle() {
+	    const v = this.filteredOptions[this.cursor];
 
-			if (v.selected) {
-				v.selected = false;
-				this.render();
-			} else if (v.disabled || this.value.filter(e => e.selected).length >= this.maxChoices) {
-				return this.bell();
-			} else {
-				v.selected = true;
-				this.render();
-			}
-		}
+	    if (v.selected) {
+	      v.selected = false;
+	      this.render();
+	    } else if (v.disabled || this.value.filter(e => e.selected).length >= this.maxChoices) {
+	      return this.bell();
+	    } else {
+	      v.selected = true;
+	      this.render();
+	    }
+	  }
 
-		handleInputChange(c) {
-			this.inputValue = this.inputValue + c;
-			this.updateFilteredOptions();
-		}
+	  handleInputChange(c) {
+	    this.inputValue = this.inputValue + c;
+	    this.updateFilteredOptions();
+	  }
 
-		_(c, key) {
-			if (c === ' ') {
-				this.handleSpaceToggle();
-			} else {
-				this.handleInputChange(c);
-			}
-		}
+	  _(c, key) {
+	    if (c === ' ') {
+	      this.handleSpaceToggle();
+	    } else {
+	      this.handleInputChange(c);
+	    }
+	  }
 
-		renderInstructions() {
-			if (this.instructions === undefined || this.instructions) {
-				if (typeof this.instructions === 'string') {
-					return this.instructions;
-				}
+	  renderInstructions() {
+	    if (this.instructions === undefined || this.instructions) {
+	      if (typeof this.instructions === 'string') {
+	        return this.instructions;
+	      }
 
-				return `
+	      return `
 Instructions:
     ${figures.arrowUp}/${figures.arrowDown}: Highlight option
     ${figures.arrowLeft}/${figures.arrowRight}/[space]: Toggle selection
     [a,b,c]/delete: Filter choices
     enter/return: Complete answer
 `;
-			}
+	    }
 
-			return '';
-		}
+	    return '';
+	  }
 
-		renderCurrentInput() {
-			return `
+	  renderCurrentInput() {
+	    return `
 Filtered results for: ${this.inputValue ? this.inputValue : color.gray('Enter something to filter')}\n`;
-		}
+	  }
 
-		renderOption(cursor, v, i) {
-			let title;
-			if (v.disabled) title = cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title); else title = cursor === i ? color.cyan().underline(v.title) : v.title;
-			return (v.selected ? color.green(figures.radioOn) : figures.radioOff) + '  ' + title;
-		}
+	  renderOption(cursor, v, i) {
+	    let title;
+	    if (v.disabled) title = cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);else title = cursor === i ? color.cyan().underline(v.title) : v.title;
+	    return (v.selected ? color.green(figures.radioOn) : figures.radioOff) + '  ' + title;
+	  }
 
-		renderDoneOrInstructions() {
-			if (this.done) {
-				return this.value.filter(e => e.selected).map(v => v.title).join(', ');
-			}
+	  renderDoneOrInstructions() {
+	    if (this.done) {
+	      return this.value.filter(e => e.selected).map(v => v.title).join(', ');
+	    }
 
-			const output = [color.gray(this.hint), this.renderInstructions(), this.renderCurrentInput()];
+	    const output = [color.gray(this.hint), this.renderInstructions(), this.renderCurrentInput()];
 
-			if (this.filteredOptions.length && this.filteredOptions[this.cursor].disabled) {
-				output.push(color.yellow(this.warn));
-			}
+	    if (this.filteredOptions.length && this.filteredOptions[this.cursor].disabled) {
+	      output.push(color.yellow(this.warn));
+	    }
 
-			return output.join(' ');
-		}
+	    return output.join(' ');
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			super.render(); // print prompt
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    super.render(); // print prompt
 
-			let prompt = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.renderDoneOrInstructions()].join(' ');
+	    let prompt = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(false), this.renderDoneOrInstructions()].join(' ');
 
-			if (this.showMinError) {
-				prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
-				this.showMinError = false;
-			}
+	    if (this.showMinError) {
+	      prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
+	      this.showMinError = false;
+	    }
 
-			prompt += this.renderOptions(this.filteredOptions);
-			this.out.write(this.clear + prompt);
-			this.clear = clear(prompt, this.out.columns);
-		}
+	    prompt += this.renderOptions(this.filteredOptions);
+	    this.out.write(this.clear + prompt);
+	    this.clear = clear(prompt, this.out.columns);
+	  }
 
 	}
 
@@ -3116,7 +3116,7 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray('Enter so
 var confirm$1;
 var hasRequiredConfirm$1;
 
-function requireConfirm$1() {
+function requireConfirm$1 () {
 	if (hasRequiredConfirm$1) return confirm$1;
 	hasRequiredConfirm$1 = 1;
 
@@ -3125,12 +3125,12 @@ function requireConfirm$1() {
 	const Prompt = requirePrompt$1();
 
 	const _require = requireUtil$1(),
-		style = _require.style,
-		clear = _require.clear;
+	      style = _require.style,
+	      clear = _require.clear;
 
 	const _require2 = requireSrc(),
-		erase = _require2.erase,
-		cursor = _require2.cursor;
+	      erase = _require2.erase,
+	      cursor = _require2.cursor;
 	/**
 	 * ConfirmPrompt Base Element
 	 * @param {Object} opts Options
@@ -3146,67 +3146,67 @@ function requireConfirm$1() {
 
 
 	class ConfirmPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.value = opts.initial;
-			this.initialValue = !!opts.initial;
-			this.yesMsg = opts.yes || 'yes';
-			this.yesOption = opts.yesOption || '(Y/n)';
-			this.noMsg = opts.no || 'no';
-			this.noOption = opts.noOption || '(y/N)';
-			this.render();
-		}
+	  constructor(opts = {}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.value = opts.initial;
+	    this.initialValue = !!opts.initial;
+	    this.yesMsg = opts.yes || 'yes';
+	    this.yesOption = opts.yesOption || '(Y/n)';
+	    this.noMsg = opts.no || 'no';
+	    this.noOption = opts.noOption || '(y/N)';
+	    this.render();
+	  }
 
-		reset() {
-			this.value = this.initialValue;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.value = this.initialValue;
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			this.value = this.value || false;
-			this.done = true;
-			this.aborted = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  submit() {
+	    this.value = this.value || false;
+	    this.done = true;
+	    this.aborted = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		_(c, key) {
-			if (c.toLowerCase() === 'y') {
-				this.value = true;
-				return this.submit();
-			}
+	  _(c, key) {
+	    if (c.toLowerCase() === 'y') {
+	      this.value = true;
+	      return this.submit();
+	    }
 
-			if (c.toLowerCase() === 'n') {
-				this.value = false;
-				return this.submit();
-			}
+	    if (c.toLowerCase() === 'n') {
+	      this.value = false;
+	      return this.submit();
+	    }
 
-			return this.bell();
-		}
+	    return this.bell();
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide); else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
-			this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), this.done ? this.value ? this.yesMsg : this.noMsg : color.gray(this.initialValue ? this.yesOption : this.noOption)].join(' ');
-			this.out.write(erase.line + cursor.to(0) + this.outputText);
-		}
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
+	    this.outputText = [style.symbol(this.done, this.aborted), color.bold(this.msg), style.delimiter(this.done), this.done ? this.value ? this.yesMsg : this.noMsg : color.gray(this.initialValue ? this.yesOption : this.noOption)].join(' ');
+	    this.out.write(erase.line + cursor.to(0) + this.outputText);
+	  }
 
 	}
 
@@ -3217,27 +3217,27 @@ function requireConfirm$1() {
 var elements$1;
 var hasRequiredElements$1;
 
-function requireElements$1() {
+function requireElements$1 () {
 	if (hasRequiredElements$1) return elements$1;
 	hasRequiredElements$1 = 1;
 
 	elements$1 = {
-		TextPrompt: requireText$1(),
-		SelectPrompt: requireSelect$1(),
-		TogglePrompt: requireToggle$1(),
-		DatePrompt: requireDate$1(),
-		NumberPrompt: requireNumber$1(),
-		MultiselectPrompt: requireMultiselect$1(),
-		AutocompletePrompt: requireAutocomplete$1(),
-		AutocompleteMultiselectPrompt: requireAutocompleteMultiselect$1(),
-		ConfirmPrompt: requireConfirm$1()
+	  TextPrompt: requireText$1(),
+	  SelectPrompt: requireSelect$1(),
+	  TogglePrompt: requireToggle$1(),
+	  DatePrompt: requireDate$1(),
+	  NumberPrompt: requireNumber$1(),
+	  MultiselectPrompt: requireMultiselect$1(),
+	  AutocompletePrompt: requireAutocomplete$1(),
+	  AutocompleteMultiselectPrompt: requireAutocompleteMultiselect$1(),
+	  ConfirmPrompt: requireConfirm$1()
 	};
 	return elements$1;
 }
 
 var hasRequiredPrompts$1;
 
-function requirePrompts$1() {
+function requirePrompts$1 () {
 	if (hasRequiredPrompts$1) return prompts$3;
 	hasRequiredPrompts$1 = 1;
 	(function (exports) {
@@ -3249,16 +3249,16 @@ function requirePrompts$1() {
 		const noop = v => v;
 
 		function toPrompt(type, args, opts = {}) {
-			return new Promise((res, rej) => {
-				const p = new el[type](args);
-				const onAbort = opts.onAbort || noop;
-				const onSubmit = opts.onSubmit || noop;
-				const onExit = opts.onExit || noop;
-				p.on('state', args.onState || noop);
-				p.on('submit', x => res(onSubmit(x)));
-				p.on('exit', x => res(onExit(x)));
-				p.on('abort', x => rej(onAbort(x)));
-			});
+		  return new Promise((res, rej) => {
+		    const p = new el[type](args);
+		    const onAbort = opts.onAbort || noop;
+		    const onSubmit = opts.onSubmit || noop;
+		    const onExit = opts.onExit || noop;
+		    p.on('state', args.onState || noop);
+		    p.on('submit', x => res(onSubmit(x)));
+		    p.on('exit', x => res(onExit(x)));
+		    p.on('abort', x => rej(onAbort(x)));
+		  });
 		}
 		/**
 		 * Text prompt
@@ -3287,8 +3287,8 @@ function requirePrompts$1() {
 
 
 		$.password = args => {
-			args.style = 'password';
-			return $.text(args);
+		  args.style = 'password';
+		  return $.text(args);
 		};
 		/**
 		 * Prompt where input is invisible, like sudo
@@ -3303,8 +3303,8 @@ function requirePrompts$1() {
 
 
 		$.invisible = args => {
-			args.style = 'invisible';
-			return $.text(args);
+		  args.style = 'invisible';
+		  return $.text(args);
 		};
 		/**
 		 * Number prompt
@@ -3370,10 +3370,10 @@ function requirePrompts$1() {
 
 
 		$.list = args => {
-			const sep = args.separator || ',';
-			return toPrompt('TextPrompt', args, {
-				onSubmit: str => str.split(sep).map(s => s.trim())
-			});
+		  const sep = args.separator || ',';
+		  return toPrompt('TextPrompt', args, {
+		    onSubmit: str => str.split(sep).map(s => s.trim())
+		  });
 		};
 		/**
 		 * Toggle/switch prompt
@@ -3418,25 +3418,25 @@ function requirePrompts$1() {
 
 
 		$.multiselect = args => {
-			args.choices = [].concat(args.choices || []);
+		  args.choices = [].concat(args.choices || []);
 
-			const toSelected = items => items.filter(item => item.selected).map(item => item.value);
+		  const toSelected = items => items.filter(item => item.selected).map(item => item.value);
 
-			return toPrompt('MultiselectPrompt', args, {
-				onAbort: toSelected,
-				onSubmit: toSelected
-			});
+		  return toPrompt('MultiselectPrompt', args, {
+		    onAbort: toSelected,
+		    onSubmit: toSelected
+		  });
 		};
 
 		$.autocompleteMultiselect = args => {
-			args.choices = [].concat(args.choices || []);
+		  args.choices = [].concat(args.choices || []);
 
-			const toSelected = items => items.filter(item => item.selected).map(item => item.value);
+		  const toSelected = items => items.filter(item => item.selected).map(item => item.value);
 
-			return toPrompt('AutocompleteMultiselectPrompt', args, {
-				onAbort: toSelected,
-				onSubmit: toSelected
-			});
+		  return toPrompt('AutocompleteMultiselectPrompt', args, {
+		    onAbort: toSelected,
+		    onSubmit: toSelected
+		  });
 		};
 
 		const byTitle = (input, choices) => Promise.resolve(choices.filter(item => item.title.slice(0, input.length).toLowerCase() === input.toLowerCase()));
@@ -3458,18 +3458,18 @@ function requirePrompts$1() {
 
 
 		$.autocomplete = args => {
-			args.suggest = args.suggest || byTitle;
-			args.choices = [].concat(args.choices || []);
-			return toPrompt('AutocompletePrompt', args);
-		};
-	}(prompts$3));
+		  args.suggest = args.suggest || byTitle;
+		  args.choices = [].concat(args.choices || []);
+		  return toPrompt('AutocompletePrompt', args);
+		}; 
+	} (prompts$3));
 	return prompts$3;
 }
 
 var dist;
 var hasRequiredDist;
 
-function requireDist() {
+function requireDist () {
 	if (hasRequiredDist) return dist;
 	hasRequiredDist = 1;
 
@@ -3479,7 +3479,7 @@ function requireDist() {
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() { }; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -3493,7 +3493,7 @@ function requireDist() {
 
 	const passOn = ['suggest', 'format', 'onState', 'validate', 'onRender', 'type'];
 
-	const noop = () => { };
+	const noop = () => {};
 	/**
 	 * Prompt for a series of questions
 	 * @param {Array|Object} questions Single question object or Array of question objects
@@ -3504,126 +3504,126 @@ function requireDist() {
 
 
 	function prompt() {
-		return _prompt.apply(this, arguments);
+	  return _prompt.apply(this, arguments);
 	}
 
 	function _prompt() {
-		_prompt = _asyncToGenerator(function* (questions = [], {
-			onSubmit = noop,
-			onCancel = noop
-		} = {}) {
-			const answers = {};
-			const override = prompt._override || {};
-			questions = [].concat(questions);
-			let answer, question, quit, name, type, lastPrompt;
+	  _prompt = _asyncToGenerator(function* (questions = [], {
+	    onSubmit = noop,
+	    onCancel = noop
+	  } = {}) {
+	    const answers = {};
+	    const override = prompt._override || {};
+	    questions = [].concat(questions);
+	    let answer, question, quit, name, type, lastPrompt;
 
-			const getFormattedAnswer = /*#__PURE__*/function () {
-				var _ref = _asyncToGenerator(function* (question, answer, skipValidation = false) {
-					if (!skipValidation && question.validate && question.validate(answer) !== true) {
-						return;
-					}
+	    const getFormattedAnswer = /*#__PURE__*/function () {
+	      var _ref = _asyncToGenerator(function* (question, answer, skipValidation = false) {
+	        if (!skipValidation && question.validate && question.validate(answer) !== true) {
+	          return;
+	        }
 
-					return question.format ? yield question.format(answer, answers) : answer;
-				});
+	        return question.format ? yield question.format(answer, answers) : answer;
+	      });
 
-				return function getFormattedAnswer(_x, _x2) {
-					return _ref.apply(this, arguments);
-				};
-			}();
+	      return function getFormattedAnswer(_x, _x2) {
+	        return _ref.apply(this, arguments);
+	      };
+	    }();
 
-			var _iterator = _createForOfIteratorHelper(questions),
-				_step;
+	    var _iterator = _createForOfIteratorHelper(questions),
+	        _step;
 
-			try {
-				for (_iterator.s(); !(_step = _iterator.n()).done;) {
-					question = _step.value;
-					var _question = question;
-					name = _question.name;
-					type = _question.type;
+	    try {
+	      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+	        question = _step.value;
+	        var _question = question;
+	        name = _question.name;
+	        type = _question.type;
 
-					// evaluate type first and skip if type is a falsy value
-					if (typeof type === 'function') {
-						type = yield type(answer, _objectSpread({}, answers), question);
-						question['type'] = type;
-					}
+	        // evaluate type first and skip if type is a falsy value
+	        if (typeof type === 'function') {
+	          type = yield type(answer, _objectSpread({}, answers), question);
+	          question['type'] = type;
+	        }
 
-					if (!type) continue; // if property is a function, invoke it unless it's a special function
+	        if (!type) continue; // if property is a function, invoke it unless it's a special function
 
-					for (let key in question) {
-						if (passOn.includes(key)) continue;
-						let value = question[key];
-						question[key] = typeof value === 'function' ? yield value(answer, _objectSpread({}, answers), lastPrompt) : value;
-					}
+	        for (let key in question) {
+	          if (passOn.includes(key)) continue;
+	          let value = question[key];
+	          question[key] = typeof value === 'function' ? yield value(answer, _objectSpread({}, answers), lastPrompt) : value;
+	        }
 
-					lastPrompt = question;
+	        lastPrompt = question;
 
-					if (typeof question.message !== 'string') {
-						throw new Error('prompt message is required');
-					} // update vars in case they changed
+	        if (typeof question.message !== 'string') {
+	          throw new Error('prompt message is required');
+	        } // update vars in case they changed
 
 
-					var _question2 = question;
-					name = _question2.name;
-					type = _question2.type;
+	        var _question2 = question;
+	        name = _question2.name;
+	        type = _question2.type;
 
-					if (prompts[type] === void 0) {
-						throw new Error(`prompt type (${type}) is not defined`);
-					}
+	        if (prompts[type] === void 0) {
+	          throw new Error(`prompt type (${type}) is not defined`);
+	        }
 
-					if (override[question.name] !== undefined) {
-						answer = yield getFormattedAnswer(question, override[question.name]);
+	        if (override[question.name] !== undefined) {
+	          answer = yield getFormattedAnswer(question, override[question.name]);
 
-						if (answer !== undefined) {
-							answers[name] = answer;
-							continue;
-						}
-					}
+	          if (answer !== undefined) {
+	            answers[name] = answer;
+	            continue;
+	          }
+	        }
 
-					try {
-						// Get the injected answer if there is one or prompt the user
-						answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : yield prompts[type](question);
-						answers[name] = answer = yield getFormattedAnswer(question, answer, true);
-						quit = yield onSubmit(question, answer, answers);
-					} catch (err) {
-						quit = !(yield onCancel(question, answers));
-					}
+	        try {
+	          // Get the injected answer if there is one or prompt the user
+	          answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : yield prompts[type](question);
+	          answers[name] = answer = yield getFormattedAnswer(question, answer, true);
+	          quit = yield onSubmit(question, answer, answers);
+	        } catch (err) {
+	          quit = !(yield onCancel(question, answers));
+	        }
 
-					if (quit) return answers;
-				}
-			} catch (err) {
-				_iterator.e(err);
-			} finally {
-				_iterator.f();
-			}
+	        if (quit) return answers;
+	      }
+	    } catch (err) {
+	      _iterator.e(err);
+	    } finally {
+	      _iterator.f();
+	    }
 
-			return answers;
-		});
-		return _prompt.apply(this, arguments);
+	    return answers;
+	  });
+	  return _prompt.apply(this, arguments);
 	}
 
 	function getInjectedAnswer(injected, deafultValue) {
-		const answer = injected.shift();
+	  const answer = injected.shift();
 
-		if (answer instanceof Error) {
-			throw answer;
-		}
+	  if (answer instanceof Error) {
+	    throw answer;
+	  }
 
-		return answer === undefined ? deafultValue : answer;
+	  return answer === undefined ? deafultValue : answer;
 	}
 
 	function inject(answers) {
-		prompt._injected = (prompt._injected || []).concat(answers);
+	  prompt._injected = (prompt._injected || []).concat(answers);
 	}
 
 	function override(answers) {
-		prompt._override = Object.assign({}, answers);
+	  prompt._override = Object.assign({}, answers);
 	}
 
 	dist = Object.assign(prompt, {
-		prompt,
-		prompts,
-		inject,
-		override
+	  prompt,
+	  prompts,
+	  inject,
+	  override
 	});
 	return dist;
 }
@@ -3633,46 +3633,46 @@ var prompts$2 = {};
 var action;
 var hasRequiredAction;
 
-function requireAction() {
+function requireAction () {
 	if (hasRequiredAction) return action;
 	hasRequiredAction = 1;
 
 	action = (key, isSelect) => {
-		if (key.meta && key.name !== 'escape') return;
+	  if (key.meta && key.name !== 'escape') return;
+	  
+	  if (key.ctrl) {
+	    if (key.name === 'a') return 'first';
+	    if (key.name === 'c') return 'abort';
+	    if (key.name === 'd') return 'abort';
+	    if (key.name === 'e') return 'last';
+	    if (key.name === 'g') return 'reset';
+	  }
+	  
+	  if (isSelect) {
+	    if (key.name === 'j') return 'down';
+	    if (key.name === 'k') return 'up';
+	  }
 
-		if (key.ctrl) {
-			if (key.name === 'a') return 'first';
-			if (key.name === 'c') return 'abort';
-			if (key.name === 'd') return 'abort';
-			if (key.name === 'e') return 'last';
-			if (key.name === 'g') return 'reset';
-		}
+	  if (key.name === 'return') return 'submit';
+	  if (key.name === 'enter') return 'submit'; // ctrl + J
+	  if (key.name === 'backspace') return 'delete';
+	  if (key.name === 'delete') return 'deleteForward';
+	  if (key.name === 'abort') return 'abort';
+	  if (key.name === 'escape') return 'exit';
+	  if (key.name === 'tab') return 'next';
+	  if (key.name === 'pagedown') return 'nextPage';
+	  if (key.name === 'pageup') return 'prevPage';
+	  // TODO create home() in prompt types (e.g. TextPrompt)
+	  if (key.name === 'home') return 'home';
+	  // TODO create end() in prompt types (e.g. TextPrompt)
+	  if (key.name === 'end') return 'end';
 
-		if (isSelect) {
-			if (key.name === 'j') return 'down';
-			if (key.name === 'k') return 'up';
-		}
+	  if (key.name === 'up') return 'up';
+	  if (key.name === 'down') return 'down';
+	  if (key.name === 'right') return 'right';
+	  if (key.name === 'left') return 'left';
 
-		if (key.name === 'return') return 'submit';
-		if (key.name === 'enter') return 'submit'; // ctrl + J
-		if (key.name === 'backspace') return 'delete';
-		if (key.name === 'delete') return 'deleteForward';
-		if (key.name === 'abort') return 'abort';
-		if (key.name === 'escape') return 'exit';
-		if (key.name === 'tab') return 'next';
-		if (key.name === 'pagedown') return 'nextPage';
-		if (key.name === 'pageup') return 'prevPage';
-		// TODO create home() in prompt types (e.g. TextPrompt)
-		if (key.name === 'home') return 'home';
-		// TODO create end() in prompt types (e.g. TextPrompt)
-		if (key.name === 'end') return 'end';
-
-		if (key.name === 'up') return 'up';
-		if (key.name === 'down') return 'down';
-		if (key.name === 'right') return 'right';
-		if (key.name === 'left') return 'left';
-
-		return false;
+	  return false;
 	};
 	return action;
 }
@@ -3680,18 +3680,18 @@ function requireAction() {
 var strip;
 var hasRequiredStrip;
 
-function requireStrip() {
+function requireStrip () {
 	if (hasRequiredStrip) return strip;
 	hasRequiredStrip = 1;
 
 	strip = str => {
-		const pattern = [
-			'[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
-			'(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))'
-		].join('|');
+	  const pattern = [
+	    '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
+	    '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PRZcf-ntqry=><~]))'
+	  ].join('|');
 
-		const RGX = new RegExp(pattern, 'g');
-		return typeof str === 'string' ? str.replace(RGX, '') : str;
+	  const RGX = new RegExp(pattern, 'g');
+	  return typeof str === 'string' ? str.replace(RGX, '') : str;
 	};
 	return strip;
 }
@@ -3699,7 +3699,7 @@ function requireStrip() {
 var clear;
 var hasRequiredClear;
 
-function requireClear() {
+function requireClear () {
 	if (hasRequiredClear) return clear;
 	hasRequiredClear = 1;
 
@@ -3712,16 +3712,16 @@ function requireClear() {
 	 * @param {string} prompt
 	 * @param {number} perLine
 	 */
-	clear = function (prompt, perLine) {
-		if (!perLine) return erase.line + cursor.to(0);
+	clear = function(prompt, perLine) {
+	  if (!perLine) return erase.line + cursor.to(0);
 
-		let rows = 0;
-		const lines = prompt.split(/\r?\n/);
-		for (let line of lines) {
-			rows += 1 + Math.floor(Math.max(width(line) - 1, 0) / perLine);
-		}
+	  let rows = 0;
+	  const lines = prompt.split(/\r?\n/);
+	  for (let line of lines) {
+	    rows += 1 + Math.floor(Math.max(width(line) - 1, 0) / perLine);
+	  }
 
-		return erase.lines(rows);
+	  return erase.lines(rows);
 	};
 	return clear;
 }
@@ -3729,48 +3729,48 @@ function requireClear() {
 var figures_1;
 var hasRequiredFigures;
 
-function requireFigures() {
+function requireFigures () {
 	if (hasRequiredFigures) return figures_1;
 	hasRequiredFigures = 1;
 
-	const main = {
-		arrowUp: '↑',
-		arrowDown: '↓',
-		arrowLeft: '←',
-		arrowRight: '→',
-		radioOn: '◉',
-		radioOff: '◯',
-		tick: '✔',
-		cross: '✖',
-		ellipsis: '…',
-		pointerSmall: '›',
-		line: '─',
-		pointer: '❯'
-	};
+	 const main = {
+	  arrowUp: '↑',
+	  arrowDown: '↓',
+	  arrowLeft: '←',
+	  arrowRight: '→',
+	  radioOn: '◉',
+	  radioOff: '◯',
+	  tick: '✔',	
+	  cross: '✖',	
+	  ellipsis: '…',	
+	  pointerSmall: '›',	
+	  line: '─',	
+	  pointer: '❯'	
+	};	
 	const win = {
-		arrowUp: main.arrowUp,
-		arrowDown: main.arrowDown,
-		arrowLeft: main.arrowLeft,
-		arrowRight: main.arrowRight,
-		radioOn: '(*)',
-		radioOff: '( )',
-		tick: '√',
-		cross: '×',
-		ellipsis: '...',
-		pointerSmall: '»',
-		line: '─',
-		pointer: '>'
-	};
-	const figures = process.platform === 'win32' ? win : main;
+	  arrowUp: main.arrowUp,
+	  arrowDown: main.arrowDown,
+	  arrowLeft: main.arrowLeft,
+	  arrowRight: main.arrowRight,
+	  radioOn: '(*)',
+	  radioOff: '( )',	
+	  tick: '√',	
+	  cross: '×',	
+	  ellipsis: '...',	
+	  pointerSmall: '»',	
+	  line: '─',	
+	  pointer: '>'	
+	};	
+	const figures = process.platform === 'win32' ? win : main;	
 
-	figures_1 = figures;
+	 figures_1 = figures;
 	return figures_1;
 }
 
 var style;
 var hasRequiredStyle;
 
-function requireStyle() {
+function requireStyle () {
 	if (hasRequiredStyle) return style;
 	hasRequiredStyle = 1;
 
@@ -3779,38 +3779,38 @@ function requireStyle() {
 
 	// rendering user input.
 	const styles = Object.freeze({
-		password: { scale: 1, render: input => '*'.repeat(input.length) },
-		emoji: { scale: 2, render: input => '😃'.repeat(input.length) },
-		invisible: { scale: 0, render: input => '' },
-		default: { scale: 1, render: input => `${input}` }
+	  password: { scale: 1, render: input => '*'.repeat(input.length) },
+	  emoji: { scale: 2, render: input => '😃'.repeat(input.length) },
+	  invisible: { scale: 0, render: input => '' },
+	  default: { scale: 1, render: input => `${input}` }
 	});
 	const render = type => styles[type] || styles.default;
 
 	// icon to signalize a prompt.
 	const symbols = Object.freeze({
-		aborted: c.red(figures.cross),
-		done: c.green(figures.tick),
-		exited: c.yellow(figures.cross),
-		default: c.cyan('?')
+	  aborted: c.red(figures.cross),
+	  done: c.green(figures.tick),
+	  exited: c.yellow(figures.cross),
+	  default: c.cyan('?')
 	});
 
 	const symbol = (done, aborted, exited) =>
-		aborted ? symbols.aborted : exited ? symbols.exited : done ? symbols.done : symbols.default;
+	  aborted ? symbols.aborted : exited ? symbols.exited : done ? symbols.done : symbols.default;
 
 	// between the question and the user's input.
 	const delimiter = completing =>
-		c.gray(completing ? figures.ellipsis : figures.pointerSmall);
+	  c.gray(completing ? figures.ellipsis : figures.pointerSmall);
 
 	const item = (expandable, expanded) =>
-		c.gray(expandable ? (expanded ? figures.pointerSmall : '+') : figures.line);
+	  c.gray(expandable ? (expanded ? figures.pointerSmall : '+') : figures.line);
 
 	style = {
-		styles,
-		render,
-		symbols,
-		symbol,
-		delimiter,
-		item
+	  styles,
+	  render,
+	  symbols,
+	  symbol,
+	  delimiter,
+	  item
 	};
 	return style;
 }
@@ -3818,7 +3818,7 @@ function requireStyle() {
 var lines;
 var hasRequiredLines;
 
-function requireLines() {
+function requireLines () {
 	if (hasRequiredLines) return lines;
 	hasRequiredLines = 1;
 
@@ -3829,11 +3829,11 @@ function requireLines() {
 	 * @param {number} perLine
 	 */
 	lines = function (msg, perLine) {
-		let lines = String(strip(msg) || '').split(/\r?\n/);
+	  let lines = String(strip(msg) || '').split(/\r?\n/);
 
-		if (!perLine) return lines.length;
-		return lines.map(l => Math.ceil(l.length / perLine))
-			.reduce((a, b) => a + b);
+	  if (!perLine) return lines.length;
+	  return lines.map(l => Math.ceil(l.length / perLine))
+	      .reduce((a, b) => a + b);
 	};
 	return lines;
 }
@@ -3841,7 +3841,7 @@ function requireLines() {
 var wrap;
 var hasRequiredWrap;
 
-function requireWrap() {
+function requireWrap () {
 	if (hasRequiredWrap) return wrap;
 	hasRequiredWrap = 1;
 
@@ -3852,23 +3852,23 @@ function requireWrap() {
 	 * @param {number} opts.width Maximum characters per line including the margin
 	 */
 	wrap = (msg, opts = {}) => {
-		const tab = Number.isSafeInteger(parseInt(opts.margin))
-			? new Array(parseInt(opts.margin)).fill(' ').join('')
-			: (opts.margin || '');
+	  const tab = Number.isSafeInteger(parseInt(opts.margin))
+	    ? new Array(parseInt(opts.margin)).fill(' ').join('')
+	    : (opts.margin || '');
 
-		const width = opts.width;
+	  const width = opts.width;
 
-		return (msg || '').split(/\r?\n/g)
-			.map(line => line
-				.split(/\s+/g)
-				.reduce((arr, w) => {
-					if (w.length + tab.length >= width || arr[arr.length - 1].length + w.length + 1 < width)
-						arr[arr.length - 1] += ` ${w}`;
-					else arr.push(`${tab}${w}`);
-					return arr;
-				}, [tab])
-				.join('\n'))
-			.join('\n');
+	  return (msg || '').split(/\r?\n/g)
+	    .map(line => line
+	      .split(/\s+/g)
+	      .reduce((arr, w) => {
+	        if (w.length + tab.length >= width || arr[arr.length - 1].length + w.length + 1 < width)
+	          arr[arr.length - 1] += ` ${w}`;
+	        else arr.push(`${tab}${w}`);
+	        return arr;
+	      }, [ tab ])
+	      .join('\n'))
+	    .join('\n');
 	};
 	return wrap;
 }
@@ -3876,7 +3876,7 @@ function requireWrap() {
 var entriesToDisplay;
 var hasRequiredEntriesToDisplay;
 
-function requireEntriesToDisplay() {
+function requireEntriesToDisplay () {
 	if (hasRequiredEntriesToDisplay) return entriesToDisplay;
 	hasRequiredEntriesToDisplay = 1;
 
@@ -3889,15 +3889,15 @@ function requireEntriesToDisplay() {
 	 * @param {number} total the total entries available to display
 	 * @param {number} [maxVisible] the number of entries that can be displayed
 	 */
-	entriesToDisplay = (cursor, total, maxVisible) => {
-		maxVisible = maxVisible || total;
+	entriesToDisplay = (cursor, total, maxVisible)  => {
+	  maxVisible = maxVisible || total;
 
-		let startIndex = Math.min(total - maxVisible, cursor - Math.floor(maxVisible / 2));
-		if (startIndex < 0) startIndex = 0;
+	  let startIndex = Math.min(total- maxVisible, cursor - Math.floor(maxVisible / 2));
+	  if (startIndex < 0) startIndex = 0;
 
-		let endIndex = Math.min(startIndex + maxVisible, total);
+	  let endIndex = Math.min(startIndex + maxVisible, total);
 
-		return { startIndex, endIndex };
+	  return { startIndex, endIndex };
 	};
 	return entriesToDisplay;
 }
@@ -3905,19 +3905,19 @@ function requireEntriesToDisplay() {
 var util;
 var hasRequiredUtil;
 
-function requireUtil() {
+function requireUtil () {
 	if (hasRequiredUtil) return util;
 	hasRequiredUtil = 1;
 
 	util = {
-		action: requireAction(),
-		clear: requireClear(),
-		style: requireStyle(),
-		strip: requireStrip(),
-		figures: requireFigures(),
-		lines: requireLines(),
-		wrap: requireWrap(),
-		entriesToDisplay: requireEntriesToDisplay()
+	  action: requireAction(),
+	  clear: requireClear(),
+	  style: requireStyle(),
+	  strip: requireStrip(),
+	  figures: requireFigures(),
+	  lines: requireLines(),
+	  wrap: requireWrap(),
+	  entriesToDisplay: requireEntriesToDisplay()
 	};
 	return util;
 }
@@ -3925,7 +3925,7 @@ function requireUtil() {
 var prompt;
 var hasRequiredPrompt;
 
-function requirePrompt() {
+function requirePrompt () {
 	if (hasRequiredPrompt) return prompt;
 	hasRequiredPrompt = 1;
 
@@ -3941,57 +3941,57 @@ function requirePrompt() {
 	 * @param {Stream} [opts.stdout] The Writable stream to write readline data to
 	 */
 	class Prompt extends EventEmitter {
-		constructor(opts = {}) {
-			super();
+	  constructor(opts={}) {
+	    super();
 
-			this.firstRender = true;
-			this.in = opts.stdin || process.stdin;
-			this.out = opts.stdout || process.stdout;
-			this.onRender = (opts.onRender || (() => void 0)).bind(this);
-			const rl = readline.createInterface({ input: this.in, escapeCodeTimeout: 50 });
-			readline.emitKeypressEvents(this.in, rl);
+	    this.firstRender = true;
+	    this.in = opts.stdin || process.stdin;
+	    this.out = opts.stdout || process.stdout;
+	    this.onRender = (opts.onRender || (() => void 0)).bind(this);
+	    const rl = readline.createInterface({ input:this.in, escapeCodeTimeout:50 });
+	    readline.emitKeypressEvents(this.in, rl);
 
-			if (this.in.isTTY) this.in.setRawMode(true);
-			const isSelect = ['SelectPrompt', 'MultiselectPrompt'].indexOf(this.constructor.name) > -1;
-			const keypress = (str, key) => {
-				let a = action(key, isSelect);
-				if (a === false) {
-					this._ && this._(str, key);
-				} else if (typeof this[a] === 'function') {
-					this[a](key);
-				} else {
-					this.bell();
-				}
-			};
+	    if (this.in.isTTY) this.in.setRawMode(true);
+	    const isSelect = [ 'SelectPrompt', 'MultiselectPrompt' ].indexOf(this.constructor.name) > -1;
+	    const keypress = (str, key) => {
+	      let a = action(key, isSelect);
+	      if (a === false) {
+	        this._ && this._(str, key);
+	      } else if (typeof this[a] === 'function') {
+	        this[a](key);
+	      } else {
+	        this.bell();
+	      }
+	    };
 
-			this.close = () => {
-				this.out.write(cursor.show);
-				this.in.removeListener('keypress', keypress);
-				if (this.in.isTTY) this.in.setRawMode(false);
-				rl.close();
-				this.emit(this.aborted ? 'abort' : this.exited ? 'exit' : 'submit', this.value);
-				this.closed = true;
-			};
+	    this.close = () => {
+	      this.out.write(cursor.show);
+	      this.in.removeListener('keypress', keypress);
+	      if (this.in.isTTY) this.in.setRawMode(false);
+	      rl.close();
+	      this.emit(this.aborted ? 'abort' : this.exited ? 'exit' : 'submit', this.value);
+	      this.closed = true;
+	    };
 
-			this.in.on('keypress', keypress);
-		}
+	    this.in.on('keypress', keypress);
+	  }
 
-		fire() {
-			this.emit('state', {
-				value: this.value,
-				aborted: !!this.aborted,
-				exited: !!this.exited
-			});
-		}
+	  fire() {
+	    this.emit('state', {
+	      value: this.value,
+	      aborted: !!this.aborted,
+	      exited: !!this.exited
+	    });
+	  }
 
-		bell() {
-			this.out.write(beep);
-		}
+	  bell() {
+	    this.out.write(beep);
+	  }
 
-		render() {
-			this.onRender(color);
-			if (this.firstRender) this.firstRender = false;
-		}
+	  render() {
+	    this.onRender(color);
+	    if (this.firstRender) this.firstRender = false;
+	  }
 	}
 
 	prompt = Prompt;
@@ -4001,7 +4001,7 @@ function requirePrompt() {
 var text;
 var hasRequiredText;
 
-function requireText() {
+function requireText () {
 	if (hasRequiredText) return text;
 	hasRequiredText = 1;
 	const color = requireKleur();
@@ -4021,194 +4021,194 @@ function requireText() {
 	 * @param {String} [opts.error] The invalid error label
 	 */
 	class TextPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.transform = style.render(opts.style);
-			this.scale = this.transform.scale;
-			this.msg = opts.message;
-			this.initial = opts.initial || ``;
-			this.validator = opts.validate || (() => true);
-			this.value = ``;
-			this.errorMsg = opts.error || `Please Enter A Valid Value`;
-			this.cursor = Number(!!this.initial);
-			this.cursorOffset = 0;
-			this.clear = clear(``, this.out.columns);
-			this.render();
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	    this.transform = style.render(opts.style);
+	    this.scale = this.transform.scale;
+	    this.msg = opts.message;
+	    this.initial = opts.initial || ``;
+	    this.validator = opts.validate || (() => true);
+	    this.value = ``;
+	    this.errorMsg = opts.error || `Please Enter A Valid Value`;
+	    this.cursor = Number(!!this.initial);
+	    this.cursorOffset = 0;
+	    this.clear = clear(``, this.out.columns);
+	    this.render();
+	  }
 
-		set value(v) {
-			if (!v && this.initial) {
-				this.placeholder = true;
-				this.rendered = color.gray(this.transform.render(this.initial));
-			} else {
-				this.placeholder = false;
-				this.rendered = this.transform.render(v);
-			}
-			this._value = v;
-			this.fire();
-		}
+	  set value(v) {
+	    if (!v && this.initial) {
+	      this.placeholder = true;
+	      this.rendered = color.gray(this.transform.render(this.initial));
+	    } else {
+	      this.placeholder = false;
+	      this.rendered = this.transform.render(v);
+	    }
+	    this._value = v;
+	    this.fire();
+	  }
 
-		get value() {
-			return this._value;
-		}
+	  get value() {
+	    return this._value;
+	  }
 
-		reset() {
-			this.value = ``;
-			this.cursor = Number(!!this.initial);
-			this.cursorOffset = 0;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.value = ``;
+	    this.cursor = Number(!!this.initial);
+	    this.cursorOffset = 0;
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.value = this.value || this.initial;
-			this.done = this.aborted = true;
-			this.error = false;
-			this.red = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.value = this.value || this.initial;
+	    this.done = this.aborted = true;
+	    this.error = false;
+	    this.red = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		async validate() {
-			let valid = await this.validator(this.value);
-			if (typeof valid === `string`) {
-				this.errorMsg = valid;
-				valid = false;
-			}
-			this.error = !valid;
-		}
+	  async validate() {
+	    let valid = await this.validator(this.value);
+	    if (typeof valid === `string`) {
+	      this.errorMsg = valid;
+	      valid = false;
+	    }
+	    this.error = !valid;
+	  }
 
-		async submit() {
-			this.value = this.value || this.initial;
-			this.cursorOffset = 0;
-			this.cursor = this.rendered.length;
-			await this.validate();
-			if (this.error) {
-				this.red = true;
-				this.fire();
-				this.render();
-				return;
-			}
-			this.done = true;
-			this.aborted = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  async submit() {
+	    this.value = this.value || this.initial;
+	    this.cursorOffset = 0;
+	    this.cursor = this.rendered.length;
+	    await this.validate();
+	    if (this.error) {
+	      this.red = true;
+	      this.fire();
+	      this.render();
+	      return;
+	    }
+	    this.done = true;
+	    this.aborted = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		next() {
-			if (!this.placeholder) return this.bell();
-			this.value = this.initial;
-			this.cursor = this.rendered.length;
-			this.fire();
-			this.render();
-		}
+	  next() {
+	    if (!this.placeholder) return this.bell();
+	    this.value = this.initial;
+	    this.cursor = this.rendered.length;
+	    this.fire();
+	    this.render();
+	  }
 
-		moveCursor(n) {
-			if (this.placeholder) return;
-			this.cursor = this.cursor + n;
-			this.cursorOffset += n;
-		}
+	  moveCursor(n) {
+	    if (this.placeholder) return;
+	    this.cursor = this.cursor+n;
+	    this.cursorOffset += n;
+	  }
 
-		_(c, key) {
-			let s1 = this.value.slice(0, this.cursor);
-			let s2 = this.value.slice(this.cursor);
-			this.value = `${s1}${c}${s2}`;
-			this.red = false;
-			this.cursor = this.placeholder ? 0 : s1.length + 1;
-			this.render();
-		}
+	  _(c, key) {
+	    let s1 = this.value.slice(0, this.cursor);
+	    let s2 = this.value.slice(this.cursor);
+	    this.value = `${s1}${c}${s2}`;
+	    this.red = false;
+	    this.cursor = this.placeholder ? 0 : s1.length+1;
+	    this.render();
+	  }
 
-		delete() {
-			if (this.isCursorAtStart()) return this.bell();
-			let s1 = this.value.slice(0, this.cursor - 1);
-			let s2 = this.value.slice(this.cursor);
-			this.value = `${s1}${s2}`;
-			this.red = false;
-			if (this.isCursorAtStart()) {
-				this.cursorOffset = 0;
-			} else {
-				this.cursorOffset++;
-				this.moveCursor(-1);
-			}
-			this.render();
-		}
+	  delete() {
+	    if (this.isCursorAtStart()) return this.bell();
+	    let s1 = this.value.slice(0, this.cursor-1);
+	    let s2 = this.value.slice(this.cursor);
+	    this.value = `${s1}${s2}`;
+	    this.red = false;
+	    if (this.isCursorAtStart()) {
+	      this.cursorOffset = 0;
+	    } else {
+	      this.cursorOffset++;
+	      this.moveCursor(-1);
+	    }
+	    this.render();
+	  }
 
-		deleteForward() {
-			if (this.cursor * this.scale >= this.rendered.length || this.placeholder) return this.bell();
-			let s1 = this.value.slice(0, this.cursor);
-			let s2 = this.value.slice(this.cursor + 1);
-			this.value = `${s1}${s2}`;
-			this.red = false;
-			if (this.isCursorAtEnd()) {
-				this.cursorOffset = 0;
-			} else {
-				this.cursorOffset++;
-			}
-			this.render();
-		}
+	  deleteForward() {
+	    if(this.cursor*this.scale >= this.rendered.length || this.placeholder) return this.bell();
+	    let s1 = this.value.slice(0, this.cursor);
+	    let s2 = this.value.slice(this.cursor+1);
+	    this.value = `${s1}${s2}`;
+	    this.red = false;
+	    if (this.isCursorAtEnd()) {
+	      this.cursorOffset = 0;
+	    } else {
+	      this.cursorOffset++;
+	    }
+	    this.render();
+	  }
 
-		first() {
-			this.cursor = 0;
-			this.render();
-		}
+	  first() {
+	    this.cursor = 0;
+	    this.render();
+	  }
 
-		last() {
-			this.cursor = this.value.length;
-			this.render();
-		}
+	  last() {
+	    this.cursor = this.value.length;
+	    this.render();
+	  }
 
-		left() {
-			if (this.cursor <= 0 || this.placeholder) return this.bell();
-			this.moveCursor(-1);
-			this.render();
-		}
+	  left() {
+	    if (this.cursor <= 0 || this.placeholder) return this.bell();
+	    this.moveCursor(-1);
+	    this.render();
+	  }
 
-		right() {
-			if (this.cursor * this.scale >= this.rendered.length || this.placeholder) return this.bell();
-			this.moveCursor(1);
-			this.render();
-		}
+	  right() {
+	    if (this.cursor*this.scale >= this.rendered.length || this.placeholder) return this.bell();
+	    this.moveCursor(1);
+	    this.render();
+	  }
 
-		isCursorAtStart() {
-			return this.cursor === 0 || (this.placeholder && this.cursor === 1);
-		}
+	  isCursorAtStart() {
+	    return this.cursor === 0 || (this.placeholder && this.cursor === 1);
+	  }
 
-		isCursorAtEnd() {
-			return this.cursor === this.rendered.length || (this.placeholder && this.cursor === this.rendered.length + 1)
-		}
+	  isCursorAtEnd() {
+	    return this.cursor === this.rendered.length || (this.placeholder && this.cursor === this.rendered.length + 1)
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (!this.firstRender) {
-				if (this.outputError)
-					this.out.write(cursor.down(lines(this.outputError, this.out.columns) - 1) + clear(this.outputError, this.out.columns));
-				this.out.write(clear(this.outputText, this.out.columns));
-			}
-			super.render();
-			this.outputError = '';
+	  render() {
+	    if (this.closed) return;
+	    if (!this.firstRender) {
+	      if (this.outputError)
+	        this.out.write(cursor.down(lines(this.outputError, this.out.columns) - 1) + clear(this.outputError, this.out.columns));
+	      this.out.write(clear(this.outputText, this.out.columns));
+	    }
+	    super.render();
+	    this.outputError = '';
 
-			this.outputText = [
-				style.symbol(this.done, this.aborted),
-				color.bold(this.msg),
-				style.delimiter(this.done),
-				this.red ? color.red(this.rendered) : this.rendered
-			].join(` `);
+	    this.outputText = [
+	      style.symbol(this.done, this.aborted),
+	      color.bold(this.msg),
+	      style.delimiter(this.done),
+	      this.red ? color.red(this.rendered) : this.rendered
+	    ].join(` `);
 
-			if (this.error) {
-				this.outputError += this.errorMsg.split(`\n`)
-					.reduce((a, l, i) => a + `\n${i ? ' ' : figures.pointerSmall} ${color.red().italic(l)}`, ``);
-			}
+	    if (this.error) {
+	      this.outputError += this.errorMsg.split(`\n`)
+	          .reduce((a, l, i) => a + `\n${i ? ' ' : figures.pointerSmall} ${color.red().italic(l)}`, ``);
+	    }
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore + cursor.move(this.cursorOffset, 0));
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore + cursor.move(this.cursorOffset, 0));
+	  }
 	}
 
 	text = TextPrompt;
@@ -4218,7 +4218,7 @@ function requireText() {
 var select;
 var hasRequiredSelect;
 
-function requireSelect() {
+function requireSelect () {
 	if (hasRequiredSelect) return select;
 	hasRequiredSelect = 1;
 
@@ -4239,159 +4239,159 @@ function requireSelect() {
 	 * @param {Number} [opts.optionsPerPage=10] Max options to display at once
 	 */
 	class SelectPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.hint = opts.hint || '- Use arrow-keys. Return to submit.';
-			this.warn = opts.warn || '- This option is disabled';
-			this.cursor = opts.initial || 0;
-			this.choices = opts.choices.map((ch, idx) => {
-				if (typeof ch === 'string')
-					ch = { title: ch, value: idx };
-				return {
-					title: ch && (ch.title || ch.value || ch),
-					value: ch && (ch.value === undefined ? idx : ch.value),
-					description: ch && ch.description,
-					selected: ch && ch.selected,
-					disabled: ch && ch.disabled
-				};
-			});
-			this.optionsPerPage = opts.optionsPerPage || 10;
-			this.value = (this.choices[this.cursor] || {}).value;
-			this.clear = clear('', this.out.columns);
-			this.render();
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.hint = opts.hint || '- Use arrow-keys. Return to submit.';
+	    this.warn = opts.warn || '- This option is disabled';
+	    this.cursor = opts.initial || 0;
+	    this.choices = opts.choices.map((ch, idx) => {
+	      if (typeof ch === 'string')
+	        ch = {title: ch, value: idx};
+	      return {
+	        title: ch && (ch.title || ch.value || ch),
+	        value: ch && (ch.value === undefined ? idx : ch.value),
+	        description: ch && ch.description,
+	        selected: ch && ch.selected,
+	        disabled: ch && ch.disabled
+	      };
+	    });
+	    this.optionsPerPage = opts.optionsPerPage || 10;
+	    this.value = (this.choices[this.cursor] || {}).value;
+	    this.clear = clear('', this.out.columns);
+	    this.render();
+	  }
 
-		moveCursor(n) {
-			this.cursor = n;
-			this.value = this.choices[n].value;
-			this.fire();
-		}
+	  moveCursor(n) {
+	    this.cursor = n;
+	    this.value = this.choices[n].value;
+	    this.fire();
+	  }
 
-		reset() {
-			this.moveCursor(0);
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.moveCursor(0);
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			if (!this.selection.disabled) {
-				this.done = true;
-				this.aborted = false;
-				this.fire();
-				this.render();
-				this.out.write('\n');
-				this.close();
-			} else
-				this.bell();
-		}
+	  submit() {
+	    if (!this.selection.disabled) {
+	      this.done = true;
+	      this.aborted = false;
+	      this.fire();
+	      this.render();
+	      this.out.write('\n');
+	      this.close();
+	    } else
+	      this.bell();
+	  }
 
-		first() {
-			this.moveCursor(0);
-			this.render();
-		}
+	  first() {
+	    this.moveCursor(0);
+	    this.render();
+	  }
 
-		last() {
-			this.moveCursor(this.choices.length - 1);
-			this.render();
-		}
+	  last() {
+	    this.moveCursor(this.choices.length - 1);
+	    this.render();
+	  }
 
-		up() {
-			if (this.cursor === 0) {
-				this.moveCursor(this.choices.length - 1);
-			} else {
-				this.moveCursor(this.cursor - 1);
-			}
-			this.render();
-		}
+	  up() {
+	    if (this.cursor === 0) {
+	      this.moveCursor(this.choices.length - 1);
+	    } else {
+	      this.moveCursor(this.cursor - 1);
+	    }
+	    this.render();
+	  }
 
-		down() {
-			if (this.cursor === this.choices.length - 1) {
-				this.moveCursor(0);
-			} else {
-				this.moveCursor(this.cursor + 1);
-			}
-			this.render();
-		}
+	  down() {
+	    if (this.cursor === this.choices.length - 1) {
+	      this.moveCursor(0);
+	    } else {
+	      this.moveCursor(this.cursor + 1);
+	    }
+	    this.render();
+	  }
 
-		next() {
-			this.moveCursor((this.cursor + 1) % this.choices.length);
-			this.render();
-		}
+	  next() {
+	    this.moveCursor((this.cursor + 1) % this.choices.length);
+	    this.render();
+	  }
 
-		_(c, key) {
-			if (c === ' ') return this.submit();
-		}
+	  _(c, key) {
+	    if (c === ' ') return this.submit();
+	  }
 
-		get selection() {
-			return this.choices[this.cursor];
-		}
+	  get selection() {
+	    return this.choices[this.cursor];
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
 
-			let { startIndex, endIndex } = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage);
+	    let { startIndex, endIndex } = entriesToDisplay(this.cursor, this.choices.length, this.optionsPerPage);
 
-			// Print prompt
-			this.outputText = [
-				style.symbol(this.done, this.aborted),
-				color.bold(this.msg),
-				style.delimiter(false),
-				this.done ? this.selection.title : this.selection.disabled
-					? color.yellow(this.warn) : color.gray(this.hint)
-			].join(' ');
+	    // Print prompt
+	    this.outputText = [
+	      style.symbol(this.done, this.aborted),
+	      color.bold(this.msg),
+	      style.delimiter(false),
+	      this.done ? this.selection.title : this.selection.disabled
+	          ? color.yellow(this.warn) : color.gray(this.hint)
+	    ].join(' ');
 
-			// Print choices
-			if (!this.done) {
-				this.outputText += '\n';
-				for (let i = startIndex; i < endIndex; i++) {
-					let title, prefix, desc = '', v = this.choices[i];
+	    // Print choices
+	    if (!this.done) {
+	      this.outputText += '\n';
+	      for (let i = startIndex; i < endIndex; i++) {
+	        let title, prefix, desc = '', v = this.choices[i];
 
-					// Determine whether to display "more choices" indicators
-					if (i === startIndex && startIndex > 0) {
-						prefix = figures.arrowUp;
-					} else if (i === endIndex - 1 && endIndex < this.choices.length) {
-						prefix = figures.arrowDown;
-					} else {
-						prefix = ' ';
-					}
+	        // Determine whether to display "more choices" indicators
+	        if (i === startIndex && startIndex > 0) {
+	          prefix = figures.arrowUp;
+	        } else if (i === endIndex - 1 && endIndex < this.choices.length) {
+	          prefix = figures.arrowDown;
+	        } else {
+	          prefix = ' ';
+	        }
 
-					if (v.disabled) {
-						title = this.cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-						prefix = (this.cursor === i ? color.bold().gray(figures.pointer) + ' ' : '  ') + prefix;
-					} else {
-						title = this.cursor === i ? color.cyan().underline(v.title) : v.title;
-						prefix = (this.cursor === i ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
-						if (v.description && this.cursor === i) {
-							desc = ` - ${v.description}`;
-							if (prefix.length + title.length + desc.length >= this.out.columns
-								|| v.description.split(/\r?\n/).length > 1) {
-								desc = '\n' + wrap(v.description, { margin: 3, width: this.out.columns });
-							}
-						}
-					}
+	        if (v.disabled) {
+	          title = this.cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+	          prefix = (this.cursor === i ? color.bold().gray(figures.pointer) + ' ' : '  ') + prefix;
+	        } else {
+	          title = this.cursor === i ? color.cyan().underline(v.title) : v.title;
+	          prefix = (this.cursor === i ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
+	          if (v.description && this.cursor === i) {
+	            desc = ` - ${v.description}`;
+	            if (prefix.length + title.length + desc.length >= this.out.columns
+	                || v.description.split(/\r?\n/).length > 1) {
+	              desc = '\n' + wrap(v.description, { margin: 3, width: this.out.columns });
+	            }
+	          }
+	        }
 
-					this.outputText += `${prefix} ${title}${color.gray(desc)}\n`;
-				}
-			}
+	        this.outputText += `${prefix} ${title}${color.gray(desc)}\n`;
+	      }
+	    }
 
-			this.out.write(this.outputText);
-		}
+	    this.out.write(this.outputText);
+	  }
 	}
 
 	select = SelectPrompt;
@@ -4401,7 +4401,7 @@ function requireSelect() {
 var toggle;
 var hasRequiredToggle;
 
-function requireToggle() {
+function requireToggle () {
 	if (hasRequiredToggle) return toggle;
 	hasRequiredToggle = 1;
 	const color = requireKleur();
@@ -4420,105 +4420,105 @@ function requireToggle() {
 	 * @param {Stream} [opts.stdout] The Writable stream to write readline data to
 	 */
 	class TogglePrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.value = !!opts.initial;
-			this.active = opts.active || 'on';
-			this.inactive = opts.inactive || 'off';
-			this.initialValue = this.value;
-			this.render();
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.value = !!opts.initial;
+	    this.active = opts.active || 'on';
+	    this.inactive = opts.inactive || 'off';
+	    this.initialValue = this.value;
+	    this.render();
+	  }
 
-		reset() {
-			this.value = this.initialValue;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.value = this.initialValue;
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			this.done = true;
-			this.aborted = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  submit() {
+	    this.done = true;
+	    this.aborted = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		deactivate() {
-			if (this.value === false) return this.bell();
-			this.value = false;
-			this.render();
-		}
+	  deactivate() {
+	    if (this.value === false) return this.bell();
+	    this.value = false;
+	    this.render();
+	  }
 
-		activate() {
-			if (this.value === true) return this.bell();
-			this.value = true;
-			this.render();
-		}
+	  activate() {
+	    if (this.value === true) return this.bell();
+	    this.value = true;
+	    this.render();
+	  }
 
-		delete() {
-			this.deactivate();
-		}
-		left() {
-			this.deactivate();
-		}
-		right() {
-			this.activate();
-		}
-		down() {
-			this.deactivate();
-		}
-		up() {
-			this.activate();
-		}
+	  delete() {
+	    this.deactivate();
+	  }
+	  left() {
+	    this.deactivate();
+	  }
+	  right() {
+	    this.activate();
+	  }
+	  down() {
+	    this.deactivate();
+	  }
+	  up() {
+	    this.activate();
+	  }
 
-		next() {
-			this.value = !this.value;
-			this.fire();
-			this.render();
-		}
+	  next() {
+	    this.value = !this.value;
+	    this.fire();
+	    this.render();
+	  }
 
-		_(c, key) {
-			if (c === ' ') {
-				this.value = !this.value;
-			} else if (c === '1') {
-				this.value = true;
-			} else if (c === '0') {
-				this.value = false;
-			} else return this.bell();
-			this.render();
-		}
+	  _(c, key) {
+	    if (c === ' ') {
+	      this.value = !this.value;
+	    } else if (c === '1') {
+	      this.value = true;
+	    } else if (c === '0') {
+	      this.value = false;
+	    } else return this.bell();
+	    this.render();
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
 
-			this.outputText = [
-				style.symbol(this.done, this.aborted),
-				color.bold(this.msg),
-				style.delimiter(this.done),
-				this.value ? this.inactive : color.cyan().underline(this.inactive),
-				color.gray('/'),
-				this.value ? color.cyan().underline(this.active) : this.active
-			].join(' ');
+	    this.outputText = [
+	      style.symbol(this.done, this.aborted),
+	      color.bold(this.msg),
+	      style.delimiter(this.done),
+	      this.value ? this.inactive : color.cyan().underline(this.inactive),
+	      color.gray('/'),
+	      this.value ? color.cyan().underline(this.active) : this.active
+	    ].join(' ');
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText);
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText);
+	  }
 	}
 
 	toggle = TogglePrompt;
@@ -4528,38 +4528,38 @@ function requireToggle() {
 var datepart;
 var hasRequiredDatepart;
 
-function requireDatepart() {
+function requireDatepart () {
 	if (hasRequiredDatepart) return datepart;
 	hasRequiredDatepart = 1;
 
 	class DatePart {
-		constructor({ token, date, parts, locales }) {
-			this.token = token;
-			this.date = date || new Date();
-			this.parts = parts || [this];
-			this.locales = locales || {};
-		}
+	  constructor({token, date, parts, locales}) {
+	    this.token = token;
+	    this.date = date || new Date();
+	    this.parts = parts || [this];
+	    this.locales = locales || {};
+	  }
 
-		up() { }
+	  up() {}
 
-		down() { }
+	  down() {}
 
-		next() {
-			const currentIdx = this.parts.indexOf(this);
-			return this.parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
-		}
+	  next() {
+	    const currentIdx = this.parts.indexOf(this);
+	    return this.parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
+	  }
 
-		setTo(val) { }
+	  setTo(val) {}
 
-		prev() {
-			let parts = [].concat(this.parts).reverse();
-			const currentIdx = parts.indexOf(this);
-			return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
-		}
+	  prev() {
+	    let parts = [].concat(this.parts).reverse();
+	    const currentIdx = parts.indexOf(this);
+	    return parts.find((part, idx) => idx > currentIdx && part instanceof DatePart);
+	  }
 
-		toString() {
-			return String(this.date);
-		}
+	  toString() {
+	    return String(this.date);
+	  }
 	}
 
 	datepart = DatePart;
@@ -4569,29 +4569,29 @@ function requireDatepart() {
 var meridiem;
 var hasRequiredMeridiem;
 
-function requireMeridiem() {
+function requireMeridiem () {
 	if (hasRequiredMeridiem) return meridiem;
 	hasRequiredMeridiem = 1;
 
 	const DatePart = requireDatepart();
 
 	class Meridiem extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setHours((this.date.getHours() + 12) % 24);
-		}
+	  up() {
+	    this.date.setHours((this.date.getHours() + 12) % 24);
+	  }
 
-		down() {
-			this.up();
-		}
+	  down() {
+	    this.up();
+	  }
 
-		toString() {
-			let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
-			return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
-		}
+	  toString() {
+	    let meridiem = this.date.getHours() > 12 ? 'pm' : 'am';
+	    return /\A/.test(this.token) ? meridiem.toUpperCase() : meridiem;
+	  }
 	}
 
 	meridiem = Meridiem;
@@ -4601,47 +4601,47 @@ function requireMeridiem() {
 var day;
 var hasRequiredDay;
 
-function requireDay() {
+function requireDay () {
 	if (hasRequiredDay) return day;
 	hasRequiredDay = 1;
 
 	const DatePart = requireDatepart();
 
 	const pos = n => {
-		n = n % 10;
-		return n === 1 ? 'st'
-			: n === 2 ? 'nd'
-				: n === 3 ? 'rd'
-					: 'th';
+	  n = n % 10;
+	  return n === 1 ? 'st'
+	       : n === 2 ? 'nd'
+	       : n === 3 ? 'rd'
+	       : 'th';
 	};
 
 	class Day extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setDate(this.date.getDate() + 1);
-		}
+	  up() {
+	    this.date.setDate(this.date.getDate() + 1);
+	  }
 
-		down() {
-			this.date.setDate(this.date.getDate() - 1);
-		}
+	  down() {
+	    this.date.setDate(this.date.getDate() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setDate(parseInt(val.substr(-2)));
-		}
+	  setTo(val) {
+	    this.date.setDate(parseInt(val.substr(-2)));
+	  }
 
-		toString() {
-			let date = this.date.getDate();
-			let day = this.date.getDay();
-			return this.token === 'DD' ? String(date).padStart(2, '0')
-				: this.token === 'Do' ? date + pos(date)
-					: this.token === 'd' ? day + 1
-						: this.token === 'ddd' ? this.locales.weekdaysShort[day]
-							: this.token === 'dddd' ? this.locales.weekdays[day]
-								: date;
-		}
+	  toString() {
+	    let date = this.date.getDate();
+	    let day = this.date.getDay();
+	    return this.token === 'DD' ? String(date).padStart(2, '0')
+	         : this.token === 'Do' ? date + pos(date)
+	         : this.token === 'd' ? day + 1
+	         : this.token === 'ddd' ? this.locales.weekdaysShort[day]
+	         : this.token === 'dddd' ? this.locales.weekdays[day]
+	         : date;
+	  }
 	}
 
 	day = Day;
@@ -4651,35 +4651,35 @@ function requireDay() {
 var hours;
 var hasRequiredHours;
 
-function requireHours() {
+function requireHours () {
 	if (hasRequiredHours) return hours;
 	hasRequiredHours = 1;
 
 	const DatePart = requireDatepart();
 
 	class Hours extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setHours(this.date.getHours() + 1);
-		}
+	  up() {
+	    this.date.setHours(this.date.getHours() + 1);
+	  }
 
-		down() {
-			this.date.setHours(this.date.getHours() - 1);
-		}
+	  down() {
+	    this.date.setHours(this.date.getHours() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setHours(parseInt(val.substr(-2)));
-		}
+	  setTo(val) {
+	    this.date.setHours(parseInt(val.substr(-2)));
+	  }
 
-		toString() {
-			let hours = this.date.getHours();
-			if (/h/.test(this.token))
-				hours = (hours % 12) || 12;
-			return this.token.length > 1 ? String(hours).padStart(2, '0') : hours;
-		}
+	  toString() {
+	    let hours = this.date.getHours();
+	    if (/h/.test(this.token))
+	      hours = (hours % 12) || 12;
+	    return this.token.length > 1 ? String(hours).padStart(2, '0') : hours;
+	  }
 	}
 
 	hours = Hours;
@@ -4689,33 +4689,33 @@ function requireHours() {
 var milliseconds;
 var hasRequiredMilliseconds;
 
-function requireMilliseconds() {
+function requireMilliseconds () {
 	if (hasRequiredMilliseconds) return milliseconds;
 	hasRequiredMilliseconds = 1;
 
 	const DatePart = requireDatepart();
 
 	class Milliseconds extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setMilliseconds(this.date.getMilliseconds() + 1);
-		}
+	  up() {
+	    this.date.setMilliseconds(this.date.getMilliseconds() + 1);
+	  }
 
-		down() {
-			this.date.setMilliseconds(this.date.getMilliseconds() - 1);
-		}
+	  down() {
+	    this.date.setMilliseconds(this.date.getMilliseconds() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setMilliseconds(parseInt(val.substr(-(this.token.length))));
-		}
+	  setTo(val) {
+	    this.date.setMilliseconds(parseInt(val.substr(-(this.token.length))));
+	  }
 
-		toString() {
-			return String(this.date.getMilliseconds()).padStart(4, '0')
-				.substr(0, this.token.length);
-		}
+	  toString() {
+	    return String(this.date.getMilliseconds()).padStart(4, '0')
+	                                              .substr(0, this.token.length);
+	  }
 	}
 
 	milliseconds = Milliseconds;
@@ -4725,33 +4725,33 @@ function requireMilliseconds() {
 var minutes;
 var hasRequiredMinutes;
 
-function requireMinutes() {
+function requireMinutes () {
 	if (hasRequiredMinutes) return minutes;
 	hasRequiredMinutes = 1;
 
 	const DatePart = requireDatepart();
 
 	class Minutes extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setMinutes(this.date.getMinutes() + 1);
-		}
+	  up() {
+	    this.date.setMinutes(this.date.getMinutes() + 1);
+	  }
 
-		down() {
-			this.date.setMinutes(this.date.getMinutes() - 1);
-		}
+	  down() {
+	    this.date.setMinutes(this.date.getMinutes() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setMinutes(parseInt(val.substr(-2)));
-		}
+	  setTo(val) {
+	    this.date.setMinutes(parseInt(val.substr(-2)));
+	  }
 
-		toString() {
-			let m = this.date.getMinutes();
-			return this.token.length > 1 ? String(m).padStart(2, '0') : m;
-		}
+	  toString() {
+	    let m = this.date.getMinutes();
+	    return this.token.length > 1 ? String(m).padStart(2, '0') : m;
+	  }
 	}
 
 	minutes = Minutes;
@@ -4761,38 +4761,38 @@ function requireMinutes() {
 var month;
 var hasRequiredMonth;
 
-function requireMonth() {
+function requireMonth () {
 	if (hasRequiredMonth) return month;
 	hasRequiredMonth = 1;
 
 	const DatePart = requireDatepart();
 
 	class Month extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setMonth(this.date.getMonth() + 1);
-		}
+	  up() {
+	    this.date.setMonth(this.date.getMonth() + 1);
+	  }
 
-		down() {
-			this.date.setMonth(this.date.getMonth() - 1);
-		}
+	  down() {
+	    this.date.setMonth(this.date.getMonth() - 1);
+	  }
 
-		setTo(val) {
-			val = parseInt(val.substr(-2)) - 1;
-			this.date.setMonth(val < 0 ? 0 : val);
-		}
+	  setTo(val) {
+	    val = parseInt(val.substr(-2)) - 1;
+	    this.date.setMonth(val < 0 ? 0 : val);
+	  }
 
-		toString() {
-			let month = this.date.getMonth();
-			let tl = this.token.length;
-			return tl === 2 ? String(month + 1).padStart(2, '0')
-				: tl === 3 ? this.locales.monthsShort[month]
-					: tl === 4 ? this.locales.months[month]
-						: String(month + 1);
-		}
+	  toString() {
+	    let month = this.date.getMonth();
+	    let tl = this.token.length;
+	    return tl === 2 ? String(month + 1).padStart(2, '0')
+	           : tl === 3 ? this.locales.monthsShort[month]
+	             : tl === 4 ? this.locales.months[month]
+	               : String(month + 1);
+	  }
 	}
 
 	month = Month;
@@ -4802,33 +4802,33 @@ function requireMonth() {
 var seconds;
 var hasRequiredSeconds;
 
-function requireSeconds() {
+function requireSeconds () {
 	if (hasRequiredSeconds) return seconds;
 	hasRequiredSeconds = 1;
 
 	const DatePart = requireDatepart();
 
 	class Seconds extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setSeconds(this.date.getSeconds() + 1);
-		}
+	  up() {
+	    this.date.setSeconds(this.date.getSeconds() + 1);
+	  }
 
-		down() {
-			this.date.setSeconds(this.date.getSeconds() - 1);
-		}
+	  down() {
+	    this.date.setSeconds(this.date.getSeconds() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setSeconds(parseInt(val.substr(-2)));
-		}
+	  setTo(val) {
+	    this.date.setSeconds(parseInt(val.substr(-2)));
+	  }
 
-		toString() {
-			let s = this.date.getSeconds();
-			return this.token.length > 1 ? String(s).padStart(2, '0') : s;
-		}
+	  toString() {
+	    let s = this.date.getSeconds();
+	    return this.token.length > 1 ? String(s).padStart(2, '0') : s;
+	  }
 	}
 
 	seconds = Seconds;
@@ -4838,33 +4838,33 @@ function requireSeconds() {
 var year;
 var hasRequiredYear;
 
-function requireYear() {
+function requireYear () {
 	if (hasRequiredYear) return year;
 	hasRequiredYear = 1;
 
 	const DatePart = requireDatepart();
 
 	class Year extends DatePart {
-		constructor(opts = {}) {
-			super(opts);
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	  }
 
-		up() {
-			this.date.setFullYear(this.date.getFullYear() + 1);
-		}
+	  up() {
+	    this.date.setFullYear(this.date.getFullYear() + 1);
+	  }
 
-		down() {
-			this.date.setFullYear(this.date.getFullYear() - 1);
-		}
+	  down() {
+	    this.date.setFullYear(this.date.getFullYear() - 1);
+	  }
 
-		setTo(val) {
-			this.date.setFullYear(val.substr(-4));
-		}
+	  setTo(val) {
+	    this.date.setFullYear(val.substr(-4));
+	  }
 
-		toString() {
-			let year = String(this.date.getFullYear()).padStart(4, '0');
-			return this.token.length === 2 ? year.substr(-2) : year;
-		}
+	  toString() {
+	    let year = String(this.date.getFullYear()).padStart(4, '0');
+	    return this.token.length === 2 ? year.substr(-2) : year;
+	  }
 	}
 
 	year = Year;
@@ -4874,20 +4874,20 @@ function requireYear() {
 var dateparts;
 var hasRequiredDateparts;
 
-function requireDateparts() {
+function requireDateparts () {
 	if (hasRequiredDateparts) return dateparts;
 	hasRequiredDateparts = 1;
 
 	dateparts = {
-		DatePart: requireDatepart(),
-		Meridiem: requireMeridiem(),
-		Day: requireDay(),
-		Hours: requireHours(),
-		Milliseconds: requireMilliseconds(),
-		Minutes: requireMinutes(),
-		Month: requireMonth(),
-		Seconds: requireSeconds(),
-		Year: requireYear(),
+	  DatePart: requireDatepart(),
+	  Meridiem: requireMeridiem(),
+	  Day: requireDay(),
+	  Hours: requireHours(),
+	  Milliseconds: requireMilliseconds(),
+	  Minutes: requireMinutes(),
+	  Month: requireMonth(),
+	  Seconds: requireSeconds(),
+	  Year: requireYear(),
 	};
 	return dateparts;
 }
@@ -4895,7 +4895,7 @@ function requireDateparts() {
 var date;
 var hasRequiredDate;
 
-function requireDate() {
+function requireDate () {
 	if (hasRequiredDate) return date;
 	hasRequiredDate = 1;
 
@@ -4907,22 +4907,22 @@ function requireDate() {
 
 	const regex = /\\(.)|"((?:\\["\\]|[^"])+)"|(D[Do]?|d{3,4}|d)|(M{1,4})|(YY(?:YY)?)|([aA])|([Hh]{1,2})|(m{1,2})|(s{1,2})|(S{1,4})|./g;
 	const regexGroups = {
-		1: ({ token }) => token.replace(/\\(.)/g, '$1'),
-		2: (opts) => new Day(opts), // Day // TODO
-		3: (opts) => new Month(opts), // Month
-		4: (opts) => new Year(opts), // Year
-		5: (opts) => new Meridiem(opts), // AM/PM // TODO (special)
-		6: (opts) => new Hours(opts), // Hours
-		7: (opts) => new Minutes(opts), // Minutes
-		8: (opts) => new Seconds(opts), // Seconds
-		9: (opts) => new Milliseconds(opts), // Fractional seconds
+	  1: ({token}) => token.replace(/\\(.)/g, '$1'),
+	  2: (opts) => new Day(opts), // Day // TODO
+	  3: (opts) => new Month(opts), // Month
+	  4: (opts) => new Year(opts), // Year
+	  5: (opts) => new Meridiem(opts), // AM/PM // TODO (special)
+	  6: (opts) => new Hours(opts), // Hours
+	  7: (opts) => new Minutes(opts), // Minutes
+	  8: (opts) => new Seconds(opts), // Seconds
+	  9: (opts) => new Milliseconds(opts), // Fractional seconds
 	};
 
 	const dfltLocales = {
-		months: 'January,February,March,April,May,June,July,August,September,October,November,December'.split(','),
-		monthsShort: 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'.split(','),
-		weekdays: 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday'.split(','),
-		weekdaysShort: 'Sun,Mon,Tue,Wed,Thu,Fri,Sat'.split(',')
+	  months: 'January,February,March,April,May,June,July,August,September,October,November,December'.split(','),
+	  monthsShort: 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'.split(','),
+	  weekdays: 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday'.split(','),
+	  weekdaysShort: 'Sun,Mon,Tue,Wed,Thu,Fri,Sat'.split(',')
 	};
 
 
@@ -4939,170 +4939,170 @@ function requireDate() {
 	 * @param {Stream} [opts.stdout] The Writable stream to write readline data to
 	 */
 	class DatePrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.cursor = 0;
-			this.typed = '';
-			this.locales = Object.assign(dfltLocales, opts.locales);
-			this._date = opts.initial || new Date();
-			this.errorMsg = opts.error || 'Please Enter A Valid Value';
-			this.validator = opts.validate || (() => true);
-			this.mask = opts.mask || 'YYYY-MM-DD HH:mm:ss';
-			this.clear = clear('', this.out.columns);
-			this.render();
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.cursor = 0;
+	    this.typed = '';
+	    this.locales = Object.assign(dfltLocales, opts.locales);
+	    this._date = opts.initial || new Date();
+	    this.errorMsg = opts.error || 'Please Enter A Valid Value';
+	    this.validator = opts.validate || (() => true);
+	    this.mask = opts.mask || 'YYYY-MM-DD HH:mm:ss';
+	    this.clear = clear('', this.out.columns);
+	    this.render();
+	  }
 
-		get value() {
-			return this.date
-		}
+	  get value() {
+	    return this.date
+	  }
 
-		get date() {
-			return this._date;
-		}
+	  get date() {
+	    return this._date;
+	  }
 
-		set date(date) {
-			if (date) this._date.setTime(date.getTime());
-		}
+	  set date(date) {
+	    if (date) this._date.setTime(date.getTime());
+	  }
 
-		set mask(mask) {
-			let result;
-			this.parts = [];
-			while (result = regex.exec(mask)) {
-				let match = result.shift();
-				let idx = result.findIndex(gr => gr != null);
-				this.parts.push(idx in regexGroups
-					? regexGroups[idx]({ token: result[idx] || match, date: this.date, parts: this.parts, locales: this.locales })
-					: result[idx] || match);
-			}
+	  set mask(mask) {
+	    let result;
+	    this.parts = [];
+	    while(result = regex.exec(mask)) {
+	      let match = result.shift();
+	      let idx = result.findIndex(gr => gr != null);
+	      this.parts.push(idx in regexGroups
+	        ? regexGroups[idx]({ token: result[idx] || match, date: this.date, parts: this.parts, locales: this.locales })
+	        : result[idx] || match);
+	    }
 
-			let parts = this.parts.reduce((arr, i) => {
-				if (typeof i === 'string' && typeof arr[arr.length - 1] === 'string')
-					arr[arr.length - 1] += i;
-				else arr.push(i);
-				return arr;
-			}, []);
+	    let parts = this.parts.reduce((arr, i) => {
+	      if (typeof i === 'string' && typeof arr[arr.length - 1] === 'string')
+	        arr[arr.length - 1] += i;
+	      else arr.push(i);
+	      return arr;
+	    }, []);
 
-			this.parts.splice(0);
-			this.parts.push(...parts);
-			this.reset();
-		}
+	    this.parts.splice(0);
+	    this.parts.push(...parts);
+	    this.reset();
+	  }
 
-		moveCursor(n) {
-			this.typed = '';
-			this.cursor = n;
-			this.fire();
-		}
+	  moveCursor(n) {
+	    this.typed = '';
+	    this.cursor = n;
+	    this.fire();
+	  }
 
-		reset() {
-			this.moveCursor(this.parts.findIndex(p => p instanceof DatePart));
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.moveCursor(this.parts.findIndex(p => p instanceof DatePart));
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.error = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.error = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		async validate() {
-			let valid = await this.validator(this.value);
-			if (typeof valid === 'string') {
-				this.errorMsg = valid;
-				valid = false;
-			}
-			this.error = !valid;
-		}
+	  async validate() {
+	    let valid = await this.validator(this.value);
+	    if (typeof valid === 'string') {
+	      this.errorMsg = valid;
+	      valid = false;
+	    }
+	    this.error = !valid;
+	  }
 
-		async submit() {
-			await this.validate();
-			if (this.error) {
-				this.color = 'red';
-				this.fire();
-				this.render();
-				return;
-			}
-			this.done = true;
-			this.aborted = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  async submit() {
+	    await this.validate();
+	    if (this.error) {
+	      this.color = 'red';
+	      this.fire();
+	      this.render();
+	      return;
+	    }
+	    this.done = true;
+	    this.aborted = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		up() {
-			this.typed = '';
-			this.parts[this.cursor].up();
-			this.render();
-		}
+	  up() {
+	    this.typed = '';
+	    this.parts[this.cursor].up();
+	    this.render();
+	  }
 
-		down() {
-			this.typed = '';
-			this.parts[this.cursor].down();
-			this.render();
-		}
+	  down() {
+	    this.typed = '';
+	    this.parts[this.cursor].down();
+	    this.render();
+	  }
 
-		left() {
-			let prev = this.parts[this.cursor].prev();
-			if (prev == null) return this.bell();
-			this.moveCursor(this.parts.indexOf(prev));
-			this.render();
-		}
+	  left() {
+	    let prev = this.parts[this.cursor].prev();
+	    if (prev == null) return this.bell();
+	    this.moveCursor(this.parts.indexOf(prev));
+	    this.render();
+	  }
 
-		right() {
-			let next = this.parts[this.cursor].next();
-			if (next == null) return this.bell();
-			this.moveCursor(this.parts.indexOf(next));
-			this.render();
-		}
+	  right() {
+	    let next = this.parts[this.cursor].next();
+	    if (next == null) return this.bell();
+	    this.moveCursor(this.parts.indexOf(next));
+	    this.render();
+	  }
 
-		next() {
-			let next = this.parts[this.cursor].next();
-			this.moveCursor(next
-				? this.parts.indexOf(next)
-				: this.parts.findIndex((part) => part instanceof DatePart));
-			this.render();
-		}
+	  next() {
+	    let next = this.parts[this.cursor].next();
+	    this.moveCursor(next
+	      ? this.parts.indexOf(next)
+	      : this.parts.findIndex((part) => part instanceof DatePart));
+	    this.render();
+	  }
 
-		_(c) {
-			if (/\d/.test(c)) {
-				this.typed += c;
-				this.parts[this.cursor].setTo(this.typed);
-				this.render();
-			}
-		}
+	  _(c) {
+	    if (/\d/.test(c)) {
+	      this.typed += c;
+	      this.parts[this.cursor].setTo(this.typed);
+	      this.render();
+	    }
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
 
-			// Print prompt
-			this.outputText = [
-				style.symbol(this.done, this.aborted),
-				color.bold(this.msg),
-				style.delimiter(false),
-				this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), [])
-					.join('')
-			].join(' ');
+	    // Print prompt
+	    this.outputText = [
+	      style.symbol(this.done, this.aborted),
+	      color.bold(this.msg),
+	      style.delimiter(false),
+	      this.parts.reduce((arr, p, idx) => arr.concat(idx === this.cursor && !this.done ? color.cyan().underline(p.toString()) : p), [])
+	          .join('')
+	    ].join(' ');
 
-			// Print error
-			if (this.error) {
-				this.outputText += this.errorMsg.split('\n').reduce(
-					(a, l, i) => a + `\n${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
-			}
+	    // Print error
+	    if (this.error) {
+	      this.outputText += this.errorMsg.split('\n').reduce(
+	          (a, l, i) => a + `\n${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
+	    }
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText);
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText);
+	  }
 	}
 
 	date = DatePrompt;
@@ -5112,7 +5112,7 @@ function requireDate() {
 var number;
 var hasRequiredNumber;
 
-function requireNumber() {
+function requireNumber () {
 	if (hasRequiredNumber) return number;
 	hasRequiredNumber = 1;
 	const color = requireKleur();
@@ -5123,8 +5123,8 @@ function requireNumber() {
 	const isNumber = /[0-9]/;
 	const isDef = any => any !== undefined;
 	const round = (number, precision) => {
-		let factor = Math.pow(10, precision);
-		return Math.round(number * factor) / factor;
+	  let factor = Math.pow(10, precision);
+	  return Math.round(number * factor) / factor;
 	};
 
 	/**
@@ -5144,187 +5144,187 @@ function requireNumber() {
 	 * @param {String} [opts.error] The invalid error label
 	 */
 	class NumberPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.transform = style.render(opts.style);
-			this.msg = opts.message;
-			this.initial = isDef(opts.initial) ? opts.initial : '';
-			this.float = !!opts.float;
-			this.round = opts.round || 2;
-			this.inc = opts.increment || 1;
-			this.min = isDef(opts.min) ? opts.min : -Infinity;
-			this.max = isDef(opts.max) ? opts.max : Infinity;
-			this.errorMsg = opts.error || `Please Enter A Valid Value`;
-			this.validator = opts.validate || (() => true);
-			this.color = `cyan`;
-			this.value = ``;
-			this.typed = ``;
-			this.lastHit = 0;
-			this.render();
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	    this.transform = style.render(opts.style);
+	    this.msg = opts.message;
+	    this.initial = isDef(opts.initial) ? opts.initial : '';
+	    this.float = !!opts.float;
+	    this.round = opts.round || 2;
+	    this.inc = opts.increment || 1;
+	    this.min = isDef(opts.min) ? opts.min : -Infinity;
+	    this.max = isDef(opts.max) ? opts.max : Infinity;
+	    this.errorMsg = opts.error || `Please Enter A Valid Value`;
+	    this.validator = opts.validate || (() => true);
+	    this.color = `cyan`;
+	    this.value = ``;
+	    this.typed = ``;
+	    this.lastHit = 0;
+	    this.render();
+	  }
 
-		set value(v) {
-			if (!v && v !== 0) {
-				this.placeholder = true;
-				this.rendered = color.gray(this.transform.render(`${this.initial}`));
-				this._value = ``;
-			} else {
-				this.placeholder = false;
-				this.rendered = this.transform.render(`${round(v, this.round)}`);
-				this._value = round(v, this.round);
-			}
-			this.fire();
-		}
+	  set value(v) {
+	    if (!v && v !== 0) {
+	      this.placeholder = true;
+	      this.rendered = color.gray(this.transform.render(`${this.initial}`));
+	      this._value = ``;
+	    } else {
+	      this.placeholder = false;
+	      this.rendered = this.transform.render(`${round(v, this.round)}`);
+	      this._value = round(v, this.round);
+	    }
+	    this.fire();
+	  }
 
-		get value() {
-			return this._value;
-		}
+	  get value() {
+	    return this._value;
+	  }
 
-		parse(x) {
-			return this.float ? parseFloat(x) : parseInt(x);
-		}
+	  parse(x) {
+	    return this.float ? parseFloat(x) : parseInt(x);
+	  }
 
-		valid(c) {
-			return c === `-` || c === `.` && this.float || isNumber.test(c)
-		}
+	  valid(c) {
+	    return c === `-` || c === `.` && this.float || isNumber.test(c)
+	  }
 
-		reset() {
-			this.typed = ``;
-			this.value = ``;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.typed = ``;
+	    this.value = ``;
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			let x = this.value;
-			this.value = x !== `` ? x : this.initial;
-			this.done = this.aborted = true;
-			this.error = false;
-			this.fire();
-			this.render();
-			this.out.write(`\n`);
-			this.close();
-		}
+	  abort() {
+	    let x = this.value;
+	    this.value = x !== `` ? x : this.initial;
+	    this.done = this.aborted = true;
+	    this.error = false;
+	    this.fire();
+	    this.render();
+	    this.out.write(`\n`);
+	    this.close();
+	  }
 
-		async validate() {
-			let valid = await this.validator(this.value);
-			if (typeof valid === `string`) {
-				this.errorMsg = valid;
-				valid = false;
-			}
-			this.error = !valid;
-		}
+	  async validate() {
+	    let valid = await this.validator(this.value);
+	    if (typeof valid === `string`) {
+	      this.errorMsg = valid;
+	      valid = false;
+	    }
+	    this.error = !valid;
+	  }
 
-		async submit() {
-			await this.validate();
-			if (this.error) {
-				this.color = `red`;
-				this.fire();
-				this.render();
-				return;
-			}
-			let x = this.value;
-			this.value = x !== `` ? x : this.initial;
-			this.done = true;
-			this.aborted = false;
-			this.error = false;
-			this.fire();
-			this.render();
-			this.out.write(`\n`);
-			this.close();
-		}
+	  async submit() {
+	    await this.validate();
+	    if (this.error) {
+	      this.color = `red`;
+	      this.fire();
+	      this.render();
+	      return;
+	    }
+	    let x = this.value;
+	    this.value = x !== `` ? x : this.initial;
+	    this.done = true;
+	    this.aborted = false;
+	    this.error = false;
+	    this.fire();
+	    this.render();
+	    this.out.write(`\n`);
+	    this.close();
+	  }
 
-		up() {
-			this.typed = ``;
-			if (this.value === '') {
-				this.value = this.min - this.inc;
-			}
-			if (this.value >= this.max) return this.bell();
-			this.value += this.inc;
-			this.color = `cyan`;
-			this.fire();
-			this.render();
-		}
+	  up() {
+	    this.typed = ``;
+	    if(this.value === '') {
+	      this.value = this.min - this.inc;
+	    }
+	    if (this.value >= this.max) return this.bell();
+	    this.value += this.inc;
+	    this.color = `cyan`;
+	    this.fire();
+	    this.render();
+	  }
 
-		down() {
-			this.typed = ``;
-			if (this.value === '') {
-				this.value = this.min + this.inc;
-			}
-			if (this.value <= this.min) return this.bell();
-			this.value -= this.inc;
-			this.color = `cyan`;
-			this.fire();
-			this.render();
-		}
+	  down() {
+	    this.typed = ``;
+	    if(this.value === '') {
+	      this.value = this.min + this.inc;
+	    }
+	    if (this.value <= this.min) return this.bell();
+	    this.value -= this.inc;
+	    this.color = `cyan`;
+	    this.fire();
+	    this.render();
+	  }
 
-		delete() {
-			let val = this.value.toString();
-			if (val.length === 0) return this.bell();
-			this.value = this.parse((val = val.slice(0, -1))) || ``;
-			if (this.value !== '' && this.value < this.min) {
-				this.value = this.min;
-			}
-			this.color = `cyan`;
-			this.fire();
-			this.render();
-		}
+	  delete() {
+	    let val = this.value.toString();
+	    if (val.length === 0) return this.bell();
+	    this.value = this.parse((val = val.slice(0, -1))) || ``;
+	    if (this.value !== '' && this.value < this.min) {
+	      this.value = this.min;
+	    }
+	    this.color = `cyan`;
+	    this.fire();
+	    this.render();
+	  }
 
-		next() {
-			this.value = this.initial;
-			this.fire();
-			this.render();
-		}
+	  next() {
+	    this.value = this.initial;
+	    this.fire();
+	    this.render();
+	  }
 
-		_(c, key) {
-			if (!this.valid(c)) return this.bell();
+	  _(c, key) {
+	    if (!this.valid(c)) return this.bell();
 
-			const now = Date.now();
-			if (now - this.lastHit > 1000) this.typed = ``; // 1s elapsed
-			this.typed += c;
-			this.lastHit = now;
-			this.color = `cyan`;
+	    const now = Date.now();
+	    if (now - this.lastHit > 1000) this.typed = ``; // 1s elapsed
+	    this.typed += c;
+	    this.lastHit = now;
+	    this.color = `cyan`;
 
-			if (c === `.`) return this.fire();
+	    if (c === `.`) return this.fire();
 
-			this.value = Math.min(this.parse(this.typed), this.max);
-			if (this.value > this.max) this.value = this.max;
-			if (this.value < this.min) this.value = this.min;
-			this.fire();
-			this.render();
-		}
+	    this.value = Math.min(this.parse(this.typed), this.max);
+	    if (this.value > this.max) this.value = this.max;
+	    if (this.value < this.min) this.value = this.min;
+	    this.fire();
+	    this.render();
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (!this.firstRender) {
-				if (this.outputError)
-					this.out.write(cursor.down(lines(this.outputError, this.out.columns) - 1) + clear(this.outputError, this.out.columns));
-				this.out.write(clear(this.outputText, this.out.columns));
-			}
-			super.render();
-			this.outputError = '';
+	  render() {
+	    if (this.closed) return;
+	    if (!this.firstRender) {
+	      if (this.outputError)
+	        this.out.write(cursor.down(lines(this.outputError, this.out.columns) - 1) + clear(this.outputError, this.out.columns));
+	      this.out.write(clear(this.outputText, this.out.columns));
+	    }
+	    super.render();
+	    this.outputError = '';
 
-			// Print prompt
-			this.outputText = [
-				style.symbol(this.done, this.aborted),
-				color.bold(this.msg),
-				style.delimiter(this.done),
-				!this.done || (!this.done && !this.placeholder)
-					? color[this.color]().underline(this.rendered) : this.rendered
-			].join(` `);
+	    // Print prompt
+	    this.outputText = [
+	      style.symbol(this.done, this.aborted),
+	      color.bold(this.msg),
+	      style.delimiter(this.done),
+	      !this.done || (!this.done && !this.placeholder)
+	          ? color[this.color]().underline(this.rendered) : this.rendered
+	    ].join(` `);
 
-			// Print error
-			if (this.error) {
-				this.outputError += this.errorMsg.split(`\n`)
-					.reduce((a, l, i) => a + `\n${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
-			}
+	    // Print error
+	    if (this.error) {
+	      this.outputError += this.errorMsg.split(`\n`)
+	          .reduce((a, l, i) => a + `\n${i ? ` ` : figures.pointerSmall} ${color.red().italic(l)}`, ``);
+	    }
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore);
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText + cursor.save + this.outputError + cursor.restore);
+	  }
 	}
 
 	number = NumberPrompt;
@@ -5334,7 +5334,7 @@ function requireNumber() {
 var multiselect;
 var hasRequiredMultiselect;
 
-function requireMultiselect() {
+function requireMultiselect () {
 	if (hasRequiredMultiselect) return multiselect;
 	hasRequiredMultiselect = 1;
 
@@ -5357,253 +5357,253 @@ function requireMultiselect() {
 	 * @param {Stream} [opts.stdout] The Writable stream to write readline data to
 	 */
 	class MultiselectPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.cursor = opts.cursor || 0;
-			this.scrollIndex = opts.cursor || 0;
-			this.hint = opts.hint || '';
-			this.warn = opts.warn || '- This option is disabled -';
-			this.minSelected = opts.min;
-			this.showMinError = false;
-			this.maxChoices = opts.max;
-			this.instructions = opts.instructions;
-			this.optionsPerPage = opts.optionsPerPage || 10;
-			this.value = opts.choices.map((ch, idx) => {
-				if (typeof ch === 'string')
-					ch = { title: ch, value: idx };
-				return {
-					title: ch && (ch.title || ch.value || ch),
-					description: ch && ch.description,
-					value: ch && (ch.value === undefined ? idx : ch.value),
-					selected: ch && ch.selected,
-					disabled: ch && ch.disabled
-				};
-			});
-			this.clear = clear('', this.out.columns);
-			if (!opts.overrideRender) {
-				this.render();
-			}
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.cursor = opts.cursor || 0;
+	    this.scrollIndex = opts.cursor || 0;
+	    this.hint = opts.hint || '';
+	    this.warn = opts.warn || '- This option is disabled -';
+	    this.minSelected = opts.min;
+	    this.showMinError = false;
+	    this.maxChoices = opts.max;
+	    this.instructions = opts.instructions;
+	    this.optionsPerPage = opts.optionsPerPage || 10;
+	    this.value = opts.choices.map((ch, idx) => {
+	      if (typeof ch === 'string')
+	        ch = {title: ch, value: idx};
+	      return {
+	        title: ch && (ch.title || ch.value || ch),
+	        description: ch && ch.description,
+	        value: ch && (ch.value === undefined ? idx : ch.value),
+	        selected: ch && ch.selected,
+	        disabled: ch && ch.disabled
+	      };
+	    });
+	    this.clear = clear('', this.out.columns);
+	    if (!opts.overrideRender) {
+	      this.render();
+	    }
+	  }
 
-		reset() {
-			this.value.map(v => !v.selected);
-			this.cursor = 0;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.value.map(v => !v.selected);
+	    this.cursor = 0;
+	    this.fire();
+	    this.render();
+	  }
 
-		selected() {
-			return this.value.filter(v => v.selected);
-		}
+	  selected() {
+	    return this.value.filter(v => v.selected);
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			const selected = this.value
-				.filter(e => e.selected);
-			if (this.minSelected && selected.length < this.minSelected) {
-				this.showMinError = true;
-				this.render();
-			} else {
-				this.done = true;
-				this.aborted = false;
-				this.fire();
-				this.render();
-				this.out.write('\n');
-				this.close();
-			}
-		}
+	  submit() {
+	    const selected = this.value
+	      .filter(e => e.selected);
+	    if (this.minSelected && selected.length < this.minSelected) {
+	      this.showMinError = true;
+	      this.render();
+	    } else {
+	      this.done = true;
+	      this.aborted = false;
+	      this.fire();
+	      this.render();
+	      this.out.write('\n');
+	      this.close();
+	    }
+	  }
 
-		first() {
-			this.cursor = 0;
-			this.render();
-		}
+	  first() {
+	    this.cursor = 0;
+	    this.render();
+	  }
 
-		last() {
-			this.cursor = this.value.length - 1;
-			this.render();
-		}
-		next() {
-			this.cursor = (this.cursor + 1) % this.value.length;
-			this.render();
-		}
+	  last() {
+	    this.cursor = this.value.length - 1;
+	    this.render();
+	  }
+	  next() {
+	    this.cursor = (this.cursor + 1) % this.value.length;
+	    this.render();
+	  }
 
-		up() {
-			if (this.cursor === 0) {
-				this.cursor = this.value.length - 1;
-			} else {
-				this.cursor--;
-			}
-			this.render();
-		}
+	  up() {
+	    if (this.cursor === 0) {
+	      this.cursor = this.value.length - 1;
+	    } else {
+	      this.cursor--;
+	    }
+	    this.render();
+	  }
 
-		down() {
-			if (this.cursor === this.value.length - 1) {
-				this.cursor = 0;
-			} else {
-				this.cursor++;
-			}
-			this.render();
-		}
+	  down() {
+	    if (this.cursor === this.value.length - 1) {
+	      this.cursor = 0;
+	    } else {
+	      this.cursor++;
+	    }
+	    this.render();
+	  }
 
-		left() {
-			this.value[this.cursor].selected = false;
-			this.render();
-		}
+	  left() {
+	    this.value[this.cursor].selected = false;
+	    this.render();
+	  }
 
-		right() {
-			if (this.value.filter(e => e.selected).length >= this.maxChoices) return this.bell();
-			this.value[this.cursor].selected = true;
-			this.render();
-		}
+	  right() {
+	    if (this.value.filter(e => e.selected).length >= this.maxChoices) return this.bell();
+	    this.value[this.cursor].selected = true;
+	    this.render();
+	  }
 
-		handleSpaceToggle() {
-			const v = this.value[this.cursor];
+	  handleSpaceToggle() {
+	    const v = this.value[this.cursor];
 
-			if (v.selected) {
-				v.selected = false;
-				this.render();
-			} else if (v.disabled || this.value.filter(e => e.selected).length >= this.maxChoices) {
-				return this.bell();
-			} else {
-				v.selected = true;
-				this.render();
-			}
-		}
+	    if (v.selected) {
+	      v.selected = false;
+	      this.render();
+	    } else if (v.disabled || this.value.filter(e => e.selected).length >= this.maxChoices) {
+	      return this.bell();
+	    } else {
+	      v.selected = true;
+	      this.render();
+	    }
+	  }
 
-		toggleAll() {
-			if (this.maxChoices !== undefined || this.value[this.cursor].disabled) {
-				return this.bell();
-			}
+	  toggleAll() {
+	    if (this.maxChoices !== undefined || this.value[this.cursor].disabled) {
+	      return this.bell();
+	    }
 
-			const newSelected = !this.value[this.cursor].selected;
-			this.value.filter(v => !v.disabled).forEach(v => v.selected = newSelected);
-			this.render();
-		}
+	    const newSelected = !this.value[this.cursor].selected;
+	    this.value.filter(v => !v.disabled).forEach(v => v.selected = newSelected);
+	    this.render();
+	  }
 
-		_(c, key) {
-			if (c === ' ') {
-				this.handleSpaceToggle();
-			} else if (c === 'a') {
-				this.toggleAll();
-			} else {
-				return this.bell();
-			}
-		}
+	  _(c, key) {
+	    if (c === ' ') {
+	      this.handleSpaceToggle();
+	    } else if (c === 'a') {
+	      this.toggleAll();
+	    } else {
+	      return this.bell();
+	    }
+	  }
 
-		renderInstructions() {
-			if (this.instructions === undefined || this.instructions) {
-				if (typeof this.instructions === 'string') {
-					return this.instructions;
-				}
-				return '\nInstructions:\n'
-					+ `    ${figures.arrowUp}/${figures.arrowDown}: Highlight option\n`
-					+ `    ${figures.arrowLeft}/${figures.arrowRight}/[space]: Toggle selection\n`
-					+ (this.maxChoices === undefined ? `    a: Toggle all\n` : '')
-					+ `    enter/return: Complete answer`;
-			}
-			return '';
-		}
+	  renderInstructions() {
+	    if (this.instructions === undefined || this.instructions) {
+	      if (typeof this.instructions === 'string') {
+	        return this.instructions;
+	      }
+	      return '\nInstructions:\n'
+	        + `    ${figures.arrowUp}/${figures.arrowDown}: Highlight option\n`
+	        + `    ${figures.arrowLeft}/${figures.arrowRight}/[space]: Toggle selection\n`
+	        + (this.maxChoices === undefined ? `    a: Toggle all\n` : '')
+	        + `    enter/return: Complete answer`;
+	    }
+	    return '';
+	  }
 
-		renderOption(cursor, v, i, arrowIndicator) {
-			const prefix = (v.selected ? color.green(figures.radioOn) : figures.radioOff) + ' ' + arrowIndicator + ' ';
-			let title, desc;
+	  renderOption(cursor, v, i, arrowIndicator) {
+	    const prefix = (v.selected ? color.green(figures.radioOn) : figures.radioOff) + ' ' + arrowIndicator + ' ';
+	    let title, desc;
 
-			if (v.disabled) {
-				title = cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-			} else {
-				title = cursor === i ? color.cyan().underline(v.title) : v.title;
-				if (cursor === i && v.description) {
-					desc = ` - ${v.description}`;
-					if (prefix.length + title.length + desc.length >= this.out.columns
-						|| v.description.split(/\r?\n/).length > 1) {
-						desc = '\n' + wrap(v.description, { margin: prefix.length, width: this.out.columns });
-					}
-				}
-			}
+	    if (v.disabled) {
+	      title = cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+	    } else {
+	      title = cursor === i ? color.cyan().underline(v.title) : v.title;
+	      if (cursor === i && v.description) {
+	        desc = ` - ${v.description}`;
+	        if (prefix.length + title.length + desc.length >= this.out.columns
+	          || v.description.split(/\r?\n/).length > 1) {
+	          desc = '\n' + wrap(v.description, { margin: prefix.length, width: this.out.columns });
+	        }
+	      }
+	    }
 
-			return prefix + title + color.gray(desc || '');
-		}
+	    return prefix + title + color.gray(desc || '');
+	  }
 
-		// shared with autocompleteMultiselect
-		paginateOptions(options) {
-			if (options.length === 0) {
-				return color.red('No matches for this query.');
-			}
+	  // shared with autocompleteMultiselect
+	  paginateOptions(options) {
+	    if (options.length === 0) {
+	      return color.red('No matches for this query.');
+	    }
 
-			let { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
-			let prefix, styledOptions = [];
+	    let { startIndex, endIndex } = entriesToDisplay(this.cursor, options.length, this.optionsPerPage);
+	    let prefix, styledOptions = [];
 
-			for (let i = startIndex; i < endIndex; i++) {
-				if (i === startIndex && startIndex > 0) {
-					prefix = figures.arrowUp;
-				} else if (i === endIndex - 1 && endIndex < options.length) {
-					prefix = figures.arrowDown;
-				} else {
-					prefix = ' ';
-				}
-				styledOptions.push(this.renderOption(this.cursor, options[i], i, prefix));
-			}
+	    for (let i = startIndex; i < endIndex; i++) {
+	      if (i === startIndex && startIndex > 0) {
+	        prefix = figures.arrowUp;
+	      } else if (i === endIndex - 1 && endIndex < options.length) {
+	        prefix = figures.arrowDown;
+	      } else {
+	        prefix = ' ';
+	      }
+	      styledOptions.push(this.renderOption(this.cursor, options[i], i, prefix));
+	    }
 
-			return '\n' + styledOptions.join('\n');
-		}
+	    return '\n' + styledOptions.join('\n');
+	  }
 
-		// shared with autocomleteMultiselect
-		renderOptions(options) {
-			if (!this.done) {
-				return this.paginateOptions(options);
-			}
-			return '';
-		}
+	  // shared with autocomleteMultiselect
+	  renderOptions(options) {
+	    if (!this.done) {
+	      return this.paginateOptions(options);
+	    }
+	    return '';
+	  }
 
-		renderDoneOrInstructions() {
-			if (this.done) {
-				return this.value
-					.filter(e => e.selected)
-					.map(v => v.title)
-					.join(', ');
-			}
+	  renderDoneOrInstructions() {
+	    if (this.done) {
+	      return this.value
+	        .filter(e => e.selected)
+	        .map(v => v.title)
+	        .join(', ');
+	    }
 
-			const output = [color.gray(this.hint), this.renderInstructions()];
+	    const output = [color.gray(this.hint), this.renderInstructions()];
 
-			if (this.value[this.cursor].disabled) {
-				output.push(color.yellow(this.warn));
-			}
-			return output.join(' ');
-		}
+	    if (this.value[this.cursor].disabled) {
+	      output.push(color.yellow(this.warn));
+	    }
+	    return output.join(' ');
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    super.render();
 
-			// print prompt
-			let prompt = [
-				style.symbol(this.done, this.aborted),
-				color.bold(this.msg),
-				style.delimiter(false),
-				this.renderDoneOrInstructions()
-			].join(' ');
-			if (this.showMinError) {
-				prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
-				this.showMinError = false;
-			}
-			prompt += this.renderOptions(this.value);
+	    // print prompt
+	    let prompt = [
+	      style.symbol(this.done, this.aborted),
+	      color.bold(this.msg),
+	      style.delimiter(false),
+	      this.renderDoneOrInstructions()
+	    ].join(' ');
+	    if (this.showMinError) {
+	      prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
+	      this.showMinError = false;
+	    }
+	    prompt += this.renderOptions(this.value);
 
-			this.out.write(this.clear + prompt);
-			this.clear = clear(prompt, this.out.columns);
-		}
+	    this.out.write(this.clear + prompt);
+	    this.clear = clear(prompt, this.out.columns);
+	  }
 	}
 
 	multiselect = MultiselectPrompt;
@@ -5613,7 +5613,7 @@ function requireMultiselect() {
 var autocomplete;
 var hasRequiredAutocomplete;
 
-function requireAutocomplete() {
+function requireAutocomplete () {
 	if (hasRequiredAutocomplete) return autocomplete;
 	hasRequiredAutocomplete = 1;
 
@@ -5625,8 +5625,8 @@ function requireAutocomplete() {
 	const getVal = (arr, i) => arr[i] && (arr[i].value || arr[i].title || arr[i]);
 	const getTitle = (arr, i) => arr[i] && (arr[i].title || arr[i].value || arr[i]);
 	const getIndex = (arr, valOrTitle) => {
-		const index = arr.findIndex(el => el.value === valOrTitle || el.title === valOrTitle);
-		return index > -1 ? index : undefined;
+	  const index = arr.findIndex(el => el.value === valOrTitle || el.title === valOrTitle);
+	  return index > -1 ? index : undefined;
 	};
 
 	/**
@@ -5646,236 +5646,236 @@ function requireAutocomplete() {
 	 * @param {String} [opts.noMatches] The no matches found label
 	 */
 	class AutocompletePrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.suggest = opts.suggest;
-			this.choices = opts.choices;
-			this.initial = typeof opts.initial === 'number'
-				? opts.initial
-				: getIndex(opts.choices, opts.initial);
-			this.select = this.initial || opts.cursor || 0;
-			this.i18n = { noMatches: opts.noMatches || 'no matches found' };
-			this.fallback = opts.fallback || this.initial;
-			this.clearFirst = opts.clearFirst || false;
-			this.suggestions = [];
-			this.input = '';
-			this.limit = opts.limit || 10;
-			this.cursor = 0;
-			this.transform = style.render(opts.style);
-			this.scale = this.transform.scale;
-			this.render = this.render.bind(this);
-			this.complete = this.complete.bind(this);
-			this.clear = clear('', this.out.columns);
-			this.complete(this.render);
-			this.render();
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.suggest = opts.suggest;
+	    this.choices = opts.choices;
+	    this.initial = typeof opts.initial === 'number'
+	      ? opts.initial
+	      : getIndex(opts.choices, opts.initial);
+	    this.select = this.initial || opts.cursor || 0;
+	    this.i18n = { noMatches: opts.noMatches || 'no matches found' };
+	    this.fallback = opts.fallback || this.initial;
+	    this.clearFirst = opts.clearFirst || false;
+	    this.suggestions = [];
+	    this.input = '';
+	    this.limit = opts.limit || 10;
+	    this.cursor = 0;
+	    this.transform = style.render(opts.style);
+	    this.scale = this.transform.scale;
+	    this.render = this.render.bind(this);
+	    this.complete = this.complete.bind(this);
+	    this.clear = clear('', this.out.columns);
+	    this.complete(this.render);
+	    this.render();
+	  }
 
-		set fallback(fb) {
-			this._fb = Number.isSafeInteger(parseInt(fb)) ? parseInt(fb) : fb;
-		}
+	  set fallback(fb) {
+	    this._fb = Number.isSafeInteger(parseInt(fb)) ? parseInt(fb) : fb;
+	  }
 
-		get fallback() {
-			let choice;
-			if (typeof this._fb === 'number')
-				choice = this.choices[this._fb];
-			else if (typeof this._fb === 'string')
-				choice = { title: this._fb };
-			return choice || this._fb || { title: this.i18n.noMatches };
-		}
+	  get fallback() {
+	    let choice;
+	    if (typeof this._fb === 'number')
+	      choice = this.choices[this._fb];
+	    else if (typeof this._fb === 'string')
+	      choice = { title: this._fb };
+	    return choice || this._fb || { title: this.i18n.noMatches };
+	  }
 
-		moveSelect(i) {
-			this.select = i;
-			if (this.suggestions.length > 0)
-				this.value = getVal(this.suggestions, i);
-			else this.value = this.fallback.value;
-			this.fire();
-		}
+	  moveSelect(i) {
+	    this.select = i;
+	    if (this.suggestions.length > 0)
+	      this.value = getVal(this.suggestions, i);
+	    else this.value = this.fallback.value;
+	    this.fire();
+	  }
 
-		async complete(cb) {
-			const p = (this.completing = this.suggest(this.input, this.choices));
-			const suggestions = await p;
+	  async complete(cb) {
+	    const p = (this.completing = this.suggest(this.input, this.choices));
+	    const suggestions = await p;
 
-			if (this.completing !== p) return;
-			this.suggestions = suggestions
-				.map((s, i, arr) => ({ title: getTitle(arr, i), value: getVal(arr, i), description: s.description }));
-			this.completing = false;
-			const l = Math.max(suggestions.length - 1, 0);
-			this.moveSelect(Math.min(l, this.select));
+	    if (this.completing !== p) return;
+	    this.suggestions = suggestions
+	      .map((s, i, arr) => ({ title: getTitle(arr, i), value: getVal(arr, i), description: s.description }));
+	    this.completing = false;
+	    const l = Math.max(suggestions.length - 1, 0);
+	    this.moveSelect(Math.min(l, this.select));
 
-			cb && cb();
-		}
+	    cb && cb();
+	  }
 
-		reset() {
-			this.input = '';
-			this.complete(() => {
-				this.moveSelect(this.initial !== void 0 ? this.initial : 0);
-				this.render();
-			});
-			this.render();
-		}
+	  reset() {
+	    this.input = '';
+	    this.complete(() => {
+	      this.moveSelect(this.initial !== void 0 ? this.initial : 0);
+	      this.render();
+	    });
+	    this.render();
+	  }
 
-		exit() {
-			if (this.clearFirst && this.input.length > 0) {
-				this.reset();
-			} else {
-				this.done = this.exited = true;
-				this.aborted = false;
-				this.fire();
-				this.render();
-				this.out.write('\n');
-				this.close();
-			}
-		}
+	  exit() {
+	    if (this.clearFirst && this.input.length > 0) {
+	      this.reset();
+	    } else {
+	      this.done = this.exited = true; 
+	      this.aborted = false;
+	      this.fire();
+	      this.render();
+	      this.out.write('\n');
+	      this.close();
+	    }
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.exited = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.exited = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			this.done = true;
-			this.aborted = this.exited = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  submit() {
+	    this.done = true;
+	    this.aborted = this.exited = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		_(c, key) {
-			let s1 = this.input.slice(0, this.cursor);
-			let s2 = this.input.slice(this.cursor);
-			this.input = `${s1}${c}${s2}`;
-			this.cursor = s1.length + 1;
-			this.complete(this.render);
-			this.render();
-		}
+	  _(c, key) {
+	    let s1 = this.input.slice(0, this.cursor);
+	    let s2 = this.input.slice(this.cursor);
+	    this.input = `${s1}${c}${s2}`;
+	    this.cursor = s1.length+1;
+	    this.complete(this.render);
+	    this.render();
+	  }
 
-		delete() {
-			if (this.cursor === 0) return this.bell();
-			let s1 = this.input.slice(0, this.cursor - 1);
-			let s2 = this.input.slice(this.cursor);
-			this.input = `${s1}${s2}`;
-			this.complete(this.render);
-			this.cursor = this.cursor - 1;
-			this.render();
-		}
+	  delete() {
+	    if (this.cursor === 0) return this.bell();
+	    let s1 = this.input.slice(0, this.cursor-1);
+	    let s2 = this.input.slice(this.cursor);
+	    this.input = `${s1}${s2}`;
+	    this.complete(this.render);
+	    this.cursor = this.cursor-1;
+	    this.render();
+	  }
 
-		deleteForward() {
-			if (this.cursor * this.scale >= this.rendered.length) return this.bell();
-			let s1 = this.input.slice(0, this.cursor);
-			let s2 = this.input.slice(this.cursor + 1);
-			this.input = `${s1}${s2}`;
-			this.complete(this.render);
-			this.render();
-		}
+	  deleteForward() {
+	    if(this.cursor*this.scale >= this.rendered.length) return this.bell();
+	    let s1 = this.input.slice(0, this.cursor);
+	    let s2 = this.input.slice(this.cursor+1);
+	    this.input = `${s1}${s2}`;
+	    this.complete(this.render);
+	    this.render();
+	  }
 
-		first() {
-			this.moveSelect(0);
-			this.render();
-		}
+	  first() {
+	    this.moveSelect(0);
+	    this.render();
+	  }
 
-		last() {
-			this.moveSelect(this.suggestions.length - 1);
-			this.render();
-		}
+	  last() {
+	    this.moveSelect(this.suggestions.length - 1);
+	    this.render();
+	  }
 
-		up() {
-			if (this.select === 0) {
-				this.moveSelect(this.suggestions.length - 1);
-			} else {
-				this.moveSelect(this.select - 1);
-			}
-			this.render();
-		}
+	  up() {
+	    if (this.select === 0) {
+	      this.moveSelect(this.suggestions.length - 1);
+	    } else {
+	      this.moveSelect(this.select - 1);
+	    }
+	    this.render();
+	  }
 
-		down() {
-			if (this.select === this.suggestions.length - 1) {
-				this.moveSelect(0);
-			} else {
-				this.moveSelect(this.select + 1);
-			}
-			this.render();
-		}
+	  down() {
+	    if (this.select === this.suggestions.length - 1) {
+	      this.moveSelect(0);
+	    } else {
+	      this.moveSelect(this.select + 1);
+	    }
+	    this.render();
+	  }
 
-		next() {
-			if (this.select === this.suggestions.length - 1) {
-				this.moveSelect(0);
-			} else this.moveSelect(this.select + 1);
-			this.render();
-		}
+	  next() {
+	    if (this.select === this.suggestions.length - 1) {
+	      this.moveSelect(0);
+	    } else this.moveSelect(this.select + 1);
+	    this.render();
+	  }
 
-		nextPage() {
-			this.moveSelect(Math.min(this.select + this.limit, this.suggestions.length - 1));
-			this.render();
-		}
+	  nextPage() {
+	    this.moveSelect(Math.min(this.select + this.limit, this.suggestions.length - 1));
+	    this.render();
+	  }
 
-		prevPage() {
-			this.moveSelect(Math.max(this.select - this.limit, 0));
-			this.render();
-		}
+	  prevPage() {
+	    this.moveSelect(Math.max(this.select - this.limit, 0));
+	    this.render();
+	  }
 
-		left() {
-			if (this.cursor <= 0) return this.bell();
-			this.cursor = this.cursor - 1;
-			this.render();
-		}
+	  left() {
+	    if (this.cursor <= 0) return this.bell();
+	    this.cursor = this.cursor-1;
+	    this.render();
+	  }
 
-		right() {
-			if (this.cursor * this.scale >= this.rendered.length) return this.bell();
-			this.cursor = this.cursor + 1;
-			this.render();
-		}
+	  right() {
+	    if (this.cursor*this.scale >= this.rendered.length) return this.bell();
+	    this.cursor = this.cursor+1;
+	    this.render();
+	  }
 
-		renderOption(v, hovered, isStart, isEnd) {
-			let desc;
-			let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : ' ';
-			let title = hovered ? color.cyan().underline(v.title) : v.title;
-			prefix = (hovered ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
-			if (v.description) {
-				desc = ` - ${v.description}`;
-				if (prefix.length + title.length + desc.length >= this.out.columns
-					|| v.description.split(/\r?\n/).length > 1) {
-					desc = '\n' + wrap(v.description, { margin: 3, width: this.out.columns });
-				}
-			}
-			return prefix + ' ' + title + color.gray(desc || '');
-		}
+	  renderOption(v, hovered, isStart, isEnd) {
+	    let desc;
+	    let prefix = isStart ? figures.arrowUp : isEnd ? figures.arrowDown : ' ';
+	    let title = hovered ? color.cyan().underline(v.title) : v.title;
+	    prefix = (hovered ? color.cyan(figures.pointer) + ' ' : '  ') + prefix;
+	    if (v.description) {
+	      desc = ` - ${v.description}`;
+	      if (prefix.length + title.length + desc.length >= this.out.columns
+	        || v.description.split(/\r?\n/).length > 1) {
+	        desc = '\n' + wrap(v.description, { margin: 3, width: this.out.columns });
+	      }
+	    }
+	    return prefix + ' ' + title + color.gray(desc || '');
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
 
-			let { startIndex, endIndex } = entriesToDisplay(this.select, this.choices.length, this.limit);
+	    let { startIndex, endIndex } = entriesToDisplay(this.select, this.choices.length, this.limit);
 
-			this.outputText = [
-				style.symbol(this.done, this.aborted, this.exited),
-				color.bold(this.msg),
-				style.delimiter(this.completing),
-				this.done && this.suggestions[this.select]
-					? this.suggestions[this.select].title
-					: this.rendered = this.transform.render(this.input)
-			].join(' ');
+	    this.outputText = [
+	      style.symbol(this.done, this.aborted, this.exited),
+	      color.bold(this.msg),
+	      style.delimiter(this.completing),
+	      this.done && this.suggestions[this.select]
+	        ? this.suggestions[this.select].title
+	        : this.rendered = this.transform.render(this.input)
+	    ].join(' ');
 
-			if (!this.done) {
-				const suggestions = this.suggestions
-					.slice(startIndex, endIndex)
-					.map((item, i) => this.renderOption(item,
-						this.select === i + startIndex,
-						i === 0 && startIndex > 0,
-						i + startIndex === endIndex - 1 && endIndex < this.choices.length))
-					.join('\n');
-				this.outputText += `\n` + (suggestions || color.gray(this.fallback.title));
-			}
+	    if (!this.done) {
+	      const suggestions = this.suggestions
+	        .slice(startIndex, endIndex)
+	        .map((item, i) =>  this.renderOption(item,
+	          this.select === i + startIndex,
+	          i === 0 && startIndex > 0,
+	          i + startIndex === endIndex - 1 && endIndex < this.choices.length))
+	        .join('\n');
+	      this.outputText += `\n` + (suggestions || color.gray(this.fallback.title));
+	    }
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText);
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText);
+	  }
 	}
 
 	autocomplete = AutocompletePrompt;
@@ -5885,7 +5885,7 @@ function requireAutocomplete() {
 var autocompleteMultiselect;
 var hasRequiredAutocompleteMultiselect;
 
-function requireAutocompleteMultiselect() {
+function requireAutocompleteMultiselect () {
 	if (hasRequiredAutocompleteMultiselect) return autocompleteMultiselect;
 	hasRequiredAutocompleteMultiselect = 1;
 
@@ -5906,178 +5906,178 @@ function requireAutocompleteMultiselect() {
 	 * @param {Stream} [opts.stdout] The Writable stream to write readline data to
 	 */
 	class AutocompleteMultiselectPrompt extends MultiselectPrompt {
-		constructor(opts = {}) {
-			opts.overrideRender = true;
-			super(opts);
-			this.inputValue = '';
-			this.clear = clear('', this.out.columns);
-			this.filteredOptions = this.value;
-			this.render();
-		}
+	  constructor(opts={}) {
+	    opts.overrideRender = true;
+	    super(opts);
+	    this.inputValue = '';
+	    this.clear = clear('', this.out.columns);
+	    this.filteredOptions = this.value;
+	    this.render();
+	  }
 
-		last() {
-			this.cursor = this.filteredOptions.length - 1;
-			this.render();
-		}
-		next() {
-			this.cursor = (this.cursor + 1) % this.filteredOptions.length;
-			this.render();
-		}
+	  last() {
+	    this.cursor = this.filteredOptions.length - 1;
+	    this.render();
+	  }
+	  next() {
+	    this.cursor = (this.cursor + 1) % this.filteredOptions.length;
+	    this.render();
+	  }
 
-		up() {
-			if (this.cursor === 0) {
-				this.cursor = this.filteredOptions.length - 1;
-			} else {
-				this.cursor--;
-			}
-			this.render();
-		}
+	  up() {
+	    if (this.cursor === 0) {
+	      this.cursor = this.filteredOptions.length - 1;
+	    } else {
+	      this.cursor--;
+	    }
+	    this.render();
+	  }
 
-		down() {
-			if (this.cursor === this.filteredOptions.length - 1) {
-				this.cursor = 0;
-			} else {
-				this.cursor++;
-			}
-			this.render();
-		}
+	  down() {
+	    if (this.cursor === this.filteredOptions.length - 1) {
+	      this.cursor = 0;
+	    } else {
+	      this.cursor++;
+	    }
+	    this.render();
+	  }
 
-		left() {
-			this.filteredOptions[this.cursor].selected = false;
-			this.render();
-		}
+	  left() {
+	    this.filteredOptions[this.cursor].selected = false;
+	    this.render();
+	  }
 
-		right() {
-			if (this.value.filter(e => e.selected).length >= this.maxChoices) return this.bell();
-			this.filteredOptions[this.cursor].selected = true;
-			this.render();
-		}
+	  right() {
+	    if (this.value.filter(e => e.selected).length >= this.maxChoices) return this.bell();
+	    this.filteredOptions[this.cursor].selected = true;
+	    this.render();
+	  }
 
-		delete() {
-			if (this.inputValue.length) {
-				this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
-				this.updateFilteredOptions();
-			}
-		}
+	  delete() {
+	    if (this.inputValue.length) {
+	      this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
+	      this.updateFilteredOptions();
+	    }
+	  }
 
-		updateFilteredOptions() {
-			const currentHighlight = this.filteredOptions[this.cursor];
-			this.filteredOptions = this.value
-				.filter(v => {
-					if (this.inputValue) {
-						if (typeof v.title === 'string') {
-							if (v.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
-								return true;
-							}
-						}
-						if (typeof v.value === 'string') {
-							if (v.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
-								return true;
-							}
-						}
-						return false;
-					}
-					return true;
-				});
-			const newHighlightIndex = this.filteredOptions.findIndex(v => v === currentHighlight);
-			this.cursor = newHighlightIndex < 0 ? 0 : newHighlightIndex;
-			this.render();
-		}
+	  updateFilteredOptions() {
+	    const currentHighlight = this.filteredOptions[this.cursor];
+	    this.filteredOptions = this.value
+	      .filter(v => {
+	        if (this.inputValue) {
+	          if (typeof v.title === 'string') {
+	            if (v.title.toLowerCase().includes(this.inputValue.toLowerCase())) {
+	              return true;
+	            }
+	          }
+	          if (typeof v.value === 'string') {
+	            if (v.value.toLowerCase().includes(this.inputValue.toLowerCase())) {
+	              return true;
+	            }
+	          }
+	          return false;
+	        }
+	        return true;
+	      });
+	    const newHighlightIndex = this.filteredOptions.findIndex(v => v === currentHighlight);
+	    this.cursor = newHighlightIndex < 0 ? 0 : newHighlightIndex;
+	    this.render();
+	  }
 
-		handleSpaceToggle() {
-			const v = this.filteredOptions[this.cursor];
+	  handleSpaceToggle() {
+	    const v = this.filteredOptions[this.cursor];
 
-			if (v.selected) {
-				v.selected = false;
-				this.render();
-			} else if (v.disabled || this.value.filter(e => e.selected).length >= this.maxChoices) {
-				return this.bell();
-			} else {
-				v.selected = true;
-				this.render();
-			}
-		}
+	    if (v.selected) {
+	      v.selected = false;
+	      this.render();
+	    } else if (v.disabled || this.value.filter(e => e.selected).length >= this.maxChoices) {
+	      return this.bell();
+	    } else {
+	      v.selected = true;
+	      this.render();
+	    }
+	  }
 
-		handleInputChange(c) {
-			this.inputValue = this.inputValue + c;
-			this.updateFilteredOptions();
-		}
+	  handleInputChange(c) {
+	    this.inputValue = this.inputValue + c;
+	    this.updateFilteredOptions();
+	  }
 
-		_(c, key) {
-			if (c === ' ') {
-				this.handleSpaceToggle();
-			} else {
-				this.handleInputChange(c);
-			}
-		}
+	  _(c, key) {
+	    if (c === ' ') {
+	      this.handleSpaceToggle();
+	    } else {
+	      this.handleInputChange(c);
+	    }
+	  }
 
-		renderInstructions() {
-			if (this.instructions === undefined || this.instructions) {
-				if (typeof this.instructions === 'string') {
-					return this.instructions;
-				}
-				return `
+	  renderInstructions() {
+	    if (this.instructions === undefined || this.instructions) {
+	      if (typeof this.instructions === 'string') {
+	        return this.instructions;
+	      }
+	      return `
 Instructions:
     ${figures.arrowUp}/${figures.arrowDown}: Highlight option
     ${figures.arrowLeft}/${figures.arrowRight}/[space]: Toggle selection
     [a,b,c]/delete: Filter choices
     enter/return: Complete answer
 `;
-			}
-			return '';
-		}
+	    }
+	    return '';
+	  }
 
-		renderCurrentInput() {
-			return `
+	  renderCurrentInput() {
+	    return `
 Filtered results for: ${this.inputValue ? this.inputValue : color.gray('Enter something to filter')}\n`;
-		}
+	  }
 
-		renderOption(cursor, v, i) {
-			let title;
-			if (v.disabled) title = cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
-			else title = cursor === i ? color.cyan().underline(v.title) : v.title;
-			return (v.selected ? color.green(figures.radioOn) : figures.radioOff) + '  ' + title
-		}
+	  renderOption(cursor, v, i) {
+	    let title;
+	    if (v.disabled) title = cursor === i ? color.gray().underline(v.title) : color.strikethrough().gray(v.title);
+	    else title = cursor === i ? color.cyan().underline(v.title) : v.title;
+	    return (v.selected ? color.green(figures.radioOn) : figures.radioOff) + '  ' + title
+	  }
 
-		renderDoneOrInstructions() {
-			if (this.done) {
-				return this.value
-					.filter(e => e.selected)
-					.map(v => v.title)
-					.join(', ');
-			}
+	  renderDoneOrInstructions() {
+	    if (this.done) {
+	      return this.value
+	        .filter(e => e.selected)
+	        .map(v => v.title)
+	        .join(', ');
+	    }
 
-			const output = [color.gray(this.hint), this.renderInstructions(), this.renderCurrentInput()];
+	    const output = [color.gray(this.hint), this.renderInstructions(), this.renderCurrentInput()];
 
-			if (this.filteredOptions.length && this.filteredOptions[this.cursor].disabled) {
-				output.push(color.yellow(this.warn));
-			}
-			return output.join(' ');
-		}
+	    if (this.filteredOptions.length && this.filteredOptions[this.cursor].disabled) {
+	      output.push(color.yellow(this.warn));
+	    }
+	    return output.join(' ');
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    super.render();
 
-			// print prompt
+	    // print prompt
 
-			let prompt = [
-				style.symbol(this.done, this.aborted),
-				color.bold(this.msg),
-				style.delimiter(false),
-				this.renderDoneOrInstructions()
-			].join(' ');
+	    let prompt = [
+	      style.symbol(this.done, this.aborted),
+	      color.bold(this.msg),
+	      style.delimiter(false),
+	      this.renderDoneOrInstructions()
+	    ].join(' ');
 
-			if (this.showMinError) {
-				prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
-				this.showMinError = false;
-			}
-			prompt += this.renderOptions(this.filteredOptions);
+	    if (this.showMinError) {
+	      prompt += color.red(`You must select a minimum of ${this.minSelected} choices.`);
+	      this.showMinError = false;
+	    }
+	    prompt += this.renderOptions(this.filteredOptions);
 
-			this.out.write(this.clear + prompt);
-			this.clear = clear(prompt, this.out.columns);
-		}
+	    this.out.write(this.clear + prompt);
+	    this.clear = clear(prompt, this.out.columns);
+	  }
 	}
 
 	autocompleteMultiselect = AutocompleteMultiselectPrompt;
@@ -6087,7 +6087,7 @@ Filtered results for: ${this.inputValue ? this.inputValue : color.gray('Enter so
 var confirm;
 var hasRequiredConfirm;
 
-function requireConfirm() {
+function requireConfirm () {
 	if (hasRequiredConfirm) return confirm;
 	hasRequiredConfirm = 1;
 	const color = requireKleur();
@@ -6108,74 +6108,74 @@ function requireConfirm() {
 	 * @param {String} [opts.noOption] The "No" option when choosing between yes/no
 	 */
 	class ConfirmPrompt extends Prompt {
-		constructor(opts = {}) {
-			super(opts);
-			this.msg = opts.message;
-			this.value = opts.initial;
-			this.initialValue = !!opts.initial;
-			this.yesMsg = opts.yes || 'yes';
-			this.yesOption = opts.yesOption || '(Y/n)';
-			this.noMsg = opts.no || 'no';
-			this.noOption = opts.noOption || '(y/N)';
-			this.render();
-		}
+	  constructor(opts={}) {
+	    super(opts);
+	    this.msg = opts.message;
+	    this.value = opts.initial;
+	    this.initialValue = !!opts.initial;
+	    this.yesMsg = opts.yes || 'yes';
+	    this.yesOption = opts.yesOption || '(Y/n)';
+	    this.noMsg = opts.no || 'no';
+	    this.noOption = opts.noOption || '(y/N)';
+	    this.render();
+	  }
 
-		reset() {
-			this.value = this.initialValue;
-			this.fire();
-			this.render();
-		}
+	  reset() {
+	    this.value = this.initialValue;
+	    this.fire();
+	    this.render();
+	  }
 
-		exit() {
-			this.abort();
-		}
+	  exit() {
+	    this.abort();
+	  }
 
-		abort() {
-			this.done = this.aborted = true;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  abort() {
+	    this.done = this.aborted = true;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		submit() {
-			this.value = this.value || false;
-			this.done = true;
-			this.aborted = false;
-			this.fire();
-			this.render();
-			this.out.write('\n');
-			this.close();
-		}
+	  submit() {
+	    this.value = this.value || false;
+	    this.done = true;
+	    this.aborted = false;
+	    this.fire();
+	    this.render();
+	    this.out.write('\n');
+	    this.close();
+	  }
 
-		_(c, key) {
-			if (c.toLowerCase() === 'y') {
-				this.value = true;
-				return this.submit();
-			}
-			if (c.toLowerCase() === 'n') {
-				this.value = false;
-				return this.submit();
-			}
-			return this.bell();
-		}
+	  _(c, key) {
+	    if (c.toLowerCase() === 'y') {
+	      this.value = true;
+	      return this.submit();
+	    }
+	    if (c.toLowerCase() === 'n') {
+	      this.value = false;
+	      return this.submit();
+	    }
+	    return this.bell();
+	  }
 
-		render() {
-			if (this.closed) return;
-			if (this.firstRender) this.out.write(cursor.hide);
-			else this.out.write(clear(this.outputText, this.out.columns));
-			super.render();
+	  render() {
+	    if (this.closed) return;
+	    if (this.firstRender) this.out.write(cursor.hide);
+	    else this.out.write(clear(this.outputText, this.out.columns));
+	    super.render();
 
-			this.outputText = [
-				style.symbol(this.done, this.aborted),
-				color.bold(this.msg),
-				style.delimiter(this.done),
-				this.done ? (this.value ? this.yesMsg : this.noMsg)
-					: color.gray(this.initialValue ? this.yesOption : this.noOption)
-			].join(' ');
+	    this.outputText = [
+	      style.symbol(this.done, this.aborted),
+	      color.bold(this.msg),
+	      style.delimiter(this.done),
+	      this.done ? (this.value ? this.yesMsg : this.noMsg)
+	          : color.gray(this.initialValue ? this.yesOption : this.noOption)
+	    ].join(' ');
 
-			this.out.write(erase.line + cursor.to(0) + this.outputText);
-		}
+	    this.out.write(erase.line + cursor.to(0) + this.outputText);
+	  }
 	}
 
 	confirm = ConfirmPrompt;
@@ -6185,27 +6185,27 @@ function requireConfirm() {
 var elements;
 var hasRequiredElements;
 
-function requireElements() {
+function requireElements () {
 	if (hasRequiredElements) return elements;
 	hasRequiredElements = 1;
 
 	elements = {
-		TextPrompt: requireText(),
-		SelectPrompt: requireSelect(),
-		TogglePrompt: requireToggle(),
-		DatePrompt: requireDate(),
-		NumberPrompt: requireNumber(),
-		MultiselectPrompt: requireMultiselect(),
-		AutocompletePrompt: requireAutocomplete(),
-		AutocompleteMultiselectPrompt: requireAutocompleteMultiselect(),
-		ConfirmPrompt: requireConfirm()
+	  TextPrompt: requireText(),
+	  SelectPrompt: requireSelect(),
+	  TogglePrompt: requireToggle(),
+	  DatePrompt: requireDate(),
+	  NumberPrompt: requireNumber(),
+	  MultiselectPrompt: requireMultiselect(),
+	  AutocompletePrompt: requireAutocomplete(),
+	  AutocompleteMultiselectPrompt: requireAutocompleteMultiselect(),
+	  ConfirmPrompt: requireConfirm()
 	};
 	return elements;
 }
 
 var hasRequiredPrompts;
 
-function requirePrompts() {
+function requirePrompts () {
 	if (hasRequiredPrompts) return prompts$2;
 	hasRequiredPrompts = 1;
 	(function (exports) {
@@ -6213,17 +6213,17 @@ function requirePrompts() {
 		const el = requireElements();
 		const noop = v => v;
 
-		function toPrompt(type, args, opts = {}) {
-			return new Promise((res, rej) => {
-				const p = new el[type](args);
-				const onAbort = opts.onAbort || noop;
-				const onSubmit = opts.onSubmit || noop;
-				const onExit = opts.onExit || noop;
-				p.on('state', args.onState || noop);
-				p.on('submit', x => res(onSubmit(x)));
-				p.on('exit', x => res(onExit(x)));
-				p.on('abort', x => rej(onAbort(x)));
-			});
+		function toPrompt(type, args, opts={}) {
+		  return new Promise((res, rej) => {
+		    const p = new el[type](args);
+		    const onAbort = opts.onAbort || noop;
+		    const onSubmit = opts.onSubmit || noop;
+		    const onExit = opts.onExit || noop;
+		    p.on('state', args.onState || noop);
+		    p.on('submit', x => res(onSubmit(x)));
+		    p.on('exit', x => res(onExit(x)));
+		    p.on('abort', x => rej(onAbort(x)));
+		  });
 		}
 
 		/**
@@ -6250,8 +6250,8 @@ function requirePrompts() {
 		 * @returns {Promise} Promise with user input
 		 */
 		$.password = args => {
-			args.style = 'password';
-			return $.text(args);
+		  args.style = 'password';
+		  return $.text(args);
 		};
 
 		/**
@@ -6265,8 +6265,8 @@ function requirePrompts() {
 		 * @returns {Promise} Promise with user input
 		 */
 		$.invisible = args => {
-			args.style = 'invisible';
-			return $.text(args);
+		  args.style = 'invisible';
+		  return $.text(args);
 		};
 
 		/**
@@ -6328,10 +6328,10 @@ function requirePrompts() {
 		 * @returns {Promise} Promise with user input, in form of an `Array`
 		 */
 		$.list = args => {
-			const sep = args.separator || ',';
-			return toPrompt('TextPrompt', args, {
-				onSubmit: str => str.split(sep).map(s => s.trim())
-			});
+		  const sep = args.separator || ',';
+		  return toPrompt('TextPrompt', args, {
+		    onSubmit: str => str.split(sep).map(s => s.trim())
+		  });
 		};
 
 		/**
@@ -6373,25 +6373,25 @@ function requirePrompts() {
 		 * @returns {Promise} Promise with user input
 		 */
 		$.multiselect = args => {
-			args.choices = [].concat(args.choices || []);
-			const toSelected = items => items.filter(item => item.selected).map(item => item.value);
-			return toPrompt('MultiselectPrompt', args, {
-				onAbort: toSelected,
-				onSubmit: toSelected
-			});
+		  args.choices = [].concat(args.choices || []);
+		  const toSelected = items => items.filter(item => item.selected).map(item => item.value);
+		  return toPrompt('MultiselectPrompt', args, {
+		    onAbort: toSelected,
+		    onSubmit: toSelected
+		  });
 		};
 
 		$.autocompleteMultiselect = args => {
-			args.choices = [].concat(args.choices || []);
-			const toSelected = items => items.filter(item => item.selected).map(item => item.value);
-			return toPrompt('AutocompleteMultiselectPrompt', args, {
-				onAbort: toSelected,
-				onSubmit: toSelected
-			});
+		  args.choices = [].concat(args.choices || []);
+		  const toSelected = items => items.filter(item => item.selected).map(item => item.value);
+		  return toPrompt('AutocompleteMultiselectPrompt', args, {
+		    onAbort: toSelected,
+		    onSubmit: toSelected
+		  });
 		};
 
 		const byTitle = (input, choices) => Promise.resolve(
-			choices.filter(item => item.title.slice(0, input.length).toLowerCase() === input.toLowerCase())
+		  choices.filter(item => item.title.slice(0, input.length).toLowerCase() === input.toLowerCase())
 		);
 
 		/**
@@ -6410,25 +6410,25 @@ function requirePrompts() {
 		 * @returns {Promise} Promise with user input
 		 */
 		$.autocomplete = args => {
-			args.suggest = args.suggest || byTitle;
-			args.choices = [].concat(args.choices || []);
-			return toPrompt('AutocompletePrompt', args);
-		};
-	}(prompts$2));
+		  args.suggest = args.suggest || byTitle;
+		  args.choices = [].concat(args.choices || []);
+		  return toPrompt('AutocompletePrompt', args);
+		}; 
+	} (prompts$2));
 	return prompts$2;
 }
 
 var lib;
 var hasRequiredLib;
 
-function requireLib() {
+function requireLib () {
 	if (hasRequiredLib) return lib;
 	hasRequiredLib = 1;
 
 	const prompts = requirePrompts();
 
 	const passOn = ['suggest', 'format', 'onState', 'validate', 'onRender', 'type'];
-	const noop = () => { };
+	const noop = () => {};
 
 	/**
 	 * Prompt for a series of questions
@@ -6437,87 +6437,87 @@ function requireLib() {
 	 * @param {Function} [onCancel] Callback function called on cancel/abort
 	 * @returns {Object} Object with values from user input
 	 */
-	async function prompt(questions = [], { onSubmit = noop, onCancel = noop } = {}) {
-		const answers = {};
-		const override = prompt._override || {};
-		questions = [].concat(questions);
-		let answer, question, quit, name, type, lastPrompt;
+	async function prompt(questions=[], { onSubmit=noop, onCancel=noop }={}) {
+	  const answers = {};
+	  const override = prompt._override || {};
+	  questions = [].concat(questions);
+	  let answer, question, quit, name, type, lastPrompt;
 
-		const getFormattedAnswer = async (question, answer, skipValidation = false) => {
-			if (!skipValidation && question.validate && question.validate(answer) !== true) {
-				return;
-			}
-			return question.format ? await question.format(answer, answers) : answer
-		};
+	  const getFormattedAnswer = async (question, answer, skipValidation = false) => {
+	    if (!skipValidation && question.validate && question.validate(answer) !== true) {
+	      return;
+	    }
+	    return question.format ? await question.format(answer, answers) : answer
+	  };
 
-		for (question of questions) {
-			({ name, type } = question);
+	  for (question of questions) {
+	    ({ name, type } = question);
 
-			// evaluate type first and skip if type is a falsy value
-			if (typeof type === 'function') {
-				type = await type(answer, { ...answers }, question);
-				question['type'] = type;
-			}
-			if (!type) continue;
+	    // evaluate type first and skip if type is a falsy value
+	    if (typeof type === 'function') {
+	      type = await type(answer, { ...answers }, question);
+	      question['type'] = type;
+	    }
+	    if (!type) continue;
 
-			// if property is a function, invoke it unless it's a special function
-			for (let key in question) {
-				if (passOn.includes(key)) continue;
-				let value = question[key];
-				question[key] = typeof value === 'function' ? await value(answer, { ...answers }, lastPrompt) : value;
-			}
+	    // if property is a function, invoke it unless it's a special function
+	    for (let key in question) {
+	      if (passOn.includes(key)) continue;
+	      let value = question[key];
+	      question[key] = typeof value === 'function' ? await value(answer, { ...answers }, lastPrompt) : value;
+	    }
 
-			lastPrompt = question;
+	    lastPrompt = question;
 
-			if (typeof question.message !== 'string') {
-				throw new Error('prompt message is required');
-			}
+	    if (typeof question.message !== 'string') {
+	      throw new Error('prompt message is required');
+	    }
 
-			// update vars in case they changed
-			({ name, type } = question);
+	    // update vars in case they changed
+	    ({ name, type } = question);
 
-			if (prompts[type] === void 0) {
-				throw new Error(`prompt type (${type}) is not defined`);
-			}
+	    if (prompts[type] === void 0) {
+	      throw new Error(`prompt type (${type}) is not defined`);
+	    }
 
-			if (override[question.name] !== undefined) {
-				answer = await getFormattedAnswer(question, override[question.name]);
-				if (answer !== undefined) {
-					answers[name] = answer;
-					continue;
-				}
-			}
+	    if (override[question.name] !== undefined) {
+	      answer = await getFormattedAnswer(question, override[question.name]);
+	      if (answer !== undefined) {
+	        answers[name] = answer;
+	        continue;
+	      }
+	    }
 
-			try {
-				// Get the injected answer if there is one or prompt the user
-				answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : await prompts[type](question);
-				answers[name] = answer = await getFormattedAnswer(question, answer, true);
-				quit = await onSubmit(question, answer, answers);
-			} catch (err) {
-				quit = !(await onCancel(question, answers));
-			}
+	    try {
+	      // Get the injected answer if there is one or prompt the user
+	      answer = prompt._injected ? getInjectedAnswer(prompt._injected, question.initial) : await prompts[type](question);
+	      answers[name] = answer = await getFormattedAnswer(question, answer, true);
+	      quit = await onSubmit(question, answer, answers);
+	    } catch (err) {
+	      quit = !(await onCancel(question, answers));
+	    }
 
-			if (quit) return answers;
-		}
+	    if (quit) return answers;
+	  }
 
-		return answers;
+	  return answers;
 	}
 
 	function getInjectedAnswer(injected, deafultValue) {
-		const answer = injected.shift();
-		if (answer instanceof Error) {
-			throw answer;
-		}
+	  const answer = injected.shift();
+	    if (answer instanceof Error) {
+	      throw answer;
+	    }
 
-		return (answer === undefined) ? deafultValue : answer;
+	    return (answer === undefined) ? deafultValue : answer;
 	}
 
 	function inject(answers) {
-		prompt._injected = (prompt._injected || []).concat(answers);
+	  prompt._injected = (prompt._injected || []).concat(answers);
 	}
 
 	function override(answers) {
-		prompt._override = Object.assign({}, answers);
+	  prompt._override = Object.assign({}, answers);
 	}
 
 	lib = Object.assign(prompt, { prompt, prompts, inject, override });
@@ -6525,263 +6525,472 @@ function requireLib() {
 }
 
 function isNodeLT(tar) {
-	tar = (Array.isArray(tar) ? tar : tar.split('.')).map(Number);
-	let i = 0, src = process.versions.node.split('.').map(Number);
-	for (; i < tar.length; i++) {
-		if (src[i] > tar[i]) return false;
-		if (tar[i] > src[i]) return true;
-	}
-	return false;
+  tar = (Array.isArray(tar) ? tar : tar.split('.')).map(Number);
+  let i=0, src=process.versions.node.split('.').map(Number);
+  for (; i < tar.length; i++) {
+    if (src[i] > tar[i]) return false;
+    if (tar[i] > src[i]) return true;
+  }
+  return false;
 }
 
 var prompts =
-	isNodeLT('8.6.0')
-		? requireDist()
-		: requireLib();
+  isNodeLT('8.6.0')
+    ? requireDist()
+    : requireLib();
 
 const prompts$1 = /*@__PURE__*/getDefaultExportFromCjs(prompts);
 
-function formatTargetDir(targetDir) {
-	return targetDir?.trim().replace(/\/+$/g, "");
+let projectRootDir;
+function setProjectRootDir(_projectRootDir) {
+  projectRootDir = _projectRootDir;
 }
-function isValidPackageName(projectName) {
-	return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(
-		projectName
-	);
-}
-function write(templateDir, destDir, file, content) {
-	const targetPath = path.join(destDir, file);
-	if (content) {
-		fs.writeFileSync(targetPath, content);
-	} else {
-		copy(path.join(templateDir, file), targetPath);
-	}
+function write(templateDir, file, content) {
+  const targetPath = path.join(projectRootDir, file);
+  if (content) {
+    fs.writeFileSync(targetPath, content);
+  } else {
+    copy(path.join(templateDir, file), targetPath);
+  }
 }
 function copy(src, dest) {
-	const stat = fs.statSync(src);
-	if (stat.isDirectory()) {
-		copyDir(src, dest);
-	} else {
-		fs.copyFileSync(src, dest);
-	}
-}
-function toValidPackageName(projectName) {
-	return projectName.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z\d\-~]+/g, "-");
+  const stat = fs.statSync(src);
+  if (stat.isDirectory()) {
+    copyDir(src, dest);
+  } else {
+    fs.copyFileSync(src, dest);
+  }
 }
 function copyDir(srcDir, destDir) {
-	fs.mkdirSync(destDir, { recursive: true });
-	for (const file of fs.readdirSync(srcDir)) {
-		const srcFile = path.resolve(srcDir, file);
-		const destFile = path.resolve(destDir, file);
-		copy(srcFile, destFile);
-	}
+  fs.mkdirSync(destDir, { recursive: true });
+  for (const file of fs.readdirSync(srcDir)) {
+    const srcFile = path.resolve(srcDir, file);
+    const destFile = path.resolve(destDir, file);
+    copy(srcFile, destFile);
+  }
 }
 function isEmpty(path2) {
-	const files = fs.readdirSync(path2);
-	return files.length === 0 || files.length === 1 && files[0] === ".git";
+  const files = fs.readdirSync(path2);
+  return files.length === 0 || files.length === 1 && files[0] === ".git";
 }
-function emptyDir(dir) {
-	if (!fs.existsSync(dir)) {
-		return;
-	}
-	for (const file of fs.readdirSync(dir)) {
-		if (file === ".git") {
-			continue;
-		}
-		fs.rmSync(path.resolve(dir, file), { recursive: true, force: true });
-	}
+function deleteDirOrFile(pathToDelete) {
+  pathToDelete = path.resolve(projectRootDir, pathToDelete);
+  if (fs.existsSync(pathToDelete)) {
+    const stats = fs.statSync(pathToDelete);
+    if (stats.isDirectory()) {
+      fs.readdirSync(pathToDelete).forEach((file) => {
+        const filePath = path.join(pathToDelete, file);
+        deleteDirOrFile(filePath);
+      });
+      fs.rmdirSync(pathToDelete);
+    } else {
+      fs.unlinkSync(pathToDelete);
+    }
+  }
+}
+function replaceTextInFile(filePath, searchValue, replaceValue) {
+  try {
+    filePath = path.resolve(projectRootDir, filePath);
+    const data = fs.readFileSync(filePath, "utf8");
+    const updatedData = data.replace(searchValue, replaceValue);
+    fs.writeFileSync(filePath, updatedData, "utf8");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function setBaseIcon(baseIcon) {
+  if (!baseIcon) {
+    deleteDirOrFile("src/utils/icons.ts");
+    deleteDirOrFile("src/components/ui/BaseIcon.vue");
+    deleteDirOrFile("src/assets/vue-icon.svg");
+    replaceTextInFile(
+      "src/main.ts",
+      `import { loadIcons } from "@/utils/icons";
+`,
+      ""
+    );
+    replaceTextInFile(
+      "src/main.ts",
+      "loadIcons();\n",
+      ""
+    );
+    replaceTextInFile(
+      "src/components/headers/SimpleHeader.vue",
+      `import BaseIcon from "@/components/ui/BaseIcon.vue";
+`,
+      ""
+    );
+    replaceTextInFile(
+      "src/components/headers/SimpleHeader.vue",
+      `<BaseIcon name="hamburger" class="drawer-toggle" @click="isDrawerOpen = !isDrawerOpen" />`,
+      `<div @click="isDrawerOpen = !isDrawerOpen">
+				<img src="@/assets/images/hamburger.svg" class="drawer-toggle"  />
+			</div>`
+    );
+  }
+}
+
+function setPwa(pwa) {
+  if (!pwa) {
+    deleteDirOrFile("public/manifest.json");
+    deleteDirOrFile("public/service-worker.js");
+    replaceTextInFile(
+      "index.html",
+      "<!-- service-worker placeholder -->\n",
+      ""
+    );
+  } else {
+    replaceTextInFile(
+      "index.html",
+      "<!-- service-worker placeholder -->",
+      `
+		<script>
+			if ("serviceWorker" in navigator) {
+				navigator.serviceWorker.register("/service-worker.js");
+			}
+		<\/script>`
+    );
+  }
+}
+
+function setHeader(footer) {
+  if (footer === "SlidingHeader") {
+    replaceTextInFile(
+      "src/layouts/MainLayout.vue",
+      `import AppHeader from "@/components/headers/SimpleHeader.vue";`,
+      `import AppHeaderContent from "@/components/headers/SimpleHeader.vue";
+import AppHeader from "@/components/headers/SlidingHeader.vue";`
+    );
+    replaceTextInFile("src/layouts/MainLayout.vue", "<AppHeader />", `
+    <AppHeader :threshold-hide="200" :threshold-open="400">
+      <template #first-header>
+        <AppHeaderContent />
+      </template>
+
+      <template #second-header>
+        <AppHeaderContent />
+        <div style="margin-left: 45px">
+          The second header
+        </div>
+      </template>
+    </AppHeader>
+        `);
+  }
+}
+
+function setFooter(footer) {
+  if (footer && !footer.startsWith("Simple")) {
+    replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
+  }
+}
+function setNavigationDrawer(navigationDrawer) {
+  if (navigationDrawer && !navigationDrawer.startsWith("Simple")) {
+    replaceTextInFile(
+      "src/layouts/MainLayout.vue",
+      "SimpleDrawer",
+      navigationDrawer
+    );
+  }
+}
+function setGithubActionsWorkflow(githubActionsWorkflow) {
+  if (!githubActionsWorkflow) {
+    deleteDirOrFile(".github");
+  }
+}
+function setTitle(title) {
+  replaceTextInFile(
+    "index.html",
+    "<!-- title placeholder -->",
+    title
+  );
+}
+function setOptionList(options) {
+  let optionArrayStr = [];
+  const titles = {
+    "projectName": "Project name",
+    "navigationDrawer": "Navigation drawer",
+    "header": "Header",
+    "footer": "Footer",
+    "baseIcon": "BaseIcon",
+    "pwa": "PWA",
+    "githubActionsWorkflow": "Github Actions Workflow"
+  };
+  for (let name in options) {
+    if (options[name] !== false && !["overwrite"].includes(name)) {
+      optionArrayStr.push(`{name: "${titles[name]}", value: "${options[name]}"}`);
+    }
+  }
+  optionArrayStr = `[${optionArrayStr.join(",")}]`;
+  replaceTextInFile(
+    "src/views/HomeView.vue",
+    "options: IOption[] = [];",
+    `options: IOption[] = ${optionArrayStr};`
+  );
 }
 
 let enabled = true;
 // Support both browser and node environments
 const globalVar = typeof self !== 'undefined'
-	? self
-	: typeof window !== 'undefined'
-		? window
-		: typeof global !== 'undefined'
-			? global
-			: {};
+    ? self
+    : typeof window !== 'undefined'
+        ? window
+        : typeof global !== 'undefined'
+            ? global
+            : {};
 /**
  * Detect how much colors the current terminal supports
  */
 let supportLevel = 0 /* none */;
 if (globalVar.process && globalVar.process.env && globalVar.process.stdout) {
-	const { FORCE_COLOR, NODE_DISABLE_COLORS, NO_COLOR, TERM, COLORTERM } = globalVar.process.env;
-	if (NODE_DISABLE_COLORS || NO_COLOR || FORCE_COLOR === '0') {
-		enabled = false;
-	}
-	else if (FORCE_COLOR === '1' ||
-		FORCE_COLOR === '2' ||
-		FORCE_COLOR === '3') {
-		enabled = true;
-	}
-	else if (TERM === 'dumb') {
-		enabled = false;
-	}
-	else if ('CI' in globalVar.process.env &&
-		[
-			'TRAVIS',
-			'CIRCLECI',
-			'APPVEYOR',
-			'GITLAB_CI',
-			'GITHUB_ACTIONS',
-			'BUILDKITE',
-			'DRONE',
-		].some(vendor => vendor in globalVar.process.env)) {
-		enabled = true;
-	}
-	else {
-		enabled = process.stdout.isTTY;
-	}
-	if (enabled) {
-		// Windows supports 24bit True Colors since Windows 10 revision #14931,
-		// see https://devblogs.microsoft.com/commandline/24-bit-color-in-the-windows-console/
-		if (process.platform === 'win32') {
-			supportLevel = 3 /* trueColor */;
-		}
-		else {
-			if (COLORTERM && (COLORTERM === 'truecolor' || COLORTERM === '24bit')) {
-				supportLevel = 3 /* trueColor */;
-			}
-			else if (TERM && (TERM.endsWith('-256color') || TERM.endsWith('256'))) {
-				supportLevel = 2 /* ansi256 */;
-			}
-			else {
-				supportLevel = 1 /* ansi */;
-			}
-		}
-	}
+    const { FORCE_COLOR, NODE_DISABLE_COLORS, NO_COLOR, TERM, COLORTERM } = globalVar.process.env;
+    if (NODE_DISABLE_COLORS || NO_COLOR || FORCE_COLOR === '0') {
+        enabled = false;
+    }
+    else if (FORCE_COLOR === '1' ||
+        FORCE_COLOR === '2' ||
+        FORCE_COLOR === '3') {
+        enabled = true;
+    }
+    else if (TERM === 'dumb') {
+        enabled = false;
+    }
+    else if ('CI' in globalVar.process.env &&
+        [
+            'TRAVIS',
+            'CIRCLECI',
+            'APPVEYOR',
+            'GITLAB_CI',
+            'GITHUB_ACTIONS',
+            'BUILDKITE',
+            'DRONE',
+        ].some(vendor => vendor in globalVar.process.env)) {
+        enabled = true;
+    }
+    else {
+        enabled = process.stdout.isTTY;
+    }
+    if (enabled) {
+        // Windows supports 24bit True Colors since Windows 10 revision #14931,
+        // see https://devblogs.microsoft.com/commandline/24-bit-color-in-the-windows-console/
+        if (process.platform === 'win32') {
+            supportLevel = 3 /* trueColor */;
+        }
+        else {
+            if (COLORTERM && (COLORTERM === 'truecolor' || COLORTERM === '24bit')) {
+                supportLevel = 3 /* trueColor */;
+            }
+            else if (TERM && (TERM.endsWith('-256color') || TERM.endsWith('256'))) {
+                supportLevel = 2 /* ansi256 */;
+            }
+            else {
+                supportLevel = 1 /* ansi */;
+            }
+        }
+    }
 }
 let options = {
-	enabled,
-	supportLevel,
+    enabled,
+    supportLevel,
 };
 function kolorist(start, end, level = 1 /* ansi */) {
-	const open = `\x1b[${start}m`;
-	const close = `\x1b[${end}m`;
-	const regex = new RegExp(`\\x1b\\[${end}m`, 'g');
-	return (str) => {
-		return options.enabled && options.supportLevel >= level
-			? open + ('' + str).replace(regex, open) + close
-			: '' + str;
-	};
+    const open = `\x1b[${start}m`;
+    const close = `\x1b[${end}m`;
+    const regex = new RegExp(`\\x1b\\[${end}m`, 'g');
+    return (str) => {
+        return options.enabled && options.supportLevel >= level
+            ? open + ('' + str).replace(regex, open) + close
+            : '' + str;
+    };
 }
 // modifiers
 const reset = kolorist(0, 0);
-const red = kolorist(31, 39);
+const red$1 = kolorist(31, 39);
 const lightGreen = kolorist(92, 39);
 const lightBlue = kolorist(94, 39);
 
+const defaultTargetDir$1 = "my-vue-project";
+const argv$1 = minimist$1(process.argv.slice(2), { string: ["_"] });
+const argTargetDir = formatTargetDir(argv$1._[0]);
+let targetDir = argTargetDir || defaultTargetDir$1;
+const getProjectName = () => targetDir === "." ? path.basename(path.resolve()) : targetDir;
+const projectName = {
+  // type: targetDir ? null : "text",
+  type: "text",
+  name: "projectName",
+  message: reset("Project name:"),
+  initial: targetDir,
+  onState: (state) => {
+    targetDir = formatTargetDir(state.value) || defaultTargetDir$1;
+  }
+};
+const navigationDrawer = {
+  type: "select",
+  name: "navigationDrawer",
+  message: reset("Select navigation drawer"),
+  choices: [
+    {
+      title: lightBlue("SimpleDrawer"),
+      description: "Simple navigation drawer",
+      value: "SimpleDrawer"
+    },
+    {
+      title: lightGreen("TouchSlideoutDrawer"),
+      description: "Uses touch swipe events",
+      value: "TouchSlideoutDrawer"
+    }
+  ]
+};
+const header = {
+  type: "select",
+  name: "header",
+  message: reset("Select webapp header"),
+  choices: [
+    { title: lightBlue("SimpleHeader"), value: "SimpleHeader" },
+    { title: lightGreen("SlidingHeader"), value: "SlidingHeader" }
+  ]
+};
+const footer = {
+  type: "select",
+  name: "footer",
+  message: reset("Select webapp footer"),
+  choices: [
+    { title: lightBlue("SimpleFooter"), value: "SimpleFooter" },
+    { title: lightGreen("RichFooter"), value: "RichFooter" },
+    { title: lightGreen("DistributedFooter"), value: "DistributedFooter" }
+  ]
+};
+const pwa = {
+  type: "toggle",
+  name: "pwa",
+  message: reset("Make it PWA (adds service worker and manifest)?"),
+  active: "yes",
+  inactive: "no"
+};
+const baseIcon = {
+  type: "toggle",
+  name: "baseIcon",
+  message: reset("Add `BaseIcon` component?"),
+  active: "yes",
+  inactive: "no"
+};
+const githubActionsWorkflow = {
+  // type: (prev) => prev && "toggle",
+  type: "toggle",
+  name: "githubActionsWorkflow",
+  // message: reset("Add Github Action Workflow to build and deploy it to gh-pages branch for publishing on GitHub Pages?"),
+  message: reset("Add Github Action Workflow for publishing it on GitHub Pages?"),
+  active: "yes",
+  inactive: "no"
+};
+const packageNameCheck = {
+  type: () => isValidPackageName(getProjectName()) ? null : "text",
+  // type: "text",
+  name: "packageName",
+  message: reset("Package name:"),
+  initial: () => toValidPackageName(getProjectName()),
+  validate: (dir) => isValidPackageName(dir) || "Invalid package.json name"
+};
+const dirOverwriteCheck = [
+  {
+    type: () => !fs.existsSync(targetDir) || isEmpty(targetDir) ? null : "confirm",
+    name: "overwrite",
+    message: () => (targetDir === "." ? "Current directory" : `Target directory "${targetDir}"`) + ` is not empty. Remove existing files and continue?`
+  },
+  {
+    type: (_, { overwrite }) => {
+      if (overwrite === false) {
+        throw new Error(red$1("\u2716") + " Operation cancelled");
+      }
+      return null;
+    },
+    name: "overwriteChecker"
+  }
+];
+function isValidPackageName(projectName2) {
+  return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(
+    projectName2
+  );
+}
+function toValidPackageName(projectName2) {
+  return projectName2.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z\d\-~]+/g, "-");
+}
+function formatTargetDir(targetDir2) {
+  return targetDir2?.trim().replace(/\/+$/g, "");
+}
+
 const argv = minimist$1(process.argv.slice(2), { string: ["_"] });
 const cwd = process.cwd();
-console.log(argv);
 const defaultTargetDir = "my-vue-project";
 async function init() {
-	const argTargetDir = formatTargetDir(argv._[0]);
-	let targetDir = argTargetDir || defaultTargetDir;
-	const getProjectName = () => targetDir === "." ? path.basename(path.resolve()) : targetDir;
-	let result;
-	try {
-		result = await prompts$1(
-			[
-				{
-					type: argTargetDir ? null : "text",
-					name: "projectName",
-					message: reset("Project name:"),
-					initial: defaultTargetDir,
-					onState: (state) => {
-						targetDir = formatTargetDir(state.value) || defaultTargetDir;
-					}
-				},
-				{
-					type: (prev) => prev && "toggle",
-					name: "pwa",
-					message: reset("Make it PWA (adds service worker and manifest)?"),
-					active: "yes",
-					inactive: "no"
-				},
-				{
-					type: "select",
-					name: "navigationDrawerType",
-					message: reset("Select navigation drawer type"),
-					choices: [
-						{ title: lightGreen("TouchSlideoutDrawer"), description: "Uses touch swipe events", value: "TouchSlideoutDrawer" },
-						{ title: lightBlue("SimpleDrawer"), description: "Simple navigation drawer", value: "SimpleDrawer" }
-					]
-				},
-				{
-					type: () => isValidPackageName(getProjectName()) ? null : "text",
-					// type: "text",
-					name: "packageName",
-					message: reset("Package name:"),
-					initial: () => toValidPackageName(getProjectName()),
-					validate: (dir) => isValidPackageName(dir) || "Invalid package.json name"
-				},
-				{
-					type: () => !fs.existsSync(targetDir) || isEmpty(targetDir) ? null : "confirm",
-					name: "overwrite",
-					message: () => (targetDir === "." ? "Current directory" : `Target directory "${targetDir}"`) + ` is not empty. Remove existing files and continue?`
-				},
-				{
-					type: (_, { overwrite: overwrite2 }) => {
-						if (overwrite2 === false) {
-							throw new Error(red("\u2716") + " Operation cancelled");
-						}
-						return null;
-					},
-					name: "overwriteChecker"
-				}
-				// {
-				//   type: 'number',
-				//   name: 'prompt',
-				//   message: 'This will be overridden',
-				//   onRender(color) {
-				//     this.no = (this.no || 1);
-				//     this.msg = `Enter a number (e.g. ${color.cyan(this.no)})`;
-				//     let interval = setInterval(() => {
-				//       this.no += 1;
-				//       this.render();
-				//     }, 1000);
-				//   }
-				// }
-			],
-			{
-				onCancel: () => {
-					throw new Error(red("\u2716") + " Operation cancelled");
-				}
-			}
-		);
-	} catch (cancelled) {
-		console.log(cancelled.message);
-		return;
-	}
-	console.log(result);
-	console.log();
-	const { overwrite, packageName, navigationDrawerType, pwa } = result;
-	const destDir = path.join(cwd, targetDir);
-	if (overwrite) {
-		emptyDir(destDir);
-	} else if (!fs.existsSync(destDir)) {
-		fs.mkdirSync(destDir, { recursive: true });
-	}
-	console.log(`
+  const argTargetDir = formatTargetDir(argv._[0]);
+  let targetDir = argTargetDir || defaultTargetDir;
+  const getProjectName = () => targetDir === "." ? path.basename(path.resolve()) : targetDir;
+  let options;
+  try {
+    options = await prompts$1(
+      [
+        projectName,
+        pwa,
+        githubActionsWorkflow,
+        navigationDrawer,
+        header,
+        footer,
+        baseIcon,
+        packageNameCheck,
+        ...dirOverwriteCheck
+      ],
+      {
+        onCancel: () => {
+          throw new Error(red("\u2716") + " Operation cancelled");
+        }
+      }
+    );
+  } catch (cancelled) {
+    console.log(cancelled.message);
+    return;
+  }
+  const {
+    packageName,
+    overwrite,
+    navigationDrawer: navigationDrawer$1,
+    header: header$1,
+    footer: footer$1,
+    pwa: pwa$1,
+    baseIcon: baseIcon$1,
+    githubActionsWorkflow: githubActionsWorkflow$1
+  } = options;
+  const destDir = path.join(cwd, targetDir);
+  setProjectRootDir(destDir);
+  console.log(`
 Scaffolding project in ${destDir}...`);
-	const templateDir = path.resolve(
-		fileURLToPath(import.meta.url),
-		"../../src/template"
-	);
-	console.log("templateDir", templateDir);
-	const pkg = JSON.parse(
-		fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
-	);
-	pkg.name = packageName || getProjectName();
-	write(templateDir, destDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
-	const files = fs.readdirSync(templateDir);
-	for (const file of files.filter((f) => f !== "package.json")) {
-		write(templateDir, destDir, file);
-	}
-	console.log();
+  if (overwrite) ; else if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+  const templateDir = path.resolve(
+    fileURLToPath(import.meta.url),
+    // "../../../vue-webapp"
+    "../../src/template"
+  );
+  const pkg = JSON.parse(
+    fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
+  );
+  pkg.name = packageName || getProjectName();
+  write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
+  const files = fs.readdirSync(templateDir);
+  for (const file of files.filter((f) => !["package.json", ".git", "node_modules"].includes(f))) {
+    write(templateDir, file);
+  }
+  setHeader(header$1);
+  setFooter(footer$1);
+  setNavigationDrawer(navigationDrawer$1);
+  setGithubActionsWorkflow(githubActionsWorkflow$1);
+  setBaseIcon(baseIcon$1);
+  setPwa(pwa$1);
+  setTitle(getProjectName());
+  setOptionList(options);
+  console.log();
 }
 init().catch((e) => {
-	console.error(e);
+  console.error(e);
 });

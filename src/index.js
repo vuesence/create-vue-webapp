@@ -47,8 +47,8 @@ async function init() {
 		return;
 	}
 
-	console.log(options);
-	console.log();
+	// console.log(options);
+	// console.log();
 
 	const {
 		packageName,

@@ -1,14 +1,14 @@
 import { replaceTextInFile, deleteDirOrFile } from "../fs-utils.js";
 
 export function setHeader(footer) {
-    if (footer === "SlidingHeader") {
-        replaceTextInFile(
-            "src/layouts/MainLayout.vue",
-            `import AppHeader from "@/components/headers/SimpleHeader.vue";`,
-            `import AppHeaderContent from "@/components/headers/SimpleHeader.vue";
+  if (footer === "SlidingHeader") {
+    replaceTextInFile(
+      "src/layouts/MainLayout.vue",
+      `import AppHeader from "@/components/headers/SimpleHeader.vue";`,
+      `import AppHeaderContent from "@/components/headers/SimpleHeader.vue";
 import AppHeader from "@/components/headers/SlidingHeader.vue";`
-        );
-        replaceTextInFile("src/layouts/MainLayout.vue", "<AppHeader />", `
+    );
+    replaceTextInFile("src/layouts/MainLayout.vue", "<AppHeader />", `
     <AppHeader :threshold-hide="200" :threshold-open="400">
       <template #first-header>
         <AppHeaderContent />
@@ -22,7 +22,7 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
       </template>
     </AppHeader>
         `);
-        // } else {
-        //     replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
-    }
+    // } else {
+    //     replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
+  }
 }
