@@ -28,7 +28,7 @@ async function init() {
 			[
 				promptsUtils.projectName,
 				promptsUtils.pwa,
-				promptsUtils.githubActionsWorkflow,
+				promptsUtils.githubActionsGithubPagesWorkflow,
 				promptsUtils.navigationDrawer,
 				promptsUtils.header,
 				promptsUtils.footer,
@@ -58,7 +58,7 @@ async function init() {
 		footer,
 		pwa,
 		baseIcon,
-		githubActionsWorkflow,
+		githubActionsGithubPagesWorkflow,
 	} = options;
 
 	const destDir = path.join(cwd, targetDir);
@@ -98,7 +98,7 @@ async function init() {
 	optionUtils.setHeader(header);
 	optionUtils.setFooter(footer);
 	optionUtils.setNavigationDrawer(navigationDrawer);
-	optionUtils.setGithubActionsWorkflow(githubActionsWorkflow);
+	optionUtils.setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, getProjectName());
 	optionUtils.setBaseIcon(baseIcon);
 	optionUtils.setPwa(pwa);
 	optionUtils.setTitle(getProjectName());

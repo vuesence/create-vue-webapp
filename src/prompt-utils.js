@@ -91,10 +91,10 @@ export const baseIcon = {
 	inactive: "no",
 };
 
-export const githubActionsWorkflow = {
+export const githubActionsGithubPagesWorkflow = {
 	// type: (prev) => prev && "toggle",
 	type: "toggle",
-	name: "githubActionsWorkflow",
+	name: "githubActionsGithubPagesWorkflow",
 	// message: reset("Add Github Action Workflow to build and deploy it to gh-pages branch for publishing on GitHub Pages?"),
 	message: reset("Add Github Action Workflow for publishing it on GitHub Pages?"),
 	active: "yes",

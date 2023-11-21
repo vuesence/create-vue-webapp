@@ -18,10 +18,20 @@ function setNavigationDrawer(navigationDrawer) {
 	}
 }
 
-function setGithubActionsWorkflow(githubActionsWorkflow) {
-	if (!githubActionsWorkflow) {
-		deleteDirOrFile(".github");
+function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, projectName) {
+	console.log("githubActionsGithubPagesWorkflow", githubActionsGithubPagesWorkflow);
+	if (githubActionsGithubPagesWorkflow) {
+		// replaceTextInFile(
+		// 	"vite.config.ts",
+		// 	`export default defineConfig({`,
+		// 	`export default defineConfig({
+		// 	base: "${projectName}",`
+		// );
+	} else {
+		deleteDirOrFile(".github/workflows/gp-deploy.yaml");
 	}
+	deleteDirOrFile(".github/README.md");
+	deleteDirOrFile(".github/webapp-start.png");
 }
 
 
@@ -42,7 +52,7 @@ function setOptionList(options) {
 		"footer": "Footer",
 		"baseIcon": "BaseIcon",
 		"pwa": "PWA",
-		"githubActionsWorkflow": "Github Actions Workflow",
+		"githubActionsGithubPagesWorkflow": "Github Actions Workflow",
 	};
 	for (let name in options) {
 		// console.log(name);
@@ -62,7 +72,7 @@ export {
 	setHeader,
 	setFooter,
 	setNavigationDrawer,
-	setGithubActionsWorkflow,
+	setGithubActionsGithubPagesWorkflow,
 	setBaseIcon,
 	setPwa,
 	setTitle,
