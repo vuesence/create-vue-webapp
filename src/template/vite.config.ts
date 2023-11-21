@@ -5,15 +5,16 @@ import vue from "@vitejs/plugin-vue";
 // import { URL, fileURLToPath } from "node:url";
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/vue-webapp/",
   build: {
     target: "esnext",
   },
-  plugins: [vue({
-    script: {
-      defineModel: true,
-    },
-  })],
+  plugins: [
+    vue({
+      script: {
+        defineModel: true,
+      },
+    }),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
