@@ -21,7 +21,7 @@ async function init() {
 	params.targetDir = promptsUtils.formatTargetDir(argv._[0]) || params.defaultTargetDir;
 	params.projectName = params.targetDir === "." ? path.basename(path.resolve()) : params.targetDir;
 
-	console.log(params);
+	// console.log(params);
 	// promptsUtils.setEnv(targetDir, defaultTargetDir);
 	// console.log("promptsUtils.projectName", promptsUtils.projectName);
 
@@ -54,7 +54,7 @@ async function init() {
 		return;
 	}
 
-	console.log(params);
+	// console.log(params);
 
 	// console.log(options);
 	// console.log();
@@ -92,7 +92,7 @@ async function init() {
 		fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
 	);
 	// pkg.name = projectName || getProjectName();
-	console.log(params);
+	// console.log(params);
 	pkg.name = params.projectName;
 	write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
 
