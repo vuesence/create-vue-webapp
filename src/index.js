@@ -2,25 +2,31 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import minimist from "minimist";
+import { params } from "./params.js";
 import prompts from "prompts";
 import { write, emptyDir, setProjectRootDir } from "./fs-utils.js";
 import * as optionUtils from "./options/index.js";
 import * as promptsUtils from "./prompt-utils.js";
 
 // Avoids autoconversion to number of the project name by defining that the args
-// non associated with an option ( _ ) needs to be parsed as a string. See #4606
+// non associated with an option ( _ ) needs to be parsed as a string.
+
 const argv = minimist(process.argv.slice(2), { string: ["_"] });
 const cwd = process.cwd();
-const defaultTargetDir = "my-vue-project";
+
+// const defaultTargetDir = "my-vue-project";
 
 async function init() {
-	const argTargetDir = promptsUtils.formatTargetDir(argv._[0]);
-	let targetDir = argTargetDir || defaultTargetDir;
-	// console.log(targetDir);
+	// const argTargetDir = promptsUtils.formatTargetDir(argv._[0]);
+	params.targetDir = promptsUtils.formatTargetDir(argv._[0]) || params.defaultTargetDir;
+	params.projectName = params.targetDir === "." ? path.basename(path.resolve()) : params.targetDir;
+
+	console.log(params);
 	// promptsUtils.setEnv(targetDir, defaultTargetDir);
 	// console.log("promptsUtils.projectName", promptsUtils.projectName);
-	const getProjectName = () =>
-		targetDir === "." ? path.basename(path.resolve()) : targetDir;
+
+	// const getProjectName = () =>
+	// 	targetDir === "." ? path.basename(path.resolve()) : targetDir;
 
 	let options;
 
@@ -48,11 +54,13 @@ async function init() {
 		return;
 	}
 
+	console.log(params);
+
 	// console.log(options);
 	// console.log();
 
 	const {
-		packageName,
+		projectName,
 		overwrite,
 		navigationDrawer,
 		header,
@@ -62,7 +70,7 @@ async function init() {
 		githubActionsGithubPagesWorkflow,
 	} = options;
 
-	const destDir = path.join(cwd, targetDir);
+	const destDir = path.join(cwd, params.targetDir);
 	setProjectRootDir(destDir);
 
 	console.log(`\nScaffolding project in ${destDir}...`);
@@ -83,7 +91,9 @@ async function init() {
 	const pkg = JSON.parse(
 		fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
 	);
-	pkg.name = packageName || getProjectName();
+	// pkg.name = projectName || getProjectName();
+	console.log(params);
+	pkg.name = params.projectName;
 	write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
 
 	const files = fs.readdirSync(templateDir);
@@ -108,10 +118,10 @@ dist
 	optionUtils.setHeader(header);
 	optionUtils.setFooter(footer);
 	optionUtils.setNavigationDrawer(navigationDrawer);
-	optionUtils.setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, getProjectName());
+	optionUtils.setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, params.projectName);
 	optionUtils.setBaseIcon(baseIcon);
 	optionUtils.setPwa(pwa);
-	optionUtils.setTitle(getProjectName());
+	optionUtils.setTitle(params.projectName);
 	optionUtils.setOptionList(options);
 
 	console.log();

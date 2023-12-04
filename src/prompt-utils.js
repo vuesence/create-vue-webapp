@@ -1,7 +1,8 @@
 import fs from "node:fs";
-import path from "node:path";
+// import path from "node:path";
 // import { fileURLToPath } from "node:url";
-import minimist from "minimist";
+// import minimist from "minimist";
+import { params } from "./params.js";
 import { isEmpty } from "./fs-utils.js";
 import {
 	blue,
@@ -16,23 +17,26 @@ import {
 	yellow,
 } from "kolorist";
 
-const defaultTargetDir = "my-vue-project";
-const argv = minimist(process.argv.slice(2), { string: ["_"] });
+// const defaultTargetDir = "my-vue-project";
+// const argv = minimist(process.argv.slice(2), { string: ["_"] });
 
-const argTargetDir = formatTargetDir(argv._[0]);
-let targetDir = argTargetDir || defaultTargetDir;
+// const argTargetDir = formatTargetDir(argv._[0]);
+// let targetDir = argTargetDir || defaultTargetDir;
+// let prjName = "";
 
-const getProjectName = () =>
-	targetDir === "." ? path.basename(path.resolve()) : targetDir;
+// const getProjectName = () =>
+// 	targetDir === "." ? path.basename(path.resolve()) : targetDir;
 
 export const projectName = {
 	// type: targetDir ? null : "text",
 	type: "text",
 	name: "projectName",
 	message: reset("Project name:"),
-	initial: targetDir,
+	initial: params.projectName,
 	onState: (state) => {
-		targetDir = formatTargetDir(state.value) || defaultTargetDir;
+		// params.prjName = formatTargetDir(state.value) || defaultTargetDir;
+		params.projectName = formatTargetDir(state.value) || params.targetDir;
+		params.targetDir = params.targetDir === "." ? "." : params.projectName;
 	},
 };
 
@@ -102,11 +106,13 @@ export const githubActionsGithubPagesWorkflow = {
 };
 
 export const packageNameCheck = {
-	type: () => (isValidPackageName(getProjectName()) ? null : "text"),
+	// type: () => (isValidPackageName(getProjectName()) ? null : "text"),
+	type: () => (isValidPackageName(params.projectName) ? null : "text"),
 	// type: "text",
 	name: "packageName",
 	message: reset("Package name:"),
-	initial: () => toValidPackageName(getProjectName()),
+	// initial: () => toValidPackageName(getProjectName()),
+	initial: () => toValidPackageName(params.projectName),
 	validate: (dir) =>
 		isValidPackageName(dir) || "Invalid package.json name",
 };
@@ -114,12 +120,12 @@ export const packageNameCheck = {
 export const dirOverwriteCheck = [
 	{
 		type: () =>
-			!fs.existsSync(targetDir) || isEmpty(targetDir) ? null : "confirm",
+			!fs.existsSync(params.targetDir) || isEmpty(params.targetDir) ? null : "confirm",
 		name: "overwrite",
 		message: () =>
-			(targetDir === "."
+			(params.targetDir === "."
 				? "Current directory"
-				: `Target directory "${targetDir}"`) +
+				: `Target directory "${params.targetDir}"`) +
 			` is not empty. Remove existing files and continue?`,
 	},
 	{
@@ -135,7 +141,7 @@ export const dirOverwriteCheck = [
 
 function isValidPackageName(projectName) {
 	return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(
-		projectName
+		params.projectName
 	);
 }
 
