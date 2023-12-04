@@ -6930,6 +6930,7 @@ const cwd = process.cwd();
 async function init() {
   params.targetDir = formatTargetDir(argv._[0]) || params.defaultTargetDir;
   params.projectName = params.targetDir === "." ? path.basename(path.resolve()) : params.targetDir;
+  projectName.initial = params.projectName;
   let options;
   try {
     options = await prompts$1(
