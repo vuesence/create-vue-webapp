@@ -16,6 +16,7 @@ const defaultTargetDir = "my-vue-project";
 async function init() {
 	const argTargetDir = promptsUtils.formatTargetDir(argv._[0]);
 	let targetDir = argTargetDir || defaultTargetDir;
+	// console.log(targetDir);
 	// promptsUtils.setEnv(targetDir, defaultTargetDir);
 	// console.log("promptsUtils.projectName", promptsUtils.projectName);
 	const getProjectName = () =>
@@ -86,9 +87,18 @@ async function init() {
 	write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
 
 	const files = fs.readdirSync(templateDir);
-	for (const file of files.filter((f) => !["package.json", ".git", "node_modules"].includes(f))) {
+	for (const file of files.filter((f) => !["package.json", "node_modules"].includes(f))) {
 		write(templateDir, file);
 	}
+
+	write(templateDir, ".gitignore", `# Logs
+logs
+*.log
+.history
+node_modules
+dist
+*.local
+`);
 
 	// ["navigationDrawer", "footer"].forEach((component) => {
 	// 	if (!options[component].startsWith("Simple")) {

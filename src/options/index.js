@@ -19,7 +19,6 @@ function setNavigationDrawer(navigationDrawer) {
 }
 
 function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, projectName) {
-	console.log("githubActionsGithubPagesWorkflow", githubActionsGithubPagesWorkflow);
 	if (githubActionsGithubPagesWorkflow) {
 		// replaceTextInFile(
 		// 	"vite.config.ts",

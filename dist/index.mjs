@@ -6693,10 +6693,12 @@ function setNavigationDrawer(navigationDrawer) {
     );
   }
 }
-function setGithubActionsWorkflow(githubActionsWorkflow) {
-  if (!githubActionsWorkflow) {
-    deleteDirOrFile(".github");
+function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, projectName) {
+  if (githubActionsGithubPagesWorkflow) ; else {
+    deleteDirOrFile(".github/workflows/gp-deploy.yaml");
   }
+  deleteDirOrFile(".github/README.md");
+  deleteDirOrFile(".github/webapp-start.png");
 }
 function setTitle(title) {
   replaceTextInFile(
@@ -6714,7 +6716,7 @@ function setOptionList(options) {
     "footer": "Footer",
     "baseIcon": "BaseIcon",
     "pwa": "PWA",
-    "githubActionsWorkflow": "Github Actions Workflow"
+    "githubActionsGithubPagesWorkflow": "Github Actions Workflow"
   };
   for (let name in options) {
     if (options[name] !== false && !["overwrite"].includes(name)) {
@@ -6874,10 +6876,10 @@ const baseIcon = {
   active: "yes",
   inactive: "no"
 };
-const githubActionsWorkflow = {
+const githubActionsGithubPagesWorkflow = {
   // type: (prev) => prev && "toggle",
   type: "toggle",
-  name: "githubActionsWorkflow",
+  name: "githubActionsGithubPagesWorkflow",
   // message: reset("Add Github Action Workflow to build and deploy it to gh-pages branch for publishing on GitHub Pages?"),
   message: reset("Add Github Action Workflow for publishing it on GitHub Pages?"),
   active: "yes",
@@ -6932,7 +6934,7 @@ async function init() {
       [
         projectName,
         pwa,
-        githubActionsWorkflow,
+        githubActionsGithubPagesWorkflow,
         navigationDrawer,
         header,
         footer,
@@ -6958,7 +6960,7 @@ async function init() {
     footer: footer$1,
     pwa: pwa$1,
     baseIcon: baseIcon$1,
-    githubActionsWorkflow: githubActionsWorkflow$1
+    githubActionsGithubPagesWorkflow: githubActionsGithubPagesWorkflow$1
   } = options;
   const destDir = path.join(cwd, targetDir);
   setProjectRootDir(destDir);
@@ -6978,13 +6980,21 @@ Scaffolding project in ${destDir}...`);
   pkg.name = packageName || getProjectName();
   write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
   const files = fs.readdirSync(templateDir);
-  for (const file of files.filter((f) => !["package.json", ".git", "node_modules"].includes(f))) {
+  for (const file of files.filter((f) => !["package.json", "node_modules"].includes(f))) {
     write(templateDir, file);
   }
+  write(templateDir, ".gitignore", `# Logs
+logs
+*.log
+.history
+node_modules
+dist
+*.local
+`);
   setHeader(header$1);
   setFooter(footer$1);
   setNavigationDrawer(navigationDrawer$1);
-  setGithubActionsWorkflow(githubActionsWorkflow$1);
+  setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow$1, getProjectName());
   setBaseIcon(baseIcon$1);
   setPwa(pwa$1);
   setTitle(getProjectName());
