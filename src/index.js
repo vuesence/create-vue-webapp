@@ -10,26 +10,15 @@ import * as promptsUtils from "./prompt-utils.js";
 
 // Avoids autoconversion to number of the project name by defining that the args
 // non associated with an option ( _ ) needs to be parsed as a string.
-
 const argv = minimist(process.argv.slice(2), { string: ["_"] });
 const cwd = process.cwd();
 
-// const defaultTargetDir = "my-vue-project";
-
 async function init() {
-	// const argTargetDir = promptsUtils.formatTargetDir(argv._[0]);
 	params.targetDir = promptsUtils.formatTargetDir(argv._[0]) || params.defaultTargetDir;
 	params.projectName = params.targetDir === "." ? path.basename(path.resolve()) : params.targetDir;
-
-	// console.log(params);
-	// promptsUtils.setEnv(targetDir, defaultTargetDir);
-	// console.log("promptsUtils.projectName", promptsUtils.projectName);
-
-	// const getProjectName = () =>
-	// 	targetDir === "." ? path.basename(path.resolve()) : targetDir;
+	promptsUtils.projectName.initial = params.projectName;
 
 	let options;
-
 	try {
 		options = await prompts(
 			[

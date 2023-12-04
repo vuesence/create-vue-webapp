@@ -1,7 +1,4 @@
 import fs from "node:fs";
-// import path from "node:path";
-// import { fileURLToPath } from "node:url";
-// import minimist from "minimist";
 import { params } from "./params.js";
 import { isEmpty } from "./fs-utils.js";
 import {
@@ -17,16 +14,6 @@ import {
 	yellow,
 } from "kolorist";
 
-// const defaultTargetDir = "my-vue-project";
-// const argv = minimist(process.argv.slice(2), { string: ["_"] });
-
-// const argTargetDir = formatTargetDir(argv._[0]);
-// let targetDir = argTargetDir || defaultTargetDir;
-// let prjName = "";
-
-// const getProjectName = () =>
-// 	targetDir === "." ? path.basename(path.resolve()) : targetDir;
-
 export const projectName = {
 	// type: targetDir ? null : "text",
 	type: "text",
@@ -34,7 +21,6 @@ export const projectName = {
 	message: reset("Project name:"),
 	initial: params.projectName,
 	onState: (state) => {
-		// params.prjName = formatTargetDir(state.value) || defaultTargetDir;
 		params.projectName = formatTargetDir(state.value) || params.targetDir;
 		params.targetDir = params.targetDir === "." ? "." : params.projectName;
 	},

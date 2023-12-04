@@ -272,6 +272,12 @@ var minimist = function (args, opts) {
 
 const minimist$1 = /*@__PURE__*/getDefaultExportFromCjs(minimist);
 
+const params = {
+  defaultTargetDir: "my-vue-project",
+  targetDir: "my-vue-project",
+  projectName: "my-vue-project"
+};
+
 var prompts$3 = {};
 
 var kleur;
@@ -6811,19 +6817,15 @@ const red$1 = kolorist(31, 39);
 const lightGreen = kolorist(92, 39);
 const lightBlue = kolorist(94, 39);
 
-const defaultTargetDir$1 = "my-vue-project";
-const argv$1 = minimist$1(process.argv.slice(2), { string: ["_"] });
-const argTargetDir = formatTargetDir(argv$1._[0]);
-let targetDir = argTargetDir || defaultTargetDir$1;
-const getProjectName = () => targetDir === "." ? path.basename(path.resolve()) : targetDir;
 const projectName = {
   // type: targetDir ? null : "text",
   type: "text",
   name: "projectName",
   message: reset("Project name:"),
-  initial: targetDir,
+  initial: params.projectName,
   onState: (state) => {
-    targetDir = formatTargetDir(state.value) || defaultTargetDir$1;
+    params.projectName = formatTargetDir(state.value) || params.targetDir;
+    params.targetDir = params.targetDir === "." ? "." : params.projectName;
   }
 };
 const navigationDrawer = {
@@ -6886,18 +6888,20 @@ const githubActionsGithubPagesWorkflow = {
   inactive: "no"
 };
 const packageNameCheck = {
-  type: () => isValidPackageName(getProjectName()) ? null : "text",
+  // type: () => (isValidPackageName(getProjectName()) ? null : "text"),
+  type: () => isValidPackageName() ? null : "text",
   // type: "text",
   name: "packageName",
   message: reset("Package name:"),
-  initial: () => toValidPackageName(getProjectName()),
-  validate: (dir) => isValidPackageName(dir) || "Invalid package.json name"
+  // initial: () => toValidPackageName(getProjectName()),
+  initial: () => toValidPackageName(params.projectName),
+  validate: (dir) => isValidPackageName() || "Invalid package.json name"
 };
 const dirOverwriteCheck = [
   {
-    type: () => !fs.existsSync(targetDir) || isEmpty(targetDir) ? null : "confirm",
+    type: () => !fs.existsSync(params.targetDir) || isEmpty(params.targetDir) ? null : "confirm",
     name: "overwrite",
-    message: () => (targetDir === "." ? "Current directory" : `Target directory "${targetDir}"`) + ` is not empty. Remove existing files and continue?`
+    message: () => (params.targetDir === "." ? "Current directory" : `Target directory "${params.targetDir}"`) + ` is not empty. Remove existing files and continue?`
   },
   {
     type: (_, { overwrite }) => {
@@ -6911,23 +6915,21 @@ const dirOverwriteCheck = [
 ];
 function isValidPackageName(projectName2) {
   return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(
-    projectName2
+    params.projectName
   );
 }
 function toValidPackageName(projectName2) {
   return projectName2.trim().toLowerCase().replace(/\s+/g, "-").replace(/^[._]/, "").replace(/[^a-z\d\-~]+/g, "-");
 }
-function formatTargetDir(targetDir2) {
-  return targetDir2?.trim().replace(/\/+$/g, "");
+function formatTargetDir(targetDir) {
+  return targetDir?.trim().replace(/\/+$/g, "");
 }
 
 const argv = minimist$1(process.argv.slice(2), { string: ["_"] });
 const cwd = process.cwd();
-const defaultTargetDir = "my-vue-project";
 async function init() {
-  const argTargetDir = formatTargetDir(argv._[0]);
-  let targetDir = argTargetDir || defaultTargetDir;
-  const getProjectName = () => targetDir === "." ? path.basename(path.resolve()) : targetDir;
+  params.targetDir = formatTargetDir(argv._[0]) || params.defaultTargetDir;
+  params.projectName = params.targetDir === "." ? path.basename(path.resolve()) : params.targetDir;
   let options;
   try {
     options = await prompts$1(
@@ -6953,7 +6955,7 @@ async function init() {
     return;
   }
   const {
-    packageName,
+    projectName: projectName$1,
     overwrite,
     navigationDrawer: navigationDrawer$1,
     header: header$1,
@@ -6962,7 +6964,7 @@ async function init() {
     baseIcon: baseIcon$1,
     githubActionsGithubPagesWorkflow: githubActionsGithubPagesWorkflow$1
   } = options;
-  const destDir = path.join(cwd, targetDir);
+  const destDir = path.join(cwd, params.targetDir);
   setProjectRootDir(destDir);
   console.log(`
 Scaffolding project in ${destDir}...`);
@@ -6977,7 +6979,7 @@ Scaffolding project in ${destDir}...`);
   const pkg = JSON.parse(
     fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
   );
-  pkg.name = packageName || getProjectName();
+  pkg.name = params.projectName;
   write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
   const files = fs.readdirSync(templateDir);
   for (const file of files.filter((f) => !["package.json", "node_modules"].includes(f))) {
@@ -6994,10 +6996,10 @@ dist
   setHeader(header$1);
   setFooter(footer$1);
   setNavigationDrawer(navigationDrawer$1);
-  setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow$1, getProjectName());
+  setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow$1);
   setBaseIcon(baseIcon$1);
   setPwa(pwa$1);
-  setTitle(getProjectName());
+  setTitle(params.projectName);
   setOptionList(options);
   console.log();
 }
