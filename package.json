@@ -40,12 +40,14 @@
   "scripts": {
     "dev": "unbuild --stub",
     "build": "unbuild",
-    "prepublishOnly1": "npm run build"
+    "prepublishOnly1": "npm run build",
+    "update-template": "shx cp -r ../vue-webapp/src src/template"
   },
   "devDependencies": {
     "kolorist": "^1.8.0",
     "minimist": "^1.2.8",
     "prompts": "^2.4.2",
+    "shx": "^0.3.4",
     "unbuild": "^2.0.0"
   }
 }

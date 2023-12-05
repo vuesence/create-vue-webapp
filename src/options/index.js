@@ -4,7 +4,7 @@ import { setPwa } from "./pwa.js";
 import { setHeader } from "./header.js";
 
 function setFooter(footer) {
-	if (footer && !footer.startsWith("Simple")) {
+	if (footer && footer !== "SimpleFooter") {
 		replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
 	}
 }

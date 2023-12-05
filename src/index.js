@@ -28,7 +28,7 @@ async function init() {
 				promptsUtils.navigationDrawer,
 				promptsUtils.header,
 				promptsUtils.footer,
-				promptsUtils.baseIcon,
+				// promptsUtils.baseIcon,
 				promptsUtils.packageNameCheck,
 				...promptsUtils.dirOverwriteCheck,
 			],
@@ -108,7 +108,7 @@ dist
 	optionUtils.setFooter(footer);
 	optionUtils.setNavigationDrawer(navigationDrawer);
 	optionUtils.setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, params.projectName);
-	optionUtils.setBaseIcon(baseIcon);
+	// optionUtils.setBaseIcon(baseIcon);
 	optionUtils.setPwa(pwa);
 	optionUtils.setTitle(params.projectName);
 	optionUtils.setOptionList(options);
