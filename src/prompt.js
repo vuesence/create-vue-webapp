@@ -60,8 +60,8 @@ export const footer = {
 	message: reset("Select webapp footer"),
 	choices: [
 		{ title: lightBlue("SimpleFooter"), value: "SimpleFooter" },
-		{ title: lightGreen("MontineFooter"), value: "MontineFooter" },
-		{ title: lightGreen("MontineRichFooter"), value: "MontineRichFooter" },
+		{ title: lightGreen("MantineSimpleFooter"), value: "MantineSimpleFooter" },
+		{ title: lightGreen("MantineRichFooter"), value: "MantineRichFooter" },
 		{ title: lightGreen("RichFooter"), value: "RichFooter" },
 		{ title: lightGreen("DistributedFooter"), value: "DistributedFooter" },
 	],
