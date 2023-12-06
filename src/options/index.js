@@ -5,7 +5,7 @@ import { setHeader } from "./header.js";
 
 function setFooter(footer) {
 	if (footer && footer !== "SimpleFooter") {
-		replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
+		replaceTextInFile("src/layouts/MainLayout.vue", "/SimpleFooter.vue", "/" + footer + ".vue");
 	}
 }
 function setNavigationDrawer(navigationDrawer) {

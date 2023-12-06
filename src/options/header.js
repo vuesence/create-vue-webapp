@@ -1,7 +1,7 @@
 import { replaceTextInFile, deleteDirOrFile } from "../fs-utils.js";
 
-export function setHeader(footer) {
-  if (footer === "SlidingHeader") {
+export function setHeader(header) {
+  if (header === "SlidingHeader") {
     replaceTextInFile(
       "src/layouts/MainLayout.vue",
       `import AppHeader from "@/components/headers/SimpleHeader.vue";`,
@@ -24,5 +24,8 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
         `);
     // } else {
     //     replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
+  } else if (header !== "SimpleHeader") {
+    console.log("replaceTextInFile", header);
+    replaceTextInFile("src/layouts/MainLayout.vue", "/SimpleHeader.vue", "/" + header + ".vue");
   }
 }

@@ -50,6 +50,8 @@ export const header = {
 	message: reset("Select webapp header"),
 	choices: [
 		{ title: lightBlue("SimpleHeader"), value: "SimpleHeader" },
+		{ title: lightGreen("MantineSimpleHeader"), value: "MantineSimpleHeader" },
+		{ title: lightGreen("MantineLayeredHeader"), value: "MantineLayeredHeader" },
 		{ title: lightGreen("SlidingHeader"), value: "SlidingHeader" },
 	],
 };
