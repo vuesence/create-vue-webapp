@@ -6605,38 +6605,6 @@ function replaceTextInFile(filePath, searchValue, replaceValue) {
   }
 }
 
-function setBaseIcon(baseIcon) {
-  if (!baseIcon) {
-    deleteDirOrFile("src/utils/icons.ts");
-    deleteDirOrFile("src/components/ui/BaseIcon.vue");
-    deleteDirOrFile("src/assets/vue-icon.svg");
-    replaceTextInFile(
-      "src/main.ts",
-      `import { loadIcons } from "@/utils/icons";
-`,
-      ""
-    );
-    replaceTextInFile(
-      "src/main.ts",
-      "loadIcons();\n",
-      ""
-    );
-    replaceTextInFile(
-      "src/components/headers/SimpleHeader.vue",
-      `import BaseIcon from "@/components/ui/BaseIcon.vue";
-`,
-      ""
-    );
-    replaceTextInFile(
-      "src/components/headers/SimpleHeader.vue",
-      `<BaseIcon name="hamburger" class="drawer-toggle" @click="isDrawerOpen = !isDrawerOpen" />`,
-      `<div @click="isDrawerOpen = !isDrawerOpen">
-				<img src="@/assets/images/hamburger.svg" class="drawer-toggle"  />
-			</div>`
-    );
-  }
-}
-
 function setPwa(pwa) {
   if (!pwa) {
     deleteDirOrFile("public/manifest.json");
@@ -6660,8 +6628,8 @@ function setPwa(pwa) {
   }
 }
 
-function setHeader(footer) {
-  if (footer === "SlidingHeader") {
+function setHeader(header) {
+  if (header === "SlidingHeader") {
     replaceTextInFile(
       "src/layouts/MainLayout.vue",
       `import AppHeader from "@/components/headers/SimpleHeader.vue";`,
@@ -6682,12 +6650,28 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
       </template>
     </AppHeader>
         `);
+  } else if (header !== "SimpleHeader") {
+    console.log("replaceTextInFile", header);
+    replaceTextInFile("src/layouts/MainLayout.vue", "/SimpleHeader.vue", "/" + header + ".vue");
   }
 }
 
+function setNavbar(navbar) {
+  if (navbar && navbar !== "SimpleNavbar") {
+    replaceTextInFile(
+      "src/layouts/MainLayout.vue",
+      "/SimpleNavbar.vue",
+      "/" + navbar + ".vue"
+    );
+  }
+}
 function setFooter(footer) {
-  if (footer && !footer.startsWith("Simple")) {
-    replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
+  if (footer && footer !== "SimpleFooter") {
+    replaceTextInFile(
+      "src/layouts/MainLayout.vue",
+      "/SimpleFooter.vue",
+      "/" + footer + ".vue"
+    );
   }
 }
 function setNavigationDrawer(navigationDrawer) {
@@ -6707,26 +6691,24 @@ function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, p
   deleteDirOrFile(".github/webapp-start.png");
 }
 function setTitle(title) {
-  replaceTextInFile(
-    "index.html",
-    "<!-- title placeholder -->",
-    title
-  );
+  replaceTextInFile("index.html", "<!-- title placeholder -->", title);
 }
 function setOptionList(options) {
   let optionArrayStr = [];
   const titles = {
-    "projectName": "Project name",
-    "navigationDrawer": "Navigation drawer",
-    "header": "Header",
-    "footer": "Footer",
-    "baseIcon": "BaseIcon",
-    "pwa": "PWA",
-    "githubActionsGithubPagesWorkflow": "Github Actions Workflow"
+    projectName: "Project name",
+    navigationDrawer: "Navigation drawer",
+    header: "Header",
+    footer: "Footer",
+    baseIcon: "BaseIcon",
+    pwa: "PWA",
+    githubActionsGithubPagesWorkflow: "Github Actions Workflow"
   };
   for (let name in options) {
     if (options[name] !== false && !["overwrite"].includes(name)) {
-      optionArrayStr.push(`{name: "${titles[name]}", value: "${options[name]}"}`);
+      optionArrayStr.push(
+        `{name: "${titles[name]}", value: "${options[name]}"}`
+      );
     }
   }
   optionArrayStr = `[${optionArrayStr.join(",")}]`;
@@ -6845,12 +6827,26 @@ const navigationDrawer = {
     }
   ]
 };
+const navbar = {
+  type: "select",
+  name: "navbar",
+  message: reset("Select webapp navbar"),
+  choices: [
+    { title: lightBlue("SimpleNavbar"), value: "SimpleNavbar" },
+    { title: lightGreen("MantineSimpleNavbar"), value: "MantineSimpleNavbar" }
+  ]
+};
 const header = {
   type: "select",
   name: "header",
   message: reset("Select webapp header"),
   choices: [
     { title: lightBlue("SimpleHeader"), value: "SimpleHeader" },
+    { title: lightGreen("MantineSimpleHeader"), value: "MantineSimpleHeader" },
+    {
+      title: lightGreen("MantineLayeredHeader"),
+      value: "MantineLayeredHeader"
+    },
     { title: lightGreen("SlidingHeader"), value: "SlidingHeader" }
   ]
 };
@@ -6860,6 +6856,8 @@ const footer = {
   message: reset("Select webapp footer"),
   choices: [
     { title: lightBlue("SimpleFooter"), value: "SimpleFooter" },
+    { title: lightGreen("MantineSimpleFooter"), value: "MantineSimpleFooter" },
+    { title: lightGreen("MantineRichFooter"), value: "MantineRichFooter" },
     { title: lightGreen("RichFooter"), value: "RichFooter" },
     { title: lightGreen("DistributedFooter"), value: "DistributedFooter" }
   ]
@@ -6871,19 +6869,21 @@ const pwa = {
   active: "yes",
   inactive: "no"
 };
-const baseIcon = {
+({
   type: "toggle",
   name: "baseIcon",
   message: reset("Add `BaseIcon` component?"),
   active: "yes",
   inactive: "no"
-};
+});
 const githubActionsGithubPagesWorkflow = {
   // type: (prev) => prev && "toggle",
   type: "toggle",
   name: "githubActionsGithubPagesWorkflow",
   // message: reset("Add Github Action Workflow to build and deploy it to gh-pages branch for publishing on GitHub Pages?"),
-  message: reset("Add Github Action Workflow for publishing it on GitHub Pages?"),
+  message: reset(
+    "Add Github Action Workflow for publishing it on GitHub Pages?"
+  ),
   active: "yes",
   inactive: "no"
 };
@@ -6939,9 +6939,10 @@ async function init() {
         pwa,
         githubActionsGithubPagesWorkflow,
         navigationDrawer,
+        navbar,
         header,
         footer,
-        baseIcon,
+        // promptsUtils.baseIcon,
         packageNameCheck,
         ...dirOverwriteCheck
       ],
@@ -6959,10 +6960,11 @@ async function init() {
     projectName: projectName$1,
     overwrite,
     navigationDrawer: navigationDrawer$1,
+    navbar: navbar$1,
     header: header$1,
     footer: footer$1,
     pwa: pwa$1,
-    baseIcon: baseIcon$1,
+    baseIcon,
     githubActionsGithubPagesWorkflow: githubActionsGithubPagesWorkflow$1
   } = options;
   const destDir = path.join(cwd, params.targetDir);
@@ -6983,22 +6985,29 @@ Scaffolding project in ${destDir}...`);
   pkg.name = params.projectName;
   write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
   const files = fs.readdirSync(templateDir);
-  for (const file of files.filter((f) => !["package.json", "node_modules"].includes(f))) {
+  for (const file of files.filter(
+    (f) => !["package.json", "node_modules"].includes(f)
+  )) {
     write(templateDir, file);
   }
-  write(templateDir, ".gitignore", `# Logs
+  write(
+    templateDir,
+    ".gitignore",
+    `# Logs
 logs
 *.log
 .history
 node_modules
 dist
 *.local
-`);
+`
+  );
+  setNavbar(navbar$1);
   setHeader(header$1);
   setFooter(footer$1);
   setNavigationDrawer(navigationDrawer$1);
-  setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow$1);
-  setBaseIcon(baseIcon$1);
+  setGithubActionsGithubPagesWorkflow(
+    githubActionsGithubPagesWorkflow$1);
   setPwa(pwa$1);
   setTitle(params.projectName);
   setOptionList(options);
