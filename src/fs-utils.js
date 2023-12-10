@@ -1,11 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-
-let projectRootDir;
-
-function setProjectRootDir(_projectRootDir) {
-  projectRootDir = _projectRootDir;
-}
+import { params } from "./params.js";
 
 // function write(templateDir, file, content) {
 //   const targetPath = path.join(projectRootDir, file);
@@ -17,7 +12,7 @@ function setProjectRootDir(_projectRootDir) {
 // }
 
 function writeToFile(file, content) {
-  const targetPath = path.join(projectRootDir, file);
+  const targetPath = path.join(params.targetDirPath, file);
   fs.writeFileSync(targetPath, content);
 }
 
@@ -39,10 +34,10 @@ function copyDir(srcDir, destDir) {
   }
 }
 
-function isEmpty(path) {
-  const files = fs.readdirSync(path);
-  return files.length === 0 || (files.length === 1 && files[0] === ".git");
-}
+// function isEmpty(path) {
+//   const files = fs.readdirSync(path);
+//   return files.length === 0 || (files.length === 1 && files[0] === ".git");
+// }
 
 function emptyDir(dir) {
   if (!fs.existsSync(dir)) {
@@ -56,7 +51,7 @@ function emptyDir(dir) {
   }
 }
 function deleteDirOrFile(pathToDelete) {
-  pathToDelete = path.resolve(projectRootDir, pathToDelete);
+  pathToDelete = path.resolve(params.targetDirPath, pathToDelete);
   if (fs.existsSync(pathToDelete)) {
     const stats = fs.statSync(pathToDelete);
     if (stats.isDirectory()) {
@@ -73,7 +68,7 @@ function deleteDirOrFile(pathToDelete) {
 
 function replaceTextInFile(filePath, searchValue, replaceValue) {
   try {
-    filePath = path.resolve(projectRootDir, filePath);
+    filePath = path.resolve(params.targetDirPath, filePath);
     const data = fs.readFileSync(filePath, "utf8");
     const updatedData = data.replace(searchValue, replaceValue);
     fs.writeFileSync(filePath, updatedData, "utf8");
@@ -85,7 +80,7 @@ function replaceTextInFile(filePath, searchValue, replaceValue) {
 
 function deleteTextInFile(filePath, strings) {
   try {
-    filePath = path.resolve(projectRootDir, filePath);
+    filePath = path.resolve(params.targetDirPath, filePath);
     let data = fs.readFileSync(filePath, "utf8");
     strings.forEach((str) => {
       // console.log("removing: ", str);
@@ -100,13 +95,11 @@ function deleteTextInFile(filePath, strings) {
 
 export {
   // write,
-  copy,
-  isEmpty,
+  // copy,
   copyDir,
   emptyDir,
   writeToFile,
   deleteDirOrFile,
   deleteTextInFile,
   replaceTextInFile,
-  setProjectRootDir,
 };

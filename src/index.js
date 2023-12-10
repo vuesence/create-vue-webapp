@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import minimist from "minimist";
 import { params } from "./params.js";
 import prompts from "prompts";
-import { setProjectRootDir, copyDir, writeToFile } from "./fs-utils.js";
+import { copyDir, writeToFile } from "./fs-utils.js";
 import * as optionUtils from "./options/index.js";
 import * as promptsUtils from "./prompt.js";
 
@@ -72,7 +72,6 @@ async function init() {
   } = options;
 
   const destDir = path.join(cwd, params.targetDir);
-  setProjectRootDir(destDir);
   params.targetDirPath = destDir;
 
   // console.log(params);

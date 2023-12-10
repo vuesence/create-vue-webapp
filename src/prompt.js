@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import { params } from "./params.js";
-import { isEmpty } from "./fs-utils.js";
 import {
   blue,
   cyan,
@@ -154,10 +153,15 @@ export const packageNameCheck = {
 
 export const dirOverwriteCheck = [
   {
-    type: () =>
-      !fs.existsSync(params.targetDir) || isEmpty(params.targetDir)
+    type: () => {
+      if (!fs.existsSync(params.targetDir)) {
+        return null;
+      }
+      const files = fs.readdirSync(params.targetDir);
+      return files.length === 0 || (files.length === 1 && files[0] === ".git")
         ? null
-        : "confirm",
+        : "confirm";
+    },
     name: "overwrite",
     message: () =>
       (params.targetDir === "."
