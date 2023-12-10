@@ -1,7 +1,12 @@
-import { replaceTextInFile, deleteDirOrFile } from "../fs-utils.js";
+import { replaceTextInFile, writeToFile } from "../fs-utils.js";
 import { setBaseIcon } from "./base-icon.js";
+import { setSplashScreen } from "./splash-screen.js";
+import { setOpenGraph } from "./open-graph.js";
 import { setPwa } from "./pwa.js";
+import { setApi } from "./api.js";
 import { setHeader } from "./header.js";
+import { setGithubActionsGithubPagesWorkflow } from "./github-actions.js";
+import { params } from "../params.js";
 
 function setNavbar(navbar) {
   if (navbar && navbar !== "SimpleNavbar") {
@@ -32,22 +37,15 @@ function setNavigationDrawer(navigationDrawer) {
   }
 }
 
-function setGithubActionsGithubPagesWorkflow(
-  githubActionsGithubPagesWorkflow,
-  projectName
-) {
-  if (githubActionsGithubPagesWorkflow) {
-    // replaceTextInFile(
-    // 	"vite.config.ts",
-    // 	`export default defineConfig({`,
-    // 	`export default defineConfig({
-    // 	base: "${projectName}",`
-    // );
-  } else {
-    deleteDirOrFile(".github/workflows/gp-deploy.yaml");
-  }
-  deleteDirOrFile(".github/README.md");
-  deleteDirOrFile(".github/webapp-start.png");
+function setHtmlInjections() {
+  // console.log(params.htmlInjections);
+  const data =
+    `import type { IHtmlInjectionConfig } from "vite-plugin-html-injection";\n    
+export const htmlInjectionConfig: IHtmlInjectionConfig = {
+  injections: ` +
+    JSON.stringify(params.htmlInjections, null, 2) +
+    "  \n};\n";
+  writeToFile("src/utils/injections/htmlInjectionConfig.ts", data);
 }
 
 function setTitle(title) {
@@ -64,6 +62,10 @@ function setOptionList(options) {
     footer: "Footer",
     baseIcon: "BaseIcon",
     pwa: "PWA",
+    api: "REST API adapter",
+    splashScreen: "Splash screen",
+    openGraph: "Open graph meta tags",
+    jsonRpc: "JSON-RPC",
     githubActionsGithubPagesWorkflow: "Github Actions Workflow",
   };
   for (let name in options) {
@@ -83,6 +85,7 @@ function setOptionList(options) {
 }
 
 export {
+  setSplashScreen,
   setNavbar,
   setHeader,
   setFooter,
@@ -90,6 +93,9 @@ export {
   setGithubActionsGithubPagesWorkflow,
   setBaseIcon,
   setPwa,
+  setApi,
+  setOpenGraph,
   setTitle,
+  setHtmlInjections,
   setOptionList,
 };

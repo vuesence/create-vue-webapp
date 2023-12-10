@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import minimist from "minimist";
 import { params } from "./params.js";
 import prompts from "prompts";
-import { write, emptyDir, setProjectRootDir } from "./fs-utils.js";
+import { setProjectRootDir, copyDir, writeToFile } from "./fs-utils.js";
 import * as optionUtils from "./options/index.js";
 import * as promptsUtils from "./prompt.js";
 
@@ -25,12 +25,16 @@ async function init() {
     options = await prompts(
       [
         promptsUtils.projectName,
+        promptsUtils.splashScreen,
         promptsUtils.pwa,
+        promptsUtils.openGraph,
         promptsUtils.githubActionsGithubPagesWorkflow,
         promptsUtils.navigationDrawer,
         promptsUtils.navbar,
         promptsUtils.header,
         promptsUtils.footer,
+        promptsUtils.api,
+        promptsUtils.jsonRpc,
         // promptsUtils.baseIcon,
         promptsUtils.packageNameCheck,
         ...promptsUtils.dirOverwriteCheck,
@@ -53,18 +57,25 @@ async function init() {
 
   const {
     projectName,
+    splashScreen,
     overwrite,
     navigationDrawer,
     navbar,
     header,
     footer,
     pwa,
+    api,
+    openGraph,
+    jsonRpc,
     baseIcon,
     githubActionsGithubPagesWorkflow,
   } = options;
 
   const destDir = path.join(cwd, params.targetDir);
   setProjectRootDir(destDir);
+  params.targetDirPath = destDir;
+
+  // console.log(params);
 
   console.log(`\nScaffolding project in ${destDir}...`);
   // create target directory
@@ -80,25 +91,20 @@ async function init() {
     "../../src/template"
   );
 
+  // const files = fs.readdirSync(templateDir);
+  // for (const file of files.filter((f) => !["node_modules"].includes(f))) {
+  //   write(templateDir, file);
+  // }
+  copyDir(templateDir, destDir);
+
   // modify package.json
   const pkg = JSON.parse(
-    fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
+    fs.readFileSync(path.join(destDir, `package.json`), "utf-8")
   );
-  // pkg.name = projectName || getProjectName();
-  // console.log(options);
-  // console.log(params);
   pkg.name = params.projectName;
-  write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
+  writeToFile("package.json", JSON.stringify(pkg, null, 2) + "\n");
 
-  const files = fs.readdirSync(templateDir);
-  for (const file of files.filter(
-    (f) => !["package.json", "node_modules"].includes(f)
-  )) {
-    write(templateDir, file);
-  }
-
-  write(
-    templateDir,
+  writeToFile(
     ".gitignore",
     `# Logs
 logs
@@ -124,9 +130,14 @@ dist
     params.projectName
   );
   // optionUtils.setBaseIcon(baseIcon);
+  optionUtils.setOpenGraph(openGraph);
+  optionUtils.setSplashScreen(splashScreen);
   optionUtils.setPwa(pwa);
+  optionUtils.setApi(api, jsonRpc);
   optionUtils.setTitle(params.projectName);
   optionUtils.setOptionList(options);
+  // console.log(params);
+  optionUtils.setHtmlInjections();
 
   console.log();
 }

@@ -82,10 +82,42 @@ export const footer = {
   ],
 };
 
+export const splashScreen = {
+  type: "toggle",
+  name: "splashScreen",
+  message: reset("Add a Splash screen?"),
+  active: "yes",
+  inactive: "no",
+};
+
 export const pwa = {
   type: "toggle",
   name: "pwa",
   message: reset("Make it PWA (adds service worker and manifest)?"),
+  active: "yes",
+  inactive: "no",
+};
+
+export const openGraph = {
+  type: "toggle",
+  name: "openGraph",
+  message: reset("Add Open Graph meta tags?"),
+  active: "yes",
+  inactive: "no",
+};
+
+export const api = {
+  type: "toggle",
+  name: "api",
+  message: reset("Add API layer (REST)?"),
+  active: "yes",
+  inactive: "no",
+};
+
+export const jsonRpc = {
+  type: (prev) => prev && "toggle",
+  name: "jsonRpc",
+  message: reset("Add JSON-RPC adapter?"),
   active: "yes",
   inactive: "no",
 };
@@ -102,7 +134,6 @@ export const githubActionsGithubPagesWorkflow = {
   // type: (prev) => prev && "toggle",
   type: "toggle",
   name: "githubActionsGithubPagesWorkflow",
-  // message: reset("Add Github Action Workflow to build and deploy it to gh-pages branch for publishing on GitHub Pages?"),
   message: reset(
     "Add Github Action Workflow for publishing it on GitHub Pages?"
   ),
