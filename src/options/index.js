@@ -3,10 +3,26 @@ import { setBaseIcon } from "./base-icon.js";
 import { setSplashScreen } from "./splash-screen.js";
 import { setOpenGraph } from "./open-graph.js";
 import { setPwa } from "./pwa.js";
+import { setGoogleAnalytics } from "./google-analytics.js";
 import { setApi } from "./api.js";
 import { setHeader } from "./header.js";
 import { setGithubActionsGithubPagesWorkflow } from "./github-actions.js";
 import { params } from "../params.js";
+
+function setLayout(layout) {
+  if (layout !== "MainLayout") {
+    replaceTextInFile(
+      "src/assets/styles/custom.scss",
+      "// layout-placeholder",
+      `:root {
+  --vp-layout-max-width: 800px;  
+}
+.notebook .navigation-drawer, .desktop .navigation-drawer {
+  display: none;
+}`
+    );
+  }
+}
 
 function setNavbar(navbar) {
   if (navbar && navbar !== "SimpleNavbar") {
@@ -45,7 +61,7 @@ export const htmlInjectionConfig: IHtmlInjectionConfig = {
   injections: ` +
     JSON.stringify(params.htmlInjections, null, 2) +
     "  \n};\n";
-  writeToFile("src/utils/injections/htmlInjectionConfig.ts", data);
+  writeToFile("src/utils/injections/injection-config.ts", data);
 }
 
 function setTitle(title) {
@@ -57,11 +73,13 @@ function setOptionList(options) {
   const titles = {
     projectName: "Project name",
     navigationDrawer: "Navigation drawer",
+    layout: "App Layout",
     navbar: "Navbar",
     header: "Header",
     footer: "Footer",
     baseIcon: "BaseIcon",
     pwa: "PWA",
+    googleAnalytics: "Google Analytics",
     api: "REST API adapter",
     splashScreen: "Splash screen",
     openGraph: "Open graph meta tags",
@@ -70,7 +88,7 @@ function setOptionList(options) {
   };
   for (let name in options) {
     // console.log(name);
-    if (options[name] !== false && !["overwrite"].includes(name)) {
+    if (!["overwrite"].includes(name)) {
       optionArrayStr.push(
         `{name: "${titles[name]}", value: "${options[name]}"}`
       );
@@ -86,6 +104,7 @@ function setOptionList(options) {
 
 export {
   setSplashScreen,
+  setLayout,
   setNavbar,
   setHeader,
   setFooter,
@@ -93,6 +112,7 @@ export {
   setGithubActionsGithubPagesWorkflow,
   setBaseIcon,
   setPwa,
+  setGoogleAnalytics,
   setApi,
   setOpenGraph,
   setTitle,

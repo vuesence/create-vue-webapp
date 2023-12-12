@@ -30,9 +30,9 @@ self.addEventListener("activate", (event) => {
             return caches.delete(cacheName);
           }
           return null;
-        }),
+        })
       );
-    }),
+    })
   );
   console.log("Service Worker has been activated");
 });
@@ -50,7 +50,7 @@ self.addEventListener("fetch", (event) => {
         console.log(`\tGetting from the Internet:${event.request.url}`);
         return await fetchAndCache(event.request);
       }
-    })(),
+    })()
   );
 });
 
@@ -66,11 +66,11 @@ function fetchAndCache(request) {
       const url = new URL(request.url);
       // console.log(url);
       if (
-        response.status < 400
-        && response.type === "basic"
-        && !url.search.includes("mode=nocache")
-        && !nonCached.includes(url.pathname)
-        && url.protocol !== "chrome-extension:"
+        response.status < 400 &&
+        response.type === "basic" &&
+        !url.search.includes("mode=nocache") &&
+        !nonCached.includes(url.pathname) &&
+        url.protocol !== "chrome-extension:"
       ) {
         const cur_cache = getCache(response);
         if (cur_cache) {
@@ -94,9 +94,11 @@ function getCache(response) {
   if (contentType) {
     if (contentType.includes("image")) {
       return CHACHE_LIST.images;
-    } else if (
-      ["application/javascript", "text/css", "font/woff2"].includes(contentType)
-    ) { return CHACHE_LIST.assets; }
+    } else if (contentType.includes("font")) {
+      return CHACHE_LIST.fonts;
+    } else if (["application/javascript", "text/css"].includes(contentType)) {
+      return CHACHE_LIST.assets;
+    }
   }
   return false;
 }

@@ -1,7 +1,7 @@
 {
   "name": "create-vue-webapp",
   "type": "module",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Scaffolding Vue 3 webapp",
   "license": "MIT",
   "homepage": "https://vue-faq.org/en/vue-webapp/",
@@ -41,7 +41,7 @@
     "dev": "unbuild --stub",
     "build": "unbuild",
     "prepublishOnly1": "npm run build",
-    "update-template": "shx cp -r ../vue-webapp/src/* src/template/src && shx cp ../vue-webapp/package.json ../vue-webapp/vite.config.ts ../vue-webapp/index.html src/template"
+    "upd": "shx cp -r ../vue-webapp/src/* src/template/src && shx cp ../vue-webapp/package.json ../vue-webapp/vite.config.ts ../vue-webapp/index.html src/template"
   },
   "devDependencies": {
     "kolorist": "^1.8.0",

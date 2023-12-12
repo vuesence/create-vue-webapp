@@ -275,7 +275,9 @@ const minimist$1 = /*@__PURE__*/getDefaultExportFromCjs(minimist);
 const params = {
   defaultTargetDir: "my-vue-project",
   targetDir: "my-vue-project",
-  projectName: "my-vue-project"
+  targetDirPath: "my-vue-project",
+  projectName: "my-vue-project",
+  htmlInjections: []
 };
 
 var prompts$3 = {};
@@ -6547,17 +6549,9 @@ var prompts =
 
 const prompts$1 = /*@__PURE__*/getDefaultExportFromCjs(prompts);
 
-let projectRootDir;
-function setProjectRootDir(_projectRootDir) {
-  projectRootDir = _projectRootDir;
-}
-function write(templateDir, file, content) {
-  const targetPath = path.join(projectRootDir, file);
-  if (content) {
-    fs.writeFileSync(targetPath, content);
-  } else {
-    copy(path.join(templateDir, file), targetPath);
-  }
+function writeToFile(file, content) {
+  const targetPath = path.join(params.targetDirPath, file);
+  fs.writeFileSync(targetPath, content);
 }
 function copy(src, dest) {
   const stat = fs.statSync(src);
@@ -6575,12 +6569,8 @@ function copyDir(srcDir, destDir) {
     copy(srcFile, destFile);
   }
 }
-function isEmpty(path2) {
-  const files = fs.readdirSync(path2);
-  return files.length === 0 || files.length === 1 && files[0] === ".git";
-}
 function deleteDirOrFile(pathToDelete) {
-  pathToDelete = path.resolve(projectRootDir, pathToDelete);
+  pathToDelete = path.resolve(params.targetDirPath, pathToDelete);
   if (fs.existsSync(pathToDelete)) {
     const stats = fs.statSync(pathToDelete);
     if (stats.isDirectory()) {
@@ -6596,7 +6586,7 @@ function deleteDirOrFile(pathToDelete) {
 }
 function replaceTextInFile(filePath, searchValue, replaceValue) {
   try {
-    filePath = path.resolve(projectRootDir, filePath);
+    filePath = path.resolve(params.targetDirPath, filePath);
     const data = fs.readFileSync(filePath, "utf8");
     const updatedData = data.replace(searchValue, replaceValue);
     fs.writeFileSync(filePath, updatedData, "utf8");
@@ -6604,27 +6594,142 @@ function replaceTextInFile(filePath, searchValue, replaceValue) {
     console.error(err);
   }
 }
+function deleteTextInFile(filePath, strings) {
+  try {
+    filePath = path.resolve(params.targetDirPath, filePath);
+    let data = fs.readFileSync(filePath, "utf8");
+    strings.forEach((str) => {
+      data = data.replace(str, "");
+    });
+    fs.writeFileSync(filePath, data, "utf8");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function setSplashScreen(splashScreen) {
+  if (splashScreen) {
+    params.htmlInjections.push({
+      name: "Splash screen",
+      path: "./src/utils/injections/splash-screen.html",
+      type: "raw",
+      injectTo: "body-prepend"
+    });
+  } else {
+    deleteDirOrFile("src/utils/injections/splash-screen.html");
+  }
+}
+
+function setOpenGraph(openGraph) {
+  if (openGraph) {
+    params.htmlInjections.push({
+      name: "Open Graph",
+      path: "./src/utils/injections/open-graph.html",
+      type: "raw",
+      injectTo: "head"
+    });
+  } else {
+    deleteDirOrFile("src/utils/injections/open-graph.html");
+  }
+}
 
 function setPwa(pwa) {
-  if (!pwa) {
+  if (pwa) {
+    params.htmlInjections.push({
+      name: "Service worker",
+      path: "./src/utils/injections/sw.js",
+      type: "js",
+      injectTo: "head"
+    });
+  } else {
     deleteDirOrFile("public/manifest.json");
     deleteDirOrFile("public/service-worker.js");
-    replaceTextInFile(
-      "index.html",
-      "<!-- service-worker placeholder -->\n",
-      ""
-    );
+    deleteDirOrFile("src/utils/injections/sw.js");
+    deleteTextInFile("index.html", [
+      `<link rel="manifest" href="/manifest.json" />
+`
+    ]);
+  }
+}
+
+function setGoogleAnalytics(googleAnalytics) {
+  if (googleAnalytics) {
+    params.htmlInjections.push({
+      name: "Google analytics",
+      path: "./src/utils/injections/gtag.html",
+      type: "raw",
+      injectTo: "body"
+    });
+  } else {
+    deleteDirOrFile("src/utils/injections/gtag.js");
+  }
+}
+
+function setApi(api, jsonRpc) {
+  if (!api) {
+    deleteDirOrFile("src/services/api");
+    deleteTextInFile("src/main.ts", [
+      `import { api } from "@/services/api";
+`,
+      `api.init();
+`
+    ]);
   } else {
     replaceTextInFile(
-      "index.html",
-      "<!-- service-worker placeholder -->",
-      `
-		<script>
-			if ("serviceWorker" in navigator) {
-				navigator.serviceWorker.register("/service-worker.js");
-			}
-		<\/script>`
+      "src/views/HomeView.vue",
+      `import { onMounted, ref } from "vue";`,
+      `import { onMounted, ref } from "vue";
+import { api } from "@/services/api";`
     );
+    replaceTextInFile(
+      "src/views/HomeView.vue",
+      `// api-placeholder`,
+      `const apiData = ref();
+
+onMounted(async () => {
+  apiData.value = await api.utils.testRest();
+});`
+    );
+    replaceTextInFile(
+      "src/views/HomeView.vue",
+      `</ul>`,
+      `</ul>
+<hr />
+<h3>API data:</h3> <p>{{ apiData }}</p>`
+    );
+    if (jsonRpc) {
+      replaceTextInFile(
+        "src/views/HomeView.vue",
+        `const apiData = ref();`,
+        `const apiData = ref();
+const jsonRpcData = ref();`
+      );
+      replaceTextInFile(
+        "src/views/HomeView.vue",
+        `.testRest();`,
+        `.testRest();
+jsonRpcData.value = await api.utils.testJsonRpc();`
+      );
+      replaceTextInFile(
+        "src/views/HomeView.vue",
+        `<p>{{ apiData }}</p>`,
+        `<p>{{ apiData }}</p>
+<hr />
+<h3>JSON-RPC data:</h3>
+<p class="json-rpc-data">
+{{ jsonRpcData }}
+</p>`
+      );
+      replaceTextInFile(
+        "src/views/HomeView.vue",
+        `</style>`,
+        `</style>
+.json-rpc-data {
+  max-width: 80vw;
+  overflow-x: auto;
+}`
+      );
+    }
   }
 }
 
@@ -6656,6 +6761,35 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
   }
 }
 
+function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, projectName) {
+  if (githubActionsGithubPagesWorkflow) {
+    replaceTextInFile(
+      "vite.config.ts",
+      `export default defineConfig({`,
+      `export default defineConfig({
+  base: "/${projectName}/",`
+    );
+  } else {
+    deleteDirOrFile(".github/workflows/gp-deploy.yaml");
+  }
+  deleteDirOrFile(".github/README.md");
+  deleteDirOrFile(".github/webapp-start.png");
+}
+
+function setLayout(layout) {
+  if (layout !== "MainLayout") {
+    replaceTextInFile(
+      "src/assets/styles/custom.scss",
+      "// layout-placeholder",
+      `:root {
+  --vp-layout-max-width: 800px;  
+}
+.notebook .navigation-drawer, .desktop .navigation-drawer {
+  display: none;
+}`
+    );
+  }
+}
 function setNavbar(navbar) {
   if (navbar && navbar !== "SimpleNavbar") {
     replaceTextInFile(
@@ -6683,12 +6817,12 @@ function setNavigationDrawer(navigationDrawer) {
     );
   }
 }
-function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, projectName) {
-  if (githubActionsGithubPagesWorkflow) ; else {
-    deleteDirOrFile(".github/workflows/gp-deploy.yaml");
-  }
-  deleteDirOrFile(".github/README.md");
-  deleteDirOrFile(".github/webapp-start.png");
+function setHtmlInjections() {
+  const data = `import type { IHtmlInjectionConfig } from "vite-plugin-html-injection";
+    
+export const htmlInjectionConfig: IHtmlInjectionConfig = {
+  injections: ` + JSON.stringify(params.htmlInjections, null, 2) + "  \n};\n";
+  writeToFile("src/utils/injections/injection-config.ts", data);
 }
 function setTitle(title) {
   replaceTextInFile("index.html", "<!-- title placeholder -->", title);
@@ -6698,14 +6832,21 @@ function setOptionList(options) {
   const titles = {
     projectName: "Project name",
     navigationDrawer: "Navigation drawer",
+    layout: "App Layout",
+    navbar: "Navbar",
     header: "Header",
     footer: "Footer",
     baseIcon: "BaseIcon",
     pwa: "PWA",
+    googleAnalytics: "Google Analytics",
+    api: "REST API adapter",
+    splashScreen: "Splash screen",
+    openGraph: "Open graph meta tags",
+    jsonRpc: "JSON-RPC",
     githubActionsGithubPagesWorkflow: "Github Actions Workflow"
   };
   for (let name in options) {
-    if (options[name] !== false && !["overwrite"].includes(name)) {
+    if (!["overwrite"].includes(name)) {
       optionArrayStr.push(
         `{name: "${titles[name]}", value: "${options[name]}"}`
       );
@@ -6827,6 +6968,15 @@ const navigationDrawer = {
     }
   ]
 };
+const layout = {
+  type: "select",
+  name: "layout",
+  message: reset("Select application layout"),
+  choices: [
+    { title: lightBlue("MainLayout"), value: "MainLayout" },
+    { title: lightGreen("OneColumnLayout"), value: "OneColumnLayout" }
+  ]
+};
 const navbar = {
   type: "select",
   name: "navbar",
@@ -6862,10 +7012,45 @@ const footer = {
     { title: lightGreen("DistributedFooter"), value: "DistributedFooter" }
   ]
 };
+const splashScreen = {
+  type: "toggle",
+  name: "splashScreen",
+  message: reset("Add a Splash screen?"),
+  active: "yes",
+  inactive: "no"
+};
 const pwa = {
   type: "toggle",
   name: "pwa",
   message: reset("Make it PWA (adds service worker and manifest)?"),
+  active: "yes",
+  inactive: "no"
+};
+const openGraph = {
+  type: "toggle",
+  name: "openGraph",
+  message: reset("Add Open Graph meta tags?"),
+  active: "yes",
+  inactive: "no"
+};
+const googleAnalytics = {
+  type: "toggle",
+  name: "googleAnalytics",
+  message: reset("Add Google Analytics code?"),
+  active: "yes",
+  inactive: "no"
+};
+const api = {
+  type: "toggle",
+  name: "api",
+  message: reset("Add API layer (REST)?"),
+  active: "yes",
+  inactive: "no"
+};
+const jsonRpc = {
+  type: (prev) => prev && "toggle",
+  name: "jsonRpc",
+  message: reset("Add JSON-RPC adapter?"),
   active: "yes",
   inactive: "no"
 };
@@ -6880,7 +7065,6 @@ const githubActionsGithubPagesWorkflow = {
   // type: (prev) => prev && "toggle",
   type: "toggle",
   name: "githubActionsGithubPagesWorkflow",
-  // message: reset("Add Github Action Workflow to build and deploy it to gh-pages branch for publishing on GitHub Pages?"),
   message: reset(
     "Add Github Action Workflow for publishing it on GitHub Pages?"
   ),
@@ -6899,7 +7083,13 @@ const packageNameCheck = {
 };
 const dirOverwriteCheck = [
   {
-    type: () => !fs.existsSync(params.targetDir) || isEmpty(params.targetDir) ? null : "confirm",
+    type: () => {
+      if (!fs.existsSync(params.targetDir)) {
+        return null;
+      }
+      const files = fs.readdirSync(params.targetDir);
+      return files.length === 0 || files.length === 1 && files[0] === ".git" ? null : "confirm";
+    },
     name: "overwrite",
     message: () => (params.targetDir === "." ? "Current directory" : `Target directory "${params.targetDir}"`) + ` is not empty. Remove existing files and continue?`
   },
@@ -6936,12 +7126,18 @@ async function init() {
     options = await prompts$1(
       [
         projectName,
+        splashScreen,
         pwa,
+        openGraph,
+        googleAnalytics,
         githubActionsGithubPagesWorkflow,
+        layout,
         navigationDrawer,
         navbar,
         header,
         footer,
+        api,
+        jsonRpc,
         // promptsUtils.baseIcon,
         packageNameCheck,
         ...dirOverwriteCheck
@@ -6958,17 +7154,23 @@ async function init() {
   }
   const {
     projectName: projectName$1,
+    splashScreen: splashScreen$1,
     overwrite,
     navigationDrawer: navigationDrawer$1,
+    layout: layout$1,
     navbar: navbar$1,
     header: header$1,
     footer: footer$1,
     pwa: pwa$1,
+    googleAnalytics: googleAnalytics$1,
+    api: api$1,
+    openGraph: openGraph$1,
+    jsonRpc: jsonRpc$1,
     baseIcon,
     githubActionsGithubPagesWorkflow: githubActionsGithubPagesWorkflow$1
   } = options;
   const destDir = path.join(cwd, params.targetDir);
-  setProjectRootDir(destDir);
+  params.targetDirPath = destDir;
   console.log(`
 Scaffolding project in ${destDir}...`);
   if (overwrite) ; else if (!fs.existsSync(destDir)) {
@@ -6979,19 +7181,13 @@ Scaffolding project in ${destDir}...`);
     // "../../../vue-webapp"
     "../../src/template"
   );
+  copyDir(templateDir, destDir);
   const pkg = JSON.parse(
-    fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
+    fs.readFileSync(path.join(destDir, `package.json`), "utf-8")
   );
   pkg.name = params.projectName;
-  write(templateDir, "package.json", JSON.stringify(pkg, null, 2) + "\n");
-  const files = fs.readdirSync(templateDir);
-  for (const file of files.filter(
-    (f) => !["package.json", "node_modules"].includes(f)
-  )) {
-    write(templateDir, file);
-  }
-  write(
-    templateDir,
+  writeToFile("package.json", JSON.stringify(pkg, null, 2) + "\n");
+  writeToFile(
     ".gitignore",
     `# Logs
 logs
@@ -7002,15 +7198,23 @@ dist
 *.local
 `
   );
+  setLayout(layout$1);
   setNavbar(navbar$1);
   setHeader(header$1);
   setFooter(footer$1);
   setNavigationDrawer(navigationDrawer$1);
   setGithubActionsGithubPagesWorkflow(
-    githubActionsGithubPagesWorkflow$1);
+    githubActionsGithubPagesWorkflow$1,
+    params.projectName
+  );
+  setOpenGraph(openGraph$1);
+  setSplashScreen(splashScreen$1);
   setPwa(pwa$1);
+  setGoogleAnalytics(googleAnalytics$1);
+  setApi(api$1, jsonRpc$1);
   setTitle(params.projectName);
   setOptionList(options);
+  setHtmlInjections();
   console.log();
 }
 init().catch((e) => {

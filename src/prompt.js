@@ -43,6 +43,16 @@ export const navigationDrawer = {
   ],
 };
 
+export const layout = {
+  type: "select",
+  name: "layout",
+  message: reset("Select application layout"),
+  choices: [
+    { title: lightBlue("MainLayout"), value: "MainLayout" },
+    { title: lightGreen("OneColumnLayout"), value: "OneColumnLayout" },
+  ],
+};
+
 export const navbar = {
   type: "select",
   name: "navbar",
@@ -101,6 +111,14 @@ export const openGraph = {
   type: "toggle",
   name: "openGraph",
   message: reset("Add Open Graph meta tags?"),
+  active: "yes",
+  inactive: "no",
+};
+
+export const googleAnalytics = {
+  type: "toggle",
+  name: "googleAnalytics",
+  message: reset("Add Google Analytics code?"),
   active: "yes",
   inactive: "no",
 };

@@ -1,38 +1,52 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { api } from "@/services/api";
 
 interface IOption {
   name: string
   value: string
 }
 
-const apiData = ref();
-const jsonRpcData = ref();
-
-onMounted(async () => {
-  jsonRpcData.value = await api.utils.testJsonRpc();
-  apiData.value = await api.utils.testRest();
-});
+// api-placeholder
 
 const options: IOption[] = [];
 </script>
 
 <template>
   <div>
-    <h3>Congratulations with scaffolding your vue webapp!</h3>
-    <p v-if="options.length">
+    <h2>Congratulations with scaffolding your vue webapp!</h2>
+    <h3 v-if="options.length">
       Selected options:
-    </p>
+    </h3>
     <ul>
       <li
         v-for="option in options"
         :key="option.name"
+        :class="{ dimmed: option.value === 'false' }"
       >
-        {{ `${option.name}: ${option.value}` }}
+        <span class="name">{{ option.name }}</span>
+        <span class="value">{{ option.value }}</span>
       </li>
     </ul>
-    <p><b>API data:</b> {{ apiData }}</p>
-    <p><b>JSON-RPC data:</b> {{ jsonRpcData }}</p>
   </div>
 </template>
+
+<style lang="scss" scoped>
+ul {
+  color: var(--vp-c-text-2);
+  border: 1px solid var(--vp-c-divider);
+  margin-bottom: 2em;
+  li {
+    padding: .4rem;
+    display: flex;
+    &:nth-child(even) {
+      background-color: var(--vp-c-bg-alt);
+    }
+    &.dimmed {
+      opacity: 0.5;
+    }
+    span {
+      width: 50%;
+    }
+  }
+}
+</style>

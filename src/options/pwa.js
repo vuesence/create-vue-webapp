@@ -1,4 +1,4 @@
-import { deleteDirOrFile } from "../fs-utils.js";
+import { deleteDirOrFile, deleteTextInFile } from "../fs-utils.js";
 import { params } from "../params.js";
 
 export function setPwa(pwa) {
@@ -14,5 +14,8 @@ export function setPwa(pwa) {
     deleteDirOrFile("public/manifest.json");
     deleteDirOrFile("public/service-worker.js");
     deleteDirOrFile("src/utils/injections/sw.js");
+    deleteTextInFile("index.html", [
+      `<link rel="manifest" href="/manifest.json" />\n`,
+    ]);
   }
 }

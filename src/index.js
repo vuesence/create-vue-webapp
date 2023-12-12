@@ -28,7 +28,9 @@ async function init() {
         promptsUtils.splashScreen,
         promptsUtils.pwa,
         promptsUtils.openGraph,
+        promptsUtils.googleAnalytics,
         promptsUtils.githubActionsGithubPagesWorkflow,
+        promptsUtils.layout,
         promptsUtils.navigationDrawer,
         promptsUtils.navbar,
         promptsUtils.header,
@@ -60,10 +62,12 @@ async function init() {
     splashScreen,
     overwrite,
     navigationDrawer,
+    layout,
     navbar,
     header,
     footer,
     pwa,
+    googleAnalytics,
     api,
     openGraph,
     jsonRpc,
@@ -120,6 +124,7 @@ dist
   // 		setWebappComponent(component, options[component]);
   // 	}
   // });
+  optionUtils.setLayout(layout);
   optionUtils.setNavbar(navbar);
   optionUtils.setHeader(header);
   optionUtils.setFooter(footer);
@@ -132,6 +137,7 @@ dist
   optionUtils.setOpenGraph(openGraph);
   optionUtils.setSplashScreen(splashScreen);
   optionUtils.setPwa(pwa);
+  optionUtils.setGoogleAnalytics(googleAnalytics);
   optionUtils.setApi(api, jsonRpc);
   optionUtils.setTitle(params.projectName);
   optionUtils.setOptionList(options);

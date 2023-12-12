@@ -1,4 +1,8 @@
-import { deleteTextInFile, deleteDirOrFile } from "../fs-utils.js";
+import {
+  replaceTextInFile,
+  deleteTextInFile,
+  deleteDirOrFile,
+} from "../fs-utils.js";
 
 const apiStrings = [
   'import { api } from "@/services/api";\n',
@@ -18,11 +22,58 @@ const jsonRpcStrings = [
 export function setApi(api, jsonRpc) {
   if (!api) {
     deleteDirOrFile("src/services/api");
-    deleteTextInFile(
+    deleteTextInFile("src/main.ts", [
+      `import { api } from "@/services/api";\n`,
+      `api.init();\n`,
+    ]);
+  } else {
+    // deleteTextInFile(
+    //   "src/views/HomeView.vue",
+    //   apiStrings.concat(jsonRpcStrings)
+    // );
+    replaceTextInFile(
       "src/views/HomeView.vue",
-      apiStrings.concat(jsonRpcStrings)
+      `import { onMounted, ref } from "vue";`,
+      `import { onMounted, ref } from "vue";\nimport { api } from "@/services/api";`
     );
-  } else if (!jsonRpc) {
-    deleteTextInFile("src/views/HomeView.vue", jsonRpcStrings);
+    replaceTextInFile(
+      "src/views/HomeView.vue",
+      `// api-placeholder`,
+      `const apiData = ref();
+
+onMounted(async () => {
+  apiData.value = await api.utils.testRest();
+});`
+    );
+    replaceTextInFile(
+      "src/views/HomeView.vue",
+      `</ul>`,
+      `</ul>\n<hr />\n<h3>API data:</h3> <p>{{ apiData }}</p>`
+    );
+    if (jsonRpc) {
+      replaceTextInFile(
+        "src/views/HomeView.vue",
+        `const apiData = ref();`,
+        `const apiData = ref();\nconst jsonRpcData = ref();`
+      );
+      replaceTextInFile(
+        "src/views/HomeView.vue",
+        `.testRest();`,
+        `.testRest();\njsonRpcData.value = await api.utils.testJsonRpc();`
+      );
+      replaceTextInFile(
+        "src/views/HomeView.vue",
+        `<p>{{ apiData }}</p>`,
+        `<p>{{ apiData }}</p>\n<hr />\n<h3>JSON-RPC data:</h3>\n<p class="json-rpc-data">\n{{ jsonRpcData }}\n</p>`
+      );
+      replaceTextInFile(
+        "src/views/HomeView.vue",
+        `</style>`,
+        `</style>\n.json-rpc-data {
+  max-width: 80vw;
+  overflow-x: auto;
+}`
+      );
+    }
   }
 }
