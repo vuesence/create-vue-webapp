@@ -8,7 +8,10 @@ export function setHeader(header) {
       `import AppHeaderContent from "@/components/headers/SimpleHeader.vue";
 import AppHeader from "@/components/headers/SlidingHeader.vue";`
     );
-    replaceTextInFile("src/layouts/MainLayout.vue", "<AppHeader />", `
+    replaceTextInFile(
+      "src/layouts/MainLayout.vue",
+      "<AppHeader />",
+      `
     <AppHeader :threshold-hide="200" :threshold-open="400">
       <template #first-header>
         <AppHeaderContent />
@@ -21,11 +24,15 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
         </div>
       </template>
     </AppHeader>
-        `);
+        `
+    );
     // } else {
     //     replaceTextInFile("src/layouts/MainLayout.vue", "SimpleFooter", footer);
   } else if (header !== "SimpleHeader") {
-    console.log("replaceTextInFile", header);
-    replaceTextInFile("src/layouts/MainLayout.vue", "/SimpleHeader.vue", "/" + header + ".vue");
+    replaceTextInFile(
+      "src/layouts/MainLayout.vue",
+      "/SimpleHeader.vue",
+      "/" + header + ".vue"
+    );
   }
 }

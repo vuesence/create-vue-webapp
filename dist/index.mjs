@@ -6569,6 +6569,17 @@ function copyDir(srcDir, destDir) {
     copy(srcFile, destFile);
   }
 }
+function emptyDir(dir) {
+  if (!fs.existsSync(dir)) {
+    return;
+  }
+  for (const file of fs.readdirSync(dir)) {
+    if (file === ".git") {
+      continue;
+    }
+    fs.rmSync(path.resolve(dir, file), { recursive: true, force: true });
+  }
+}
 function deleteDirOrFile(pathToDelete) {
   pathToDelete = path.resolve(params.targetDirPath, pathToDelete);
   if (fs.existsSync(pathToDelete)) {
@@ -6666,7 +6677,7 @@ function setGoogleAnalytics(googleAnalytics) {
       injectTo: "body"
     });
   } else {
-    deleteDirOrFile("src/utils/injections/gtag.js");
+    deleteDirOrFile("src/utils/injections/gtag.html");
   }
 }
 
@@ -6746,7 +6757,10 @@ function setHeader(header) {
       `import AppHeaderContent from "@/components/headers/SimpleHeader.vue";
 import AppHeader from "@/components/headers/SlidingHeader.vue";`
     );
-    replaceTextInFile$1("src/layouts/MainLayout.vue", "<AppHeader />", `
+    replaceTextInFile$1(
+      "src/layouts/MainLayout.vue",
+      "<AppHeader />",
+      `
     <AppHeader :threshold-hide="200" :threshold-open="400">
       <template #first-header>
         <AppHeaderContent />
@@ -6759,10 +6773,14 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
         </div>
       </template>
     </AppHeader>
-        `);
+        `
+    );
   } else if (header !== "SimpleHeader") {
-    console.log("replaceTextInFile", header);
-    replaceTextInFile$1("src/layouts/MainLayout.vue", "/SimpleHeader.vue", "/" + header + ".vue");
+    replaceTextInFile$1(
+      "src/layouts/MainLayout.vue",
+      "/SimpleHeader.vue",
+      "/" + header + ".vue"
+    );
   }
 }
 
@@ -7083,8 +7101,8 @@ const packageNameCheck = {
   name: "packageName",
   message: reset("Package name:"),
   // initial: () => toValidPackageName(getProjectName()),
-  initial: () => toValidPackageName(params.projectName),
-  validate: (dir) => isValidPackageName() || "Invalid package.json name"
+  initial: () => toValidPackageName(params.projectName)
+  // validate: (dir) => isValidPackageName(dir) || "Invalid package.json 'name'",
 };
 const dirOverwriteCheck = [
   {
@@ -7093,14 +7111,29 @@ const dirOverwriteCheck = [
         return null;
       }
       const files = fs.readdirSync(params.targetDir);
-      return files.length === 0 || files.length === 1 && files[0] === ".git" ? null : "confirm";
+      return files.length === 0 || files.length === 1 && files[0] === ".git" ? null : "select";
     },
     name: "overwrite",
-    message: () => (params.targetDir === "." ? "Current directory" : `Target directory "${params.targetDir}"`) + ` is not empty. Remove existing files and continue?`
+    message: () => (params.targetDir === "." ? "Current directory" : `Target directory "${params.targetDir}"`) + ` is not empty. Please choose how to proceed:`,
+    initial: 0,
+    choices: [
+      {
+        title: "Remove existing files and continue",
+        value: "yes"
+      },
+      {
+        title: "Cancel operation",
+        value: "no"
+      },
+      {
+        title: "Ignore files and continue",
+        value: "ignore"
+      }
+    ]
   },
   {
     type: (_, { overwrite }) => {
-      if (overwrite === false) {
+      if (overwrite === "no") {
         throw new Error(red$1("\u2716") + " Operation cancelled");
       }
       return null;
@@ -7183,9 +7216,10 @@ async function init() {
   params.targetDirPath = destDir;
   console.log(`
 Scaffolding project in ${destDir}...`);
-  if (overwrite) {
+  if (overwrite === "yes") {
     emptyDir(destDir);
-  } else if (!fs.existsSync(destDir)) {
+  }
+  if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
   }
   const templateDir = path.resolve(
