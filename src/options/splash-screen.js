@@ -1,7 +1,7 @@
 import { deleteDirOrFile } from "../fs-utils.js";
 import { params } from "../params.js";
 
-export function setSplashScreen(splashScreen) {
+export function setSplashScreen(splashScreen, projectName) {
   if (splashScreen) {
     params.htmlInjections.push({
       name: "Splash screen",
@@ -9,6 +9,11 @@ export function setSplashScreen(splashScreen) {
       type: "raw",
       injectTo: "body-prepend",
     });
+    replaceTextInFile(
+      "src/utils/injections/splash-screen.html",
+      "project-name",
+      projectName
+    );
   } else {
     deleteDirOrFile("src/utils/injections/splash-screen.html");
   }

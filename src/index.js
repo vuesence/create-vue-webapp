@@ -140,7 +140,7 @@ dist
   );
   // optionUtils.setBaseIcon(baseIcon);
   optionUtils.setOpenGraph(openGraph);
-  optionUtils.setSplashScreen(splashScreen);
+  optionUtils.setSplashScreen(splashScreen, projectName);
   optionUtils.setPwa(pwa);
   optionUtils.setGoogleAnalytics(googleAnalytics);
   optionUtils.setApi(api, jsonRpc);

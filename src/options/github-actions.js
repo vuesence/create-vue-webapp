@@ -9,7 +9,7 @@ export function setGithubActionsGithubPagesWorkflow(
       "vite.config.ts",
       `export default defineConfig({`,
       `export default defineConfig({
-  base: "/${projectName}/",`
+    // base: "/${projectName}/",`
     );
   } else {
     deleteDirOrFile(".github/workflows/gp-deploy.yaml");
