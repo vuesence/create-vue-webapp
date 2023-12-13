@@ -7117,40 +7117,45 @@ function formatTargetDir(targetDir) {
 
 const argv = minimist$1(process.argv.slice(2), { string: ["_"] });
 const cwd = process.cwd();
+const optionsFile = argv.config || argv.c;
 async function init() {
   params.targetDir = formatTargetDir(argv._[0]) || params.defaultTargetDir;
   params.projectName = params.targetDir === "." ? path.basename(path.resolve()) : params.targetDir;
   projectName.initial = params.projectName;
   let options;
-  try {
-    options = await prompts$1(
-      [
-        projectName,
-        splashScreen,
-        pwa,
-        openGraph,
-        googleAnalytics,
-        githubActionsGithubPagesWorkflow,
-        layout,
-        navigationDrawer,
-        navbar,
-        header,
-        footer,
-        api,
-        jsonRpc,
-        // promptsUtils.baseIcon,
-        packageNameCheck,
-        ...dirOverwriteCheck
-      ],
-      {
-        onCancel: () => {
-          throw new Error(red("\u2716") + " Operation cancelled");
+  if (optionsFile) {
+    options = JSON.parse(fs.readFileSync(optionsFile, "utf8"));
+  } else {
+    try {
+      options = await prompts$1(
+        [
+          projectName,
+          splashScreen,
+          pwa,
+          openGraph,
+          googleAnalytics,
+          githubActionsGithubPagesWorkflow,
+          layout,
+          navigationDrawer,
+          navbar,
+          header,
+          footer,
+          api,
+          jsonRpc,
+          // promptsUtils.baseIcon,
+          packageNameCheck,
+          ...dirOverwriteCheck
+        ],
+        {
+          onCancel: () => {
+            throw new Error(red("\u2716") + " Operation cancelled");
+          }
         }
-      }
-    );
-  } catch (cancelled) {
-    console.log(cancelled.message);
-    return;
+      );
+    } catch (cancelled) {
+      console.log(cancelled.message);
+      return;
+    }
   }
   const {
     projectName: projectName$1,
@@ -7166,14 +7171,16 @@ async function init() {
     api: api$1,
     openGraph: openGraph$1,
     jsonRpc: jsonRpc$1,
-    baseIcon,
+    // baseIcon,
     githubActionsGithubPagesWorkflow: githubActionsGithubPagesWorkflow$1
   } = options;
   const destDir = path.join(cwd, params.targetDir);
   params.targetDirPath = destDir;
   console.log(`
 Scaffolding project in ${destDir}...`);
-  if (overwrite) ; else if (!fs.existsSync(destDir)) {
+  if (overwrite) {
+    emptyDir(destDir);
+  } else if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
   }
   const templateDir = path.resolve(

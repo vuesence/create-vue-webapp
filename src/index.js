@@ -88,7 +88,7 @@ async function init() {
   console.log(`\nScaffolding project in ${destDir}...`);
   // create target directory
   if (overwrite) {
-    // emptyDir(destDir);
+    emptyDir(destDir);
   } else if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
   }
