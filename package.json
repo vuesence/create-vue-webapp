@@ -44,6 +44,8 @@
     "upd": "shx cp -r ../vue-webapp/src/* src/template/src && shx cp ../vue-webapp/package.json ../vue-webapp/vite.config.ts ../vue-webapp/index.html src/template"
   },
   "devDependencies": {
+    "@types/minimist": "^1.2.5",
+    "@types/prompts": "^2.4.9",
     "kolorist": "^1.8.0",
     "minimist": "^1.2.8",
     "prompts": "^2.4.2",

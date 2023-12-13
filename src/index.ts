@@ -7,6 +7,7 @@ import prompts from "prompts";
 import { emptyDir, copyDir, writeToFile } from "./fs-utils.js";
 import * as optionUtils from "./options/index.js";
 import * as promptsUtils from "./prompt.js";
+import { red } from "kolorist";
 
 // Avoids autoconversion to number of the project name by defining that the args
 // non associated with an option ( _ ) needs to be parsed as a string.
