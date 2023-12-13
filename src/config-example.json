@@ -1,0 +1,16 @@
+{
+    "projectName": "my-vue-project",
+    "splashScreen": false,
+    "pwa": true,
+    "openGraph": false,
+    "googleAnalytics": false,
+    "githubActionsGithubPagesWorkflow": true,
+    "layout": "MainLayout",
+    "navigationDrawer": "SimpleDrawer",
+    "navbar": "MantineSimpleNavbar",
+    "header": "MantineSimpleHeader",
+    "footer": "MantineRichFooter",
+    "api": true,
+    "jsonRpc": false,
+    "overwrite": true
+}

@@ -12,6 +12,7 @@ import * as promptsUtils from "./prompt.js";
 // non associated with an option ( _ ) needs to be parsed as a string.
 const argv = minimist(process.argv.slice(2), { string: ["_"] });
 const cwd = process.cwd();
+const optionsFile = argv.config || argv.c;
 
 async function init() {
   params.targetDir =
@@ -21,35 +22,39 @@ async function init() {
   promptsUtils.projectName.initial = params.projectName;
 
   let options;
-  try {
-    options = await prompts(
-      [
-        promptsUtils.projectName,
-        promptsUtils.splashScreen,
-        promptsUtils.pwa,
-        promptsUtils.openGraph,
-        promptsUtils.googleAnalytics,
-        promptsUtils.githubActionsGithubPagesWorkflow,
-        promptsUtils.layout,
-        promptsUtils.navigationDrawer,
-        promptsUtils.navbar,
-        promptsUtils.header,
-        promptsUtils.footer,
-        promptsUtils.api,
-        promptsUtils.jsonRpc,
-        // promptsUtils.baseIcon,
-        promptsUtils.packageNameCheck,
-        ...promptsUtils.dirOverwriteCheck,
-      ],
-      {
-        onCancel: () => {
-          throw new Error(red("✖") + " Operation cancelled");
-        },
-      }
-    );
-  } catch (cancelled) {
-    console.log(cancelled.message);
-    return;
+  if (optionsFile) {
+    options = JSON.parse(fs.readFileSync(optionsFile, "utf8"));
+  } else {
+    try {
+      options = await prompts(
+        [
+          promptsUtils.projectName,
+          promptsUtils.splashScreen,
+          promptsUtils.pwa,
+          promptsUtils.openGraph,
+          promptsUtils.googleAnalytics,
+          promptsUtils.githubActionsGithubPagesWorkflow,
+          promptsUtils.layout,
+          promptsUtils.navigationDrawer,
+          promptsUtils.navbar,
+          promptsUtils.header,
+          promptsUtils.footer,
+          promptsUtils.api,
+          promptsUtils.jsonRpc,
+          // promptsUtils.baseIcon,
+          promptsUtils.packageNameCheck,
+          ...promptsUtils.dirOverwriteCheck,
+        ],
+        {
+          onCancel: () => {
+            throw new Error(red("✖") + " Operation cancelled");
+          },
+        }
+      );
+    } catch (cancelled) {
+      console.log(cancelled.message);
+      return;
+    }
   }
 
   // console.log(params);
@@ -71,7 +76,7 @@ async function init() {
     api,
     openGraph,
     jsonRpc,
-    baseIcon,
+    // baseIcon,
     githubActionsGithubPagesWorkflow,
   } = options;
 
