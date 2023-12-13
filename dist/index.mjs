@@ -6584,7 +6584,7 @@ function deleteDirOrFile(pathToDelete) {
     }
   }
 }
-function replaceTextInFile(filePath, searchValue, replaceValue) {
+function replaceTextInFile$1(filePath, searchValue, replaceValue) {
   try {
     filePath = path.resolve(params.targetDirPath, filePath);
     const data = fs.readFileSync(filePath, "utf8");
@@ -6607,7 +6607,7 @@ function deleteTextInFile(filePath, strings) {
   }
 }
 
-function setSplashScreen(splashScreen) {
+function setSplashScreen(splashScreen, projectName) {
   if (splashScreen) {
     params.htmlInjections.push({
       name: "Splash screen",
@@ -6615,6 +6615,11 @@ function setSplashScreen(splashScreen) {
       type: "raw",
       injectTo: "body-prepend"
     });
+    replaceTextInFile(
+      "src/utils/injections/splash-screen.html",
+      "project-name",
+      projectName
+    );
   } else {
     deleteDirOrFile("src/utils/injections/splash-screen.html");
   }
@@ -6675,13 +6680,13 @@ function setApi(api, jsonRpc) {
 `
     ]);
   } else {
-    replaceTextInFile(
+    replaceTextInFile$1(
       "src/views/HomeView.vue",
       `import { onMounted, ref } from "vue";`,
       `import { onMounted, ref } from "vue";
 import { api } from "@/services/api";`
     );
-    replaceTextInFile(
+    replaceTextInFile$1(
       "src/views/HomeView.vue",
       `// api-placeholder`,
       `const apiData = ref();
@@ -6690,7 +6695,7 @@ onMounted(async () => {
   apiData.value = await api.utils.testRest();
 });`
     );
-    replaceTextInFile(
+    replaceTextInFile$1(
       "src/views/HomeView.vue",
       `</ul>`,
       `</ul>
@@ -6698,19 +6703,19 @@ onMounted(async () => {
 <h3>API data:</h3> <p>{{ apiData }}</p>`
     );
     if (jsonRpc) {
-      replaceTextInFile(
+      replaceTextInFile$1(
         "src/views/HomeView.vue",
         `const apiData = ref();`,
         `const apiData = ref();
 const jsonRpcData = ref();`
       );
-      replaceTextInFile(
+      replaceTextInFile$1(
         "src/views/HomeView.vue",
         `.testRest();`,
         `.testRest();
 jsonRpcData.value = await api.utils.testJsonRpc();`
       );
-      replaceTextInFile(
+      replaceTextInFile$1(
         "src/views/HomeView.vue",
         `<p>{{ apiData }}</p>`,
         `<p>{{ apiData }}</p>
@@ -6720,7 +6725,7 @@ jsonRpcData.value = await api.utils.testJsonRpc();`
 {{ jsonRpcData }}
 </p>`
       );
-      replaceTextInFile(
+      replaceTextInFile$1(
         "src/views/HomeView.vue",
         `</style>`,
         `</style>
@@ -6735,13 +6740,13 @@ jsonRpcData.value = await api.utils.testJsonRpc();`
 
 function setHeader(header) {
   if (header === "SlidingHeader") {
-    replaceTextInFile(
+    replaceTextInFile$1(
       "src/layouts/MainLayout.vue",
       `import AppHeader from "@/components/headers/SimpleHeader.vue";`,
       `import AppHeaderContent from "@/components/headers/SimpleHeader.vue";
 import AppHeader from "@/components/headers/SlidingHeader.vue";`
     );
-    replaceTextInFile("src/layouts/MainLayout.vue", "<AppHeader />", `
+    replaceTextInFile$1("src/layouts/MainLayout.vue", "<AppHeader />", `
     <AppHeader :threshold-hide="200" :threshold-open="400">
       <template #first-header>
         <AppHeaderContent />
@@ -6757,17 +6762,17 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
         `);
   } else if (header !== "SimpleHeader") {
     console.log("replaceTextInFile", header);
-    replaceTextInFile("src/layouts/MainLayout.vue", "/SimpleHeader.vue", "/" + header + ".vue");
+    replaceTextInFile$1("src/layouts/MainLayout.vue", "/SimpleHeader.vue", "/" + header + ".vue");
   }
 }
 
 function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, projectName) {
   if (githubActionsGithubPagesWorkflow) {
-    replaceTextInFile(
+    replaceTextInFile$1(
       "vite.config.ts",
       `export default defineConfig({`,
       `export default defineConfig({
-  base: "/${projectName}/",`
+    // base: "/${projectName}/",`
     );
   } else {
     deleteDirOrFile(".github/workflows/gp-deploy.yaml");
@@ -6778,11 +6783,11 @@ function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, p
 
 function setLayout(layout) {
   if (layout !== "MainLayout") {
-    replaceTextInFile(
+    replaceTextInFile$1(
       "src/assets/styles/custom.scss",
       "// layout-placeholder",
       `:root {
-  --vp-layout-max-width: 800px;  
+  --vwa-layout-max-width: 800px;  
 }
 .notebook .navigation-drawer, .desktop .navigation-drawer {
   display: none;
@@ -6792,7 +6797,7 @@ function setLayout(layout) {
 }
 function setNavbar(navbar) {
   if (navbar && navbar !== "SimpleNavbar") {
-    replaceTextInFile(
+    replaceTextInFile$1(
       "src/layouts/MainLayout.vue",
       "/SimpleNavbar.vue",
       "/" + navbar + ".vue"
@@ -6801,7 +6806,7 @@ function setNavbar(navbar) {
 }
 function setFooter(footer) {
   if (footer && footer !== "SimpleFooter") {
-    replaceTextInFile(
+    replaceTextInFile$1(
       "src/layouts/MainLayout.vue",
       "/SimpleFooter.vue",
       "/" + footer + ".vue"
@@ -6810,7 +6815,7 @@ function setFooter(footer) {
 }
 function setNavigationDrawer(navigationDrawer) {
   if (navigationDrawer && !navigationDrawer.startsWith("Simple")) {
-    replaceTextInFile(
+    replaceTextInFile$1(
       "src/layouts/MainLayout.vue",
       "SimpleDrawer",
       navigationDrawer
@@ -6825,7 +6830,7 @@ export const htmlInjectionConfig: IHtmlInjectionConfig = {
   writeToFile("src/utils/injections/injection-config.ts", data);
 }
 function setTitle(title) {
-  replaceTextInFile("index.html", "<!-- title placeholder -->", title);
+  replaceTextInFile$1("index.html", "<!-- title placeholder -->", title);
 }
 function setOptionList(options) {
   let optionArrayStr = [];
@@ -6853,7 +6858,7 @@ function setOptionList(options) {
     }
   }
   optionArrayStr = `[${optionArrayStr.join(",")}]`;
-  replaceTextInFile(
+  replaceTextInFile$1(
     "src/views/HomeView.vue",
     "options: IOption[] = [];",
     `options: IOption[] = ${optionArrayStr};`
@@ -7215,7 +7220,7 @@ dist
     params.projectName
   );
   setOpenGraph(openGraph$1);
-  setSplashScreen(splashScreen$1);
+  setSplashScreen(splashScreen$1, projectName$1);
   setPwa(pwa$1);
   setGoogleAnalytics(googleAnalytics$1);
   setApi(api$1, jsonRpc$1);

@@ -10,6 +10,6 @@ export function setGoogleAnalytics(googleAnalytics) {
       injectTo: "body",
     });
   } else {
-    deleteDirOrFile("src/utils/injections/gtag.js");
+    deleteDirOrFile("src/utils/injections/gtag.html");
   }
 }

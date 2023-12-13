@@ -166,7 +166,7 @@ export const packageNameCheck = {
   message: reset("Package name:"),
   // initial: () => toValidPackageName(getProjectName()),
   initial: () => toValidPackageName(params.projectName),
-  validate: (dir) => isValidPackageName(dir) || "Invalid package.json name",
+  // validate: (dir) => isValidPackageName(dir) || "Invalid package.json 'name'",
 };
 
 export const dirOverwriteCheck = [
@@ -178,18 +178,33 @@ export const dirOverwriteCheck = [
       const files = fs.readdirSync(params.targetDir);
       return files.length === 0 || (files.length === 1 && files[0] === ".git")
         ? null
-        : "confirm";
+        : "select";
     },
     name: "overwrite",
     message: () =>
       (params.targetDir === "."
         ? "Current directory"
         : `Target directory "${params.targetDir}"`) +
-      ` is not empty. Remove existing files and continue?`,
+      ` is not empty. Please choose how to proceed:`,
+    initial: 0,
+    choices: [
+      {
+        title: "Remove existing files and continue",
+        value: "yes",
+      },
+      {
+        title: "Cancel operation",
+        value: "no",
+      },
+      {
+        title: "Ignore files and continue",
+        value: "ignore",
+      },
+    ],
   },
   {
     type: (_, { overwrite }) => {
-      if (overwrite === false) {
+      if (overwrite === "no") {
         throw new Error(red("✖") + " Operation cancelled");
       }
       return null;
@@ -199,12 +214,14 @@ export const dirOverwriteCheck = [
 ];
 
 function isValidPackageName(projectName) {
+  // console.log("checking validness", projectName);
   return /^(?:@[a-z\d\-*~][a-z\d\-*._~]*\/)?[a-z\d\-~][a-z\d\-._~]*$/.test(
     params.projectName
   );
 }
 
 function toValidPackageName(projectName) {
+  // console.log("to valid", projectName);
   return projectName
     .trim()
     .toLowerCase()

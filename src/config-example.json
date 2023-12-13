@@ -12,5 +12,5 @@
     "footer": "MantineRichFooter",
     "api": true,
     "jsonRpc": false,
-    "overwrite": true
+    "overwrite": "yes"
 }

@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import minimist from "minimist";
 import { params } from "./params.js";
 import prompts from "prompts";
-import { copyDir, writeToFile } from "./fs-utils.js";
+import { emptyDir, copyDir, writeToFile } from "./fs-utils.js";
 import * as optionUtils from "./options/index.js";
 import * as promptsUtils from "./prompt.js";
 
@@ -87,9 +87,10 @@ async function init() {
 
   console.log(`\nScaffolding project in ${destDir}...`);
   // create target directory
-  if (overwrite) {
+  if (overwrite === "yes") {
     emptyDir(destDir);
-  } else if (!fs.existsSync(destDir)) {
+  }
+  if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
   }
 
