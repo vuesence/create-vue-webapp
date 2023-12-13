@@ -15,7 +15,7 @@ function setLayout(layout) {
       "src/assets/styles/custom.scss",
       "// layout-placeholder",
       `:root {
-  --vp-layout-max-width: 800px;  
+  --vwa-layout-max-width: 800px;  
 }
 .notebook .navigation-drawer, .desktop .navigation-drawer {
   display: none;
