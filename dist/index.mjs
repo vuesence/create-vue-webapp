@@ -6595,7 +6595,7 @@ function deleteDirOrFile(pathToDelete) {
     }
   }
 }
-function replaceTextInFile$1(filePath, searchValue, replaceValue) {
+function replaceTextInFile(filePath, searchValue, replaceValue) {
   try {
     filePath = path.resolve(params.targetDirPath, filePath);
     const data = fs.readFileSync(filePath, "utf8");
@@ -6691,13 +6691,13 @@ function setApi(api, jsonRpc) {
 `
     ]);
   } else {
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/views/HomeView.vue",
       `import { onMounted, ref } from "vue";`,
       `import { onMounted, ref } from "vue";
 import { api } from "@/services/api";`
     );
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/views/HomeView.vue",
       `// api-placeholder`,
       `const apiData = ref();
@@ -6706,7 +6706,7 @@ onMounted(async () => {
   apiData.value = await api.utils.testRest();
 });`
     );
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/views/HomeView.vue",
       `</ul>`,
       `</ul>
@@ -6714,19 +6714,19 @@ onMounted(async () => {
 <h3>API data:</h3> <p>{{ apiData }}</p>`
     );
     if (jsonRpc) {
-      replaceTextInFile$1(
+      replaceTextInFile(
         "src/views/HomeView.vue",
         `const apiData = ref();`,
         `const apiData = ref();
 const jsonRpcData = ref();`
       );
-      replaceTextInFile$1(
+      replaceTextInFile(
         "src/views/HomeView.vue",
         `.testRest();`,
         `.testRest();
 jsonRpcData.value = await api.utils.testJsonRpc();`
       );
-      replaceTextInFile$1(
+      replaceTextInFile(
         "src/views/HomeView.vue",
         `<p>{{ apiData }}</p>`,
         `<p>{{ apiData }}</p>
@@ -6736,7 +6736,7 @@ jsonRpcData.value = await api.utils.testJsonRpc();`
 {{ jsonRpcData }}
 </p>`
       );
-      replaceTextInFile$1(
+      replaceTextInFile(
         "src/views/HomeView.vue",
         `</style>`,
         `</style>
@@ -6751,13 +6751,13 @@ jsonRpcData.value = await api.utils.testJsonRpc();`
 
 function setHeader(header) {
   if (header === "SlidingHeader") {
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/layouts/MainLayout.vue",
       `import AppHeader from "@/components/headers/SimpleHeader.vue";`,
       `import AppHeaderContent from "@/components/headers/SimpleHeader.vue";
 import AppHeader from "@/components/headers/SlidingHeader.vue";`
     );
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/layouts/MainLayout.vue",
       "<AppHeader />",
       `
@@ -6776,7 +6776,7 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
         `
     );
   } else if (header !== "SimpleHeader") {
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/layouts/MainLayout.vue",
       "/SimpleHeader.vue",
       "/" + header + ".vue"
@@ -6786,7 +6786,7 @@ import AppHeader from "@/components/headers/SlidingHeader.vue";`
 
 function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, projectName) {
   if (githubActionsGithubPagesWorkflow) {
-    replaceTextInFile$1(
+    replaceTextInFile(
       "vite.config.ts",
       `export default defineConfig({`,
       `export default defineConfig({
@@ -6801,7 +6801,7 @@ function setGithubActionsGithubPagesWorkflow(githubActionsGithubPagesWorkflow, p
 
 function setLayout(layout) {
   if (layout !== "MainLayout") {
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/assets/styles/custom.scss",
       "// layout-placeholder",
       `:root {
@@ -6815,7 +6815,7 @@ function setLayout(layout) {
 }
 function setNavbar(navbar) {
   if (navbar && navbar !== "SimpleNavbar") {
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/layouts/MainLayout.vue",
       "/SimpleNavbar.vue",
       "/" + navbar + ".vue"
@@ -6824,7 +6824,7 @@ function setNavbar(navbar) {
 }
 function setFooter(footer) {
   if (footer && footer !== "SimpleFooter") {
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/layouts/MainLayout.vue",
       "/SimpleFooter.vue",
       "/" + footer + ".vue"
@@ -6833,7 +6833,7 @@ function setFooter(footer) {
 }
 function setNavigationDrawer(navigationDrawer) {
   if (navigationDrawer && !navigationDrawer.startsWith("Simple")) {
-    replaceTextInFile$1(
+    replaceTextInFile(
       "src/layouts/MainLayout.vue",
       "SimpleDrawer",
       navigationDrawer
@@ -6848,7 +6848,7 @@ export const htmlInjectionConfig: IHtmlInjectionConfig = {
   writeToFile("src/utils/injections/injection-config.ts", data);
 }
 function setTitle(title) {
-  replaceTextInFile$1("index.html", "<!-- title placeholder -->", title);
+  replaceTextInFile("index.html", "<!-- title placeholder -->", title);
 }
 function setOptionList(options) {
   let optionArrayStr = [];
@@ -6876,7 +6876,7 @@ function setOptionList(options) {
     }
   }
   optionArrayStr = `[${optionArrayStr.join(",")}]`;
-  replaceTextInFile$1(
+  replaceTextInFile(
     "src/views/HomeView.vue",
     "options: IOption[] = [];",
     `options: IOption[] = ${optionArrayStr};`
@@ -6959,7 +6959,7 @@ function kolorist(start, end, level = 1 /* ansi */) {
 }
 // modifiers
 const reset = kolorist(0, 0);
-const red$1 = kolorist(31, 39);
+const red = kolorist(31, 39);
 const lightGreen = kolorist(92, 39);
 const lightBlue = kolorist(94, 39);
 
@@ -7134,7 +7134,7 @@ const dirOverwriteCheck = [
   {
     type: (_, { overwrite }) => {
       if (overwrite === "no") {
-        throw new Error(red$1("\u2716") + " Operation cancelled");
+        throw new Error(red("\u2716") + " Operation cancelled");
       }
       return null;
     },

@@ -1,4 +1,4 @@
-import { deleteDirOrFile } from "../fs-utils.js";
+import { replaceTextInFile, deleteDirOrFile } from "../fs-utils.js";
 import { params } from "../params.js";
 
 export function setSplashScreen(splashScreen, projectName) {
