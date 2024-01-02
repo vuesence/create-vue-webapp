@@ -107,6 +107,14 @@ export const pwa = {
   inactive: "no",
 };
 
+export const i18n = {
+  type: "toggle",
+  name: "i18n",
+  message: reset("Add light version of i18n?"),
+  active: "yes",
+  inactive: "no",
+};
+
 export const openGraph = {
   type: "toggle",
   name: "openGraph",

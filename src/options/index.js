@@ -3,6 +3,7 @@ import { setBaseIcon } from "./base-icon.js";
 import { setSplashScreen } from "./splash-screen.js";
 import { setOpenGraph } from "./open-graph.js";
 import { setPwa } from "./pwa.js";
+import { setI18n } from "./i18n.js";
 import { setGoogleAnalytics } from "./google-analytics.js";
 import { setApi } from "./api.js";
 import { setHeader } from "./header.js";
@@ -112,6 +113,7 @@ export {
   setGithubActionsGithubPagesWorkflow,
   setBaseIcon,
   setPwa,
+  setI18n,
   setGoogleAnalytics,
   setApi,
   setOpenGraph,

@@ -41,7 +41,13 @@
     "dev": "unbuild --stub",
     "build": "unbuild",
     "prepublishOnly1": "npm run build",
-    "upd": "shx cp -r ../vue-webapp/src/* src/template/src && shx cp ../vue-webapp/package.json ../vue-webapp/vite.config.ts ../vue-webapp/eslint.config.ts ../vue-webapp/index.html src/template"
+    "upd": "npm run cp1 && npm run cp2 && npm run cp3 && npm run cp4 && npm run cp5 && npm run rm",
+    "cp1": "shx cp -r ../vue-webapp/src/* src/template/src",
+    "cp2": "shx cp -r ../vue-webapp/*.* src/template",
+    "cp3": "shx cp -r ../vue-webapp/package.json ../vue-webapp/vite.config.ts ../vue-webapp/eslint.config.js ../vue-webapp/index.html src/template",
+    "cp4": "shx mkdir -p src/template/.vscode && shx cp -r ../vue-webapp/.vscode/settings-create-vwa.json src/template/.vscode/settings.json",
+    "cp5": "shx mkdir -p src/template/.github/workflows && shx cp -r ../vue-webapp/.github/workflows/* src/template/.github/workflows",
+    "rm": "shx rm src/template/pnpm-lock.yaml"
   },
   "devDependencies": {
     "@types/minimist": "^1.2.5",

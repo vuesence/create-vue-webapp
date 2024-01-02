@@ -40,6 +40,7 @@ async function init() {
           promptsUtils.navbar,
           promptsUtils.header,
           promptsUtils.footer,
+          promptsUtils.i18n,
           promptsUtils.api,
           promptsUtils.jsonRpc,
           // promptsUtils.baseIcon,
@@ -75,6 +76,7 @@ async function init() {
     pwa,
     googleAnalytics,
     api,
+    i18n,
     openGraph,
     jsonRpc,
     // baseIcon,
@@ -146,6 +148,7 @@ dist
   optionUtils.setPwa(pwa);
   optionUtils.setGoogleAnalytics(googleAnalytics);
   optionUtils.setApi(api, jsonRpc);
+  optionUtils.setI18n(i18n);
   optionUtils.setTitle(params.projectName);
   optionUtils.setOptionList(options);
   // console.log(params);
