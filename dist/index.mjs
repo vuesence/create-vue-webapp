@@ -6668,6 +6668,55 @@ function setPwa(pwa) {
   }
 }
 
+function setI18n(i18n) {
+  if (i18n) {
+    replaceTextInFile(
+      "src/main.ts",
+      "// i18n placeholder 1",
+      `import { useI18n } from "@/composables/useI18nLight";
+
+const { initI18n } = useI18n();`
+    );
+    replaceTextInFile("src/main.ts", "// i18n placeholder 2", "initI18n();");
+    replaceTextInFile(
+      "src/views/HomeView.vue",
+      "// i18n placeholder 1",
+      `import { useI18n } from "@/composables/useI18nLight";
+      
+const { t, locales, locale, setLocale } = useI18n();
+
+function changeLocale() {
+  setLocale(locales.find(l => l.code != locale.value.code).code);
+}`
+    );
+    replaceTextInFile(
+      "src/views/HomeView.vue",
+      "<!-- i18n placeholder 2 -->",
+      `<div>
+      i18n test -
+      <button
+        type="button"
+        @click="changeLocale()"
+      >
+        {{ t('msg') }} ({{ locale.code }})
+      </button>
+    </div>`
+    );
+    replaceTextInFile("src/main.ts", "// i18n placeholder 2", "initI18n();");
+  } else {
+    deleteTextInFile("src/main.ts", [
+      "// i18n placeholder 1\n",
+      "// i18n placeholder 2\n"
+    ]);
+    deleteTextInFile("src/views/HomeView.vue", [
+      "// i18n placeholder 1\n",
+      "<!-- i18n placeholder 2 -->\n"
+    ]);
+    deleteDirOrFile("src/utils/locales");
+    deleteDirOrFile("src/composables/useI18nLight.ts");
+  }
+}
+
 function setGoogleAnalytics(googleAnalytics) {
   if (googleAnalytics) {
     params.htmlInjections.push({
@@ -7049,6 +7098,13 @@ const pwa = {
   active: "yes",
   inactive: "no"
 };
+const i18n = {
+  type: "toggle",
+  name: "i18n",
+  message: reset("Add light version of i18n?"),
+  active: "yes",
+  inactive: "no"
+};
 const openGraph = {
   type: "toggle",
   name: "openGraph",
@@ -7178,6 +7234,7 @@ async function init() {
           navbar,
           header,
           footer,
+          i18n,
           api,
           jsonRpc,
           // promptsUtils.baseIcon,
@@ -7207,6 +7264,7 @@ async function init() {
     pwa: pwa$1,
     googleAnalytics: googleAnalytics$1,
     api: api$1,
+    i18n: i18n$1,
     openGraph: openGraph$1,
     jsonRpc: jsonRpc$1,
     // baseIcon,
@@ -7258,6 +7316,7 @@ dist
   setPwa(pwa$1);
   setGoogleAnalytics(googleAnalytics$1);
   setApi(api$1, jsonRpc$1);
+  setI18n(i18n$1);
   setTitle(params.projectName);
   setOptionList(options);
   setHtmlInjections();
