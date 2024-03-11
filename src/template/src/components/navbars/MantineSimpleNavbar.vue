@@ -24,22 +24,28 @@ const footerLinks = [
   <nav class="navbar">
     <div class="main">
       <ul>
-        <li v-for="link in links" :key="link.label">
-          <router-link v-slot="{ href, navigate }" :to="{ name: link.name }" custom>
-            <BaseIcon size="24" :name="link.icon" class="icon" fill1="currentColor" />
-            <a role="link" :href="href" @click="onLinkClick($event, navigate)">{{ link.label }}</a>
-          </router-link>
-        </li>
+        <router-link v-for="link in links" :key="link.label" v-slot="{ href, navigate }" :to="{ name: link.name }"
+          custom>
+          <li>
+            <a role="link" :href="href" @click="onLinkClick($event, navigate)">
+              <BaseIcon size="24" :name="link.icon" class="icon" fill1="currentColor" />
+              <span>{{ link.label }}</span>
+            </a>
+          </li>
+        </router-link>
       </ul>
     </div>
     <div class="footer">
       <ul>
-        <li v-for="link in footerLinks" :key="link.label">
-          <router-link v-slot="{ href, navigate }" :to="{ name: link.name }" custom>
-            <BaseIcon size="24" :name="link.icon" class="icon" />
-            <a role="link" :href="href" @click="onLinkClick($event, navigate)">{{ link.label }}</a>
-          </router-link>
-        </li>
+        <router-link v-for="link in footerLinks" :key="link.label" v-slot="{ href, navigate }" :to="{ name: link.name }"
+          custom>
+          <li>
+            <a role="link" :href="href" @click="onLinkClick($event, navigate)">
+              <BaseIcon size="24" :name="link.icon" class="icon" />
+              <span>{{ link.label }}</span>
+            </a>
+          </li>
+        </router-link>
       </ul>
     </div>
   </nav>
@@ -54,17 +60,19 @@ const footerLinks = [
     min-width: 220px;
   }
 
-  .main, .footer {
+  .main,
+  .footer {
     ul {
       list-style-type: none;
       padding-left: 0;
 
       li {
         line-height: 3em;
-        padding-left: 1em;
+        // padding-left: 1em;
         display: flex;
         align-items: center;
         color: var(--vwa-c-text-2);
+
         // border-bottom: solid 1px var(--vwa-c-divider);
         &:hover {
           color: var(--vwa-c-text-1);
@@ -73,21 +81,27 @@ const footerLinks = [
 
         a {
           cursor: pointer;
-          display: block;
+          display: flex;
+          align-items: center;
+          width: 100%;
           padding: 0 2em 0 1em;
           color: var(--vwa-c-text-2);
           text-wrap: nowrap;
         }
-        // .icon {
-        //   color: var(--vwa-c-text-1)
-        // }
+
+        .icon {
+          // color: var(--vwa-c-text-1);
+          margin-right: 1em;
+        }
       }
 
     }
   }
+
   .main {
     padding-bottom: 2em;
   }
+
   .footer {
     // padding-top: 1em;
     margin-top: 1em;
