@@ -24,8 +24,7 @@ const footerLinks = [
   <nav class="navbar">
     <div class="main">
       <ul>
-        <router-link v-for="link in links" :key="link.label" v-slot="{ href, navigate }" :to="{ name: link.name }"
-          custom>
+        <router-link v-for="link in links" :key="link.label" v-slot="{ href, navigate }" :to="{ name: link.name }" custom>
           <li>
             <a role="link" :href="href" @click="onLinkClick($event, navigate)">
               <BaseIcon size="24" :name="link.icon" class="icon" fill1="currentColor" />
@@ -37,8 +36,7 @@ const footerLinks = [
     </div>
     <div class="footer">
       <ul>
-        <router-link v-for="link in footerLinks" :key="link.label" v-slot="{ href, navigate }" :to="{ name: link.name }"
-          custom>
+        <router-link v-for="link in footerLinks" :key="link.label" v-slot="{ href, navigate }" :to="{ name: link.name }" custom>
           <li>
             <a role="link" :href="href" @click="onLinkClick($event, navigate)">
               <BaseIcon size="24" :name="link.icon" class="icon" />
@@ -51,7 +49,7 @@ const footerLinks = [
   </nav>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .navbar {
   min-width: 220px;
   padding: 1em;
@@ -60,20 +58,17 @@ const footerLinks = [
     min-width: 220px;
   }
 
-  .main,
-  .footer {
+  .main, .footer {
     ul {
       list-style-type: none;
       padding-left: 0;
 
       li {
         line-height: 3em;
-        // padding-left: 1em;
         display: flex;
         align-items: center;
         color: var(--vwa-c-text-2);
-
-        // border-bottom: solid 1px var(--vwa-c-divider);
+        /* // border-bottom: solid 1px var(--vwa-c-divider); */
         &:hover {
           color: var(--vwa-c-text-1);
           background-color: var(--vwa-c-bg-alt);
@@ -88,22 +83,18 @@ const footerLinks = [
           color: var(--vwa-c-text-2);
           text-wrap: nowrap;
         }
-
         .icon {
-          // color: var(--vwa-c-text-1);
           margin-right: 1em;
         }
       }
 
     }
   }
-
   .main {
     padding-bottom: 2em;
   }
-
   .footer {
-    // padding-top: 1em;
+    /* // padding-top: 1em; */
     margin-top: 1em;
     padding-top: 0.7rem;
     border-top: 1px solid var(--vwa-c-divider);
